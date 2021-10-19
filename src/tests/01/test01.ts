@@ -16,9 +16,11 @@ export function getCount(string: string) {
 }
 // Minimum Steps (Array Series #6)
 export function miniNumSteps(numbers: Array<number>, value: number) {
-debugger
- let sum= Math.min(...numbers);
+    let sum= Math.min(...numbers);
  let counter=0;
+ if(sum>=value){
+     return counter;
+ }
  while (numbers.length>1){
      numbers=numbers.filter(x=>x!=Math.min(...numbers));
     sum+=Math.min(...numbers);
@@ -26,6 +28,7 @@ debugger
     if(sum>=value){
         break;
     }
+
  }
  return counter;
 }
