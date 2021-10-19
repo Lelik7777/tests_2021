@@ -14,7 +14,7 @@ export function getCount(string: string) {
     const arr = string.toLowerCase().split('');
     return arr.filter(x => x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u').length;
 }
-
+// Minimum Steps (Array Series #6)
 export function miniNumSteps(numbers: Array<number>, value: number) {
 debugger
  let sum= Math.min(...numbers);
