@@ -9,12 +9,12 @@ export function mult(a: number, b: number) {
 export function splitString(string: string) {
     return string.toLowerCase().split(' ');
 }
-
+//Vowel Count kata 7kyu
 export function getCount(string: string) {
     const arr = string.toLowerCase().split('');
     return arr.filter(x => x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u').length;
 }
-// Minimum Steps (Array Series #6)
+// Minimum Steps (Array Series #6) kata 7kyu
 export function miniNumSteps(numbers: Array<number>, value: number) {
     let sum= Math.min(...numbers);
  let counter=0;
