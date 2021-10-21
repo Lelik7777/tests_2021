@@ -1,4 +1,4 @@
-import {getCount, miniNumSteps, mult, sum} from './test01';
+import {changeArg, freqSeq, getCount, miniNumSteps, mult, sum} from './test01';
 
 let a: number;
 let b: number;
@@ -31,3 +31,13 @@ test('nimSteps', () => {
     const res = miniNumSteps([2, 3, 4, 5, 6], 12);
     expect(res).toBe(3)
 })
+
+test.skip('frequency sequence',function () {
+   const  res=freqSeq('22244','*');
+   expect(res).toStrictEqual('3*2');
+});
+
+test('change arg',function () {
+   const res=changeArg(a);
+   expect(res).toBe(1);
+});
