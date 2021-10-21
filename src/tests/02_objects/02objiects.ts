@@ -25,7 +25,7 @@ export type GovernmentBuildingType = {
 type AddressGovernBuildingType = {
     street: { title: string }
 }
-type StudentType = {
+export type StudentType = {
     id: number;
     name?: string;
     'position in space': string;
@@ -46,9 +46,9 @@ type TechnologyType = {
     id: number;
     title: string;
 }
-export const student: StudentType = {
+export const student01: StudentType = {
     id: 1,
-    name:'Bob',
+    name: 'Bob',
     'position in space': 'Earth',
     age: 40,
     isActive: true,

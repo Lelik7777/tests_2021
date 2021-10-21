@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+import {sum01} from "./tests/03_functions/03_functions";
+
+
+const res=sum01(sum01(3,4),sum01(4,7));
+console.log({res});
+
 function App() {
   return (
     <div className="App">
