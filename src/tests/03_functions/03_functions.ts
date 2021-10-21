@@ -4,6 +4,6 @@ export function sum01(a:number, b:number) {
 }
 sum01(sum01(3, 4), sum01(3, 6));//return 16
 
-export function addSkill(student:StudentType,skill:string) {
-
+export function addTechnology(student:StudentType,technology:string ) {
+ student.technologies.push({id:new Date().getTime(),title:technology})
 }
