@@ -6,6 +6,7 @@ beforeEach(function () {
     city = {
         title: 'New York',
         houses: [{
+            id:1,
             builtAt: 2012,
             repaired: false,
             address: {
@@ -15,6 +16,7 @@ beforeEach(function () {
                 }
             }
         }, {
+            id:2,
             builtAt: 2008,
             repaired: false,
             address: {
@@ -24,6 +26,7 @@ beforeEach(function () {
                 }
             }
         }, {
+            id:3,
             builtAt: 2020,
             repaired: false,
             address: {
@@ -37,7 +40,7 @@ beforeEach(function () {
             {
                 type: 'HOSPITAL',
                 budget: 200000,
-                staffCount: 1000,
+                staffCount: 200,
                 address: {
                     street: {
                         title: 'South Str',

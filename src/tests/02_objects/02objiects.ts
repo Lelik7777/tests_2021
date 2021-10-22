@@ -11,7 +11,8 @@ type AddressHouseType = {
     number: number;
     street: StreetType;
 }
-type HouseType = {
+ export type HouseType = {
+    id:number;
     builtAt: number;
     repaired: boolean;
     address: AddressHouseType;
