@@ -30,13 +30,13 @@ function App() {
         }
     }
     const removeTask = (id: string) => {
-        setTasks(tasks.filter(x => x.id != id));
+        setTasks(tasks.filter(x => x.id !== id));
     }
     const getStatusTasks = (filter: FilterType) => {
         setFilter(filter);
     }
     const addTask = (title: string) => {
-        setTasks([...tasks, {id: v1(), title, isDone: false}]);
+        setTasks([{id: v1(), title, isDone: false}, ...tasks]);
     }
     return (
         <div className="App">
