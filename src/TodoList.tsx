@@ -40,6 +40,18 @@ export function TodoList(props: TodoListType) {
         }
 
     }
+    const mappedList = () => {
+      return <ul>
+          {props.data.map(x=>{
+              return (
+                  <li>
+                      <input type="checkbox" checked={x.isDone}/>
+                      <span>{x.title}</span>
+                  </li>
+              )
+          })}
+      </ul>
+    }
     return (
         <div className={'todoList'}>
             <h1>{props.title}</h1>
@@ -53,7 +65,7 @@ export function TodoList(props: TodoListType) {
                 />
                 <button onClick={addTaskOnClick}>+</button>
             </div>
-            <ul>
+           {/* <ul>
                 {props.data.map(x => {
                     const removeTaskByBut = () => {
                         props.removeTask(x.id);
@@ -66,7 +78,8 @@ export function TodoList(props: TodoListType) {
                         </li>
                     )
                 })}
-            </ul>
+            </ul>*/}
+            {mappedList()}
             <div>
                 <button onClick={statusAll}>All</button>
                 <button onClick={statusActive}>Active</button>
