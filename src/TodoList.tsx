@@ -1,57 +1,53 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterType, TaskType} from './App';
+import {Button} from './components/Button';
 
 export type TodoListType = {
     data: TaskType[];
     title: string;
     removeTask: (id: string) => void;
-    getStatusTasks: (f: FilterType) => void;
+    getStatusTasks: (f: FilterType | string) => void;
     addTask: (t: string) => void;
 }
 
 export function TodoList(props: TodoListType) {
-    let [title, setTitle] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
     const titleTrim = title.trim();
-    const statusAll = () => {
-        props.getStatusTasks('all');
-    }
-    const statusActive = () => {
-        props.getStatusTasks('active');
-    }
-    const statusCompleted = () => {
-        props.getStatusTasks('completed');
-    }
+    const mappedList = props.data.map(x => {
+        return (
+            <li>
+                <input type="checkbox" checked={x.isDone}/>
+                <span>{x.title}</span>
+                <Button title={'x'} fun={() => props.removeTask(x.id)}/>
+            </li>
+        )
+    })
+    const mappedButtons = ['all', 'active', 'completed'].map(x => {
+        return (
+            <Button title={x} fun={() => filterButton(x)}/>
+        )
+    });
+
     const addTaskOnClick = () => {
         if (titleTrim) {
             props.addTask(titleTrim);
-            setTitle('');
+            setTitle('')
         }
-
+    }
+    const filterButton = (f: FilterType | string) => {
+        props.getStatusTasks(f);
     }
     const onChangeInput = (ev: ChangeEvent<HTMLInputElement>) => {
-
         setTitle(ev.currentTarget.value);
     }
     const changeOnKeyPress = (ev: KeyboardEvent<HTMLInputElement>) => {
-        debugger
         if (ev.key === 'Enter' && titleTrim) {
             props.addTask(titleTrim);
             setTitle('');
         }
+    }
 
-    }
-    const mappedList = () => {
-      return <ul>
-          {props.data.map(x=>{
-              return (
-                  <li>
-                      <input type="checkbox" checked={x.isDone}/>
-                      <span>{x.title}</span>
-                  </li>
-              )
-          })}
-      </ul>
-    }
+
     return (
         <div className={'todoList'}>
             <h1>{props.title}</h1>
@@ -63,27 +59,11 @@ export function TodoList(props: TodoListType) {
                     onChange={onChangeInput}
                     onKeyPress={changeOnKeyPress}
                 />
-                <button onClick={addTaskOnClick}>+</button>
+                <Button title={'+'} fun={addTaskOnClick}/>
             </div>
-           {/* <ul>
-                {props.data.map(x => {
-                    const removeTaskByBut = () => {
-                        props.removeTask(x.id);
-                    }
-                    return (
-                        <li key={x.id}>
-                            <input type="checkbox" checked={x.isDone}/>
-                            <span>{x.title}</span>
-                            <button onClick={removeTaskByBut}>x</button>
-                        </li>
-                    )
-                })}
-            </ul>*/}
-            {mappedList()}
+            {mappedList}
             <div>
-                <button onClick={statusAll}>All</button>
-                <button onClick={statusActive}>Active</button>
-                <button onClick={statusCompleted}>Completed</button>
+                {mappedButtons}
             </div>
         </div>
     )
