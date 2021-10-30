@@ -19,7 +19,7 @@ function App() {
         {id: v1(), title: 'Angular', isDone: false},
     ]);
     let [filter, setFilter] = useState<FilterType | string>('all');
-    const getFilterTasks = (filer: FilterType | string) => {
+    const getFilterTasks = (filer: FilterType | string): TaskType[] => {
         switch (filer) {
             case 'active':
                 return tasks.filter(x => !x.isDone);
@@ -29,13 +29,13 @@ function App() {
                 return tasks;
         }
     }
-    const removeTask = (id: string) => {
+    const removeTask = (id: string): void => {
         setTasks(tasks.filter(x => x.id !== id));
     }
-    const getStatusTasks = (filter: FilterType | string) => {
+    const getStatusTasks = (filter: FilterType | string): void => {
         setFilter(filter);
     }
-    const addTask = (title: string) => {
+    const addTask = (title: string): void => {
         setTasks([{id: v1(), title, isDone: false}, ...tasks]);
     }
     return (

@@ -1,12 +1,12 @@
 import React from 'react';
 
-type PropsType={
-    title:string;
-    callBack:()=>void;
+type PropsType = {
+    title: string;
+    callBack: () => void;
 }
-export const Button = ({title,callBack}: PropsType) => {
+export const Button = ({title, callBack}: PropsType) => {
 
-    const onClick = ()=>callBack();
+    const onClick = () => callBack();
     return (
         <button onClick={onClick}>{title}</button>
     )

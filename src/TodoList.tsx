@@ -40,7 +40,7 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask}: To
                 <Input title={title} setTitle={setTitle} addTask={addTask}/>
                 <Button title={'+'} callBack={addTaskOnClick}/>
             </div>
-       <MappedUl data={data} removeTask={removeTask}/>
+            <MappedUl data={data} removeTask={removeTask}/>
             <div>
                 {mappedButtons}
             </div>

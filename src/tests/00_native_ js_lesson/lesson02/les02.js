@@ -74,3 +74,15 @@ console.log(students.map(x => x.name == 'Nick' ? {...x, isMarried: true} : x));
     return {...x,isMarried:true}
 }
 else return x;*/
+let str='hello';
+function checkEl(arr,el) {
+    if(~str.indexOf(el)){
+        console.log('have');
+    }
+    if(!~str.indexOf(el)){
+        console.log('not')
+    }
+}
+checkEl(str,'h');//?
+let[a,b,c]=[1,3,4];
+console.log(a);//?

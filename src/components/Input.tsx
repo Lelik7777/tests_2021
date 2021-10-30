@@ -2,8 +2,8 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 
 type PropsType = {
     title: string;
-    setTitle: (s: string) => void;
-    addTask: (s: string) => void;
+    setTitle: (t: string) => void;
+    addTask: (t: string) => void;
 }
 export const Input = ({title, setTitle, addTask}: PropsType) => {
     const titleTrim = title.trim();
