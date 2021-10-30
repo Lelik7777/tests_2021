@@ -4,7 +4,6 @@ import {TodoList} from './TodoList';
 import {v1} from 'uuid';
 
 
-
 export type TaskType = {
     id: string;
     title: string;
@@ -19,8 +18,8 @@ function App() {
         {id: v1(), title: 'React', isDone: false},
         {id: v1(), title: 'Angular', isDone: false},
     ]);
-    let [filter, setFilter] = useState<FilterType|string>('all');
-    const getFilterTasks = (filer: FilterType|string) => {
+    let [filter, setFilter] = useState<FilterType | string>('all');
+    const getFilterTasks = (filer: FilterType | string) => {
         switch (filer) {
             case 'active':
                 return tasks.filter(x => !x.isDone);
@@ -33,7 +32,7 @@ function App() {
     const removeTask = (id: string) => {
         setTasks(tasks.filter(x => x.id !== id));
     }
-    const getStatusTasks = (filter: FilterType|string) => {
+    const getStatusTasks = (filter: FilterType | string) => {
         setFilter(filter);
     }
     const addTask = (title: string) => {
@@ -43,7 +42,7 @@ function App() {
         <div className="App">
             <TodoList
                 data={getFilterTasks(filter)}
-                title={'List of technologies'}
+                title0={'List of technologies'}
                 removeTask={removeTask}
                 getStatusTasks={getStatusTasks}
                 addTask={addTask}

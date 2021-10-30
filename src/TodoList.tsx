@@ -1,70 +1,50 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {useState} from 'react';
 import {FilterType, TaskType} from './App';
 import {Button} from './components/Button';
+import {Input} from './components/Input';
+import {MappedUl} from './components/MappedUl';
 
 export type TodoListType = {
     data: TaskType[];
-    title: string;
+    title0: string;
     removeTask: (id: string) => void;
     getStatusTasks: (f: FilterType | string) => void;
     addTask: (t: string) => void;
 }
 
-export function TodoList(props: TodoListType) {
+export function TodoList({data, title0, removeTask, getStatusTasks, addTask}: TodoListType) {
     const [title, setTitle] = useState<string>('');
     const titleTrim = title.trim();
-    const mappedList = props.data.map(x => {
-        return (
-            <li>
-                <input type="checkbox" checked={x.isDone}/>
-                <span>{x.title}</span>
-                <Button title={'x'} fun={() => props.removeTask(x.id)}/>
-            </li>
-        )
-    })
     const mappedButtons = ['all', 'active', 'completed'].map(x => {
+        const callBack = () => filterButton(x);
         return (
-            <Button title={x} fun={() => filterButton(x)}/>
+            <Button title={x} callBack={callBack}/>
         )
     });
 
     const addTaskOnClick = () => {
         if (titleTrim) {
-            props.addTask(titleTrim);
+            addTask(titleTrim);
             setTitle('')
         }
     }
     const filterButton = (f: FilterType | string) => {
-        props.getStatusTasks(f);
-    }
-    const onChangeInput = (ev: ChangeEvent<HTMLInputElement>) => {
-        setTitle(ev.currentTarget.value);
-    }
-    const changeOnKeyPress = (ev: KeyboardEvent<HTMLInputElement>) => {
-        if (ev.key === 'Enter' && titleTrim) {
-            props.addTask(titleTrim);
-            setTitle('');
-        }
+        getStatusTasks(f);
     }
 
 
     return (
         <div className={'todoList'}>
-            <h1>{props.title}</h1>
+            <h1>{title0}</h1>
             <div>
-                <input
-                    value={title}
-                    type="text"
-                    placeholder={'enter new text'}
-                    onChange={onChangeInput}
-                    onKeyPress={changeOnKeyPress}
-                />
-                <Button title={'+'} fun={addTaskOnClick}/>
+                <Input title={title} setTitle={setTitle} addTask={addTask}/>
+                <Button title={'+'} callBack={addTaskOnClick}/>
             </div>
-            {mappedList}
+       <MappedUl data={data} removeTask={removeTask}/>
             <div>
                 {mappedButtons}
             </div>
         </div>
     )
 }
+
