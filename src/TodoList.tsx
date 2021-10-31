@@ -10,10 +10,12 @@ export type TodoListType = {
     removeTask: (id: string) => void;
     getStatusTasks: (f: FilterType | string) => void;
     addTask: (t: string) => void;
+    changeCheckBox:(id:string,isD:boolean)=>void;
 }
 
-export function TodoList({data, title0, removeTask, getStatusTasks, addTask}: TodoListType) {
+export function TodoList({data, title0, removeTask, getStatusTasks, addTask,changeCheckBox}: TodoListType) {
     const [title, setTitle] = useState<string>('');
+    const [checked, setChecked] = useState<boolean>(true);
     const titleTrim = title.trim();
     const mappedButtons = ['all', 'active', 'completed'].map(x => {
         const callBack = () => filterButton(x);
@@ -40,7 +42,12 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask}: To
                 <Input title={title} setTitle={setTitle} addTask={addTask}/>
                 <Button title={'+'} callBack={addTaskOnClick}/>
             </div>
-            <MappedUl data={data} removeTask={removeTask}/>
+            <MappedUl data={data}
+                      removeTask={removeTask}
+                      callBack={changeCheckBox}
+            checked={checked}
+                      setChecked={setChecked}
+            />
             <div>
                 {mappedButtons}
             </div>

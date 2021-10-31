@@ -38,6 +38,9 @@ function App() {
     const addTask = (title: string): void => {
         setTasks([{id: v1(), title, isDone: false}, ...tasks]);
     }
+    const changeCheckBox = (id: string, isDone: boolean) => {
+        setTasks(tasks.map(x => x.id === id ? ({...x, isDone: isDone}) : x));
+    }
     return (
         <div className="App">
             <TodoList
@@ -46,6 +49,7 @@ function App() {
                 removeTask={removeTask}
                 getStatusTasks={getStatusTasks}
                 addTask={addTask}
+                changeCheckBox={changeCheckBox}
             />
         </div>
     );
