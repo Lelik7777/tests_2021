@@ -51,7 +51,7 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask, cha
                     setError={setError}
                     error={error}
                 />
-                <Button title={'+'} callBack={addTaskOnClick} filter={''} name={''}/>
+                <Button title={'+'} callBack={addTaskOnClick} filter={''} name={null}/>
                 {error && <p className={'error-message'}>Title is required</p>}
             </div>
             <MappedUl data={data}

@@ -27,7 +27,7 @@ export const MappedUl = ({data, removeTask, changeCheckBox}: PropsType) => {
                             <Button title={'x'}
                                     callBack={callBack}
                                     filter={''}
-                                    name={''}
+                                    name={null}
 
                             />
 
