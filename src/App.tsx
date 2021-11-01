@@ -50,6 +50,7 @@ function App() {
                 getStatusTasks={getStatusTasks}
                 addTask={addTask}
                 changeCheckBox={changeCheckBox}
+                filter={filter}
             />
 
         </div>

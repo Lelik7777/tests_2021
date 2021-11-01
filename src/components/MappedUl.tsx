@@ -10,7 +10,7 @@ type PropsType = {
     changeCheckBox: (id: string, isD: boolean) => void;
 }
 export const MappedUl = ({data, removeTask, changeCheckBox}: PropsType) => {
-    const [error,setError]=useState<boolean>(false);
+
     return (
         <ul>
             {
@@ -24,7 +24,12 @@ export const MappedUl = ({data, removeTask, changeCheckBox}: PropsType) => {
                                 id={x.id}
                             />
                             <span>{x.title}</span>
-                            <Button title={'x'} callBack={callBack}/>
+                            <Button title={'x'}
+                                    callBack={callBack}
+                                    filter={''}
+                                    name={''}
+
+                            />
 
                         </li>
                     )
