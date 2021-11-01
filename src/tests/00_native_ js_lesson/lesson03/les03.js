@@ -21,7 +21,7 @@ $med.addEventListener('click',handler1,);
 const arr=[1,3,4,5];
 
 const handlerButtons = (e) => {
- e.stopPropagation();
+ e.stopImmediatePropagation();
   if(e.target.tagName==='BUTTON')
       alert(e.target.name);
 }

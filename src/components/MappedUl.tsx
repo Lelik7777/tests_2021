@@ -1,7 +1,8 @@
 import {Button} from './Button';
-import React from 'react';
+import React, {useState} from 'react';
 import {TaskType} from '../App';
 import {InputCheckBox} from './InputCheckBox';
+import '../App.css';
 
 type PropsType = {
     data: TaskType[];
@@ -9,6 +10,7 @@ type PropsType = {
     changeCheckBox: (id: string, isD: boolean) => void;
 }
 export const MappedUl = ({data, removeTask, changeCheckBox}: PropsType) => {
+    const [error,setError]=useState<boolean>(false);
     return (
         <ul>
             {
@@ -23,6 +25,7 @@ export const MappedUl = ({data, removeTask, changeCheckBox}: PropsType) => {
                             />
                             <span>{x.title}</span>
                             <Button title={'x'} callBack={callBack}/>
+
                         </li>
                     )
                 })

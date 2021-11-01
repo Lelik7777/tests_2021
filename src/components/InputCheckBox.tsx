@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-
 type PropsType = {
     isDone: boolean
     changeCheckBox: (id: string, isD: boolean) => void;

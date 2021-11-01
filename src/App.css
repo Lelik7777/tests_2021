@@ -14,3 +14,10 @@ html,body{
   color: darkgrey;
   margin-left: 5px;
 }
+.error{
+  border: 3px solid red;
+}
+.error-message{
+  color: red;
+  margin: 0;
+}

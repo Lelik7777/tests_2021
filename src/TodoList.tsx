@@ -4,6 +4,7 @@ import {Button} from './components/Button';
 import {Input} from './components/Input';
 import {MappedUl} from './components/MappedUl';
 
+
 export type TodoListType = {
     data: TaskType[];
     title0: string;
@@ -15,6 +16,7 @@ export type TodoListType = {
 
 export function TodoList({data, title0, removeTask, getStatusTasks, addTask, changeCheckBox}: TodoListType) {
     const [title, setTitle] = useState<string>('');
+    const [error, setError] = useState<boolean>(false);
     const titleTrim = title.trim();
     const mappedButtons = ['all', 'active', 'completed'].map(x => {
         const callBack = () => filterButton(x);
@@ -24,10 +26,13 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask, cha
     });
 
     const addTaskOnClick = () => {
-        if (titleTrim) {
-            addTask(titleTrim);
-            setTitle('')
-        }
+        /* if (titleTrim) {
+             addTask(titleTrim);
+             setTitle('')
+         }*/
+        titleTrim && addTask(titleTrim);
+        titleTrim && setTitle('');
+        !titleTrim&&setError(true);
     }
     const filterButton = (f: FilterType | string) => {
         getStatusTasks(f);
@@ -38,8 +43,15 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask, cha
         <div className={'todoList'}>
             <h1>{title0}</h1>
             <div>
-                <Input title={title} setTitle={setTitle} addTask={addTask}/>
+                <Input
+                    title={title}
+                    setTitle={setTitle}
+                    addTask={addTask}
+                    setError={setError}
+                    error={error}
+                />
                 <Button title={'+'} callBack={addTaskOnClick}/>
+                {error && <p className={'error-message'}>Title is required</p>}
             </div>
             <MappedUl data={data}
                       removeTask={removeTask}
