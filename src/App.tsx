@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
 import {v1} from 'uuid';
+import {users2} from './tests/00_Dimaech_js/08_associated_array/08_associated_array';
 
-
+console.log(users2)
 export type TaskType = {
     id: string;
     title: string;
