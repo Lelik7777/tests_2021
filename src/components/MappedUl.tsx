@@ -1,5 +1,5 @@
 import {Button} from './Button';
-import React, {useState} from 'react';
+import React from 'react';
 import {TaskType} from '../App';
 import {InputCheckBox} from './InputCheckBox';
 import '../App.css';

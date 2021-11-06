@@ -22,7 +22,7 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask, cha
     const mappedButtons = ['all', 'active', 'completed'].map((x, i) => {
         const callBack = () => filterButton(x);
         return (
-            <Button title={x} callBack={callBack} name={x} filter={filter}/>
+            <Button key={i} title={x} callBack={callBack} name={x} filter={filter}/>
         )
     });
 

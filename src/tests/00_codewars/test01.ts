@@ -1,4 +1,3 @@
-
 export function sum(a: number, b: number) {
     return a + b;
 }
@@ -14,7 +13,7 @@ export function splitString(string: string) {
 //Vowel Count kata 7kyu
 export function getCount(string: string) {
     const arr = string.toLowerCase().split('');
-    return arr.filter(x => x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u').length;
+    return arr.filter(x => x === 'a' || x === 'e' || x === 'i' || x === 'o' || x === 'u').length;
 }
 
 // Minimum Steps (Array Series #6) kata 7kyu
@@ -25,7 +24,7 @@ export function miniNumSteps(numbers: Array<number>, value: number) {
         return counter;
     }
     while (numbers.length > 1) {
-        numbers = numbers.filter(x => x != Math.min(...numbers));
+        numbers = numbers.filter(x => x !== Math.min(...numbers));
         sum += Math.min(...numbers);
         counter++;
         if (sum >= value) {
@@ -39,23 +38,24 @@ export function miniNumSteps(numbers: Array<number>, value: number) {
 //Frequency sequence kata 7kyu
 export function freqSeq(str: string, sep: string) {
     let arr = str.split('');
-    let arrNew:Array<string|number>=[];
-    let counter=1;
-    for (let i = 0; i <arr.length; i++) {
-    for (let j=i;j<arr.length-i;j++){
-        if(arr[i]===arr[j]){
-            counter++;
+    let arrNew: Array<string | number> = [];
+    let counter = 1;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i; j < arr.length - i; j++) {
+            if (arr[i] === arr[j]) {
+                counter++;
+            }
+            arrNew.splice(arrNew.length, 0, counter, sep);
+            counter = 0;
         }
-        arrNew.splice(arrNew.length,0,counter,sep);
-        counter=0;
     }
-    }
-return arrNew.join('');
+    return arrNew.join('');
 }
 
- export function changeArg(a:number) {
+export function changeArg(a: number) {
     debugger
-    arguments[0]=5;
-     console.log(a);
+    arguments[0] = 5;
+    console.log(a);
     return a;
 }
+
