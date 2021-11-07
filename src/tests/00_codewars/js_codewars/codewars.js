@@ -39,3 +39,13 @@ const disemvowel = (s) => {
 
 }
 console.log(disemvowel("What are you, a communist?"));//?
+
+//3 task
+//Sorting the Odd way! 7kyu
+//отсортировать массив: четные по убывающим значениям,а нечетные - по возрастающим
+const sortItOut = (array) => {
+   return  array.filter(x=>Math.floor(x)%2!==0).sort((a,b)=>a-b).
+    concat(array.filter(x=>Math.floor(x)%2===0).sort((a,b)=>b-a));
+
+}
+console.log(sortItOut([ 1.1, 2.2, 3.3, 4.4, 5.5, 6.6 ]));//?
