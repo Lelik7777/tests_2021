@@ -14,4 +14,9 @@ export const users2:{[key:string]:{id:number,name:string}}={
 const user={id:3343443,name:'sophia'};
 users2[user.id]=user;
 console.log(users2);//?
-delete users2[123]
+delete users2[123];
+
+const  user08={
+    name:'Bob',
+    age:32,
+}
