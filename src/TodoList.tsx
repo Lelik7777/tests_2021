@@ -6,21 +6,31 @@ import {MappedUl} from './components/MappedUl';
 
 
 export type TodoListType = {
+    idL: string;
     data: TaskType[];
     title0: string;
-    removeTask: (id: string) => void;
-    getStatusTasks: (f: FilterType | string) => void;
+    removeTask: (id: string, idL: string) => void;
+    getStatusTasks: (f: FilterType | string, idL: string) => void;
     addTask: (t: string) => void;
     changeCheckBox: (id: string, isD: boolean) => void;
     filter: FilterType | string;
 }
 
-export function TodoList({data, title0, removeTask, getStatusTasks, addTask, changeCheckBox,filter}: TodoListType) {
+export function TodoList({
+                             idL,
+                             data,
+                             title0,
+                             removeTask,
+                             getStatusTasks,
+                             addTask,
+                             changeCheckBox,
+                             filter
+                         }: TodoListType) {
     const [title, setTitle] = useState<string>('');
     const [error, setError] = useState<boolean>(false);
     const titleTrim = title.trim();
     const mappedButtons = ['all', 'active', 'completed'].map((x, i) => {
-        const callBack = () => filterButton(x);
+        const callBack = () => filterButton(x, idL);
         return (
             <Button key={i} title={x} callBack={callBack} name={x} filter={filter}/>
         )
@@ -35,8 +45,8 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask, cha
         titleTrim && setTitle('');
         !titleTrim && setError(true);
     }
-    const filterButton = (f: FilterType | string) => {
-        getStatusTasks(f);
+    const filterButton = (f: FilterType | string, id: string) => {
+        getStatusTasks(f, idL);
     }
 
 
@@ -51,12 +61,13 @@ export function TodoList({data, title0, removeTask, getStatusTasks, addTask, cha
                     setError={setError}
                     error={error}
                 />
-                <Button title={'+'} callBack={addTaskOnClick} filter={''} name={null}/>
+                <Button title={'+'} callBack={addTaskOnClick}/>
                 {error && <p className={'error-message'}>Title is required</p>}
             </div>
             <MappedUl data={data}
                       removeTask={removeTask}
                       changeCheckBox={changeCheckBox}
+                      idl={idL}
             />
             <div>
                 {mappedButtons}

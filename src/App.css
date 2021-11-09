@@ -4,6 +4,9 @@ html,body{
   box-sizing: border-box;
   background-color: floralwhite;
 }
+.App{
+  display: flex;
+}
 .todoList{
   margin: 50px;
 }

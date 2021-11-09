@@ -61,3 +61,25 @@ console.log(students.reduce((a, x) => {
 }, []));
 console.log(students.reduce((a,x)=>{(x.name==='Nick')&&(x.isMarried=true);return a},[]))
 console.log(students[2]);
+let a=3;
+let b='h3';
+ [a,b]=[b,a]
+console.log(a,b);
+ const capitalizeFL = (s) => {
+   return s.split('').map((x,i)=>i===0?x.toUpperCase():x).join('');
+ }
+console.log( capitalizeFL('hello'));
+console.log(...'world');
+let array=[3,4,5,5,5,4,4,3,2];
+
+//console.log(Array.from(array));
+console.log(array)
+console.log([...new Set(array)]);
+let cities=['city1','city2'];
+//cities=cities.map(x=>x='');
+cities.length=0;
+console.log(cities)
+const sort = (arr) => {
+  return arr.filter(x=>x%2!==0).sort((a,b)=>a-b).concat(arr.filter(x=>x%2===0));
+}
+console.log(sort(array));

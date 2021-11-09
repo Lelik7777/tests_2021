@@ -6,8 +6,9 @@ import '../App.css';
 
 type PropsType = {
     data: TaskType[];
-    removeTask: (id: string) => void;
+    removeTask: (id: string,idL:string) => void;
     changeCheckBox: (id: string, isD: boolean) => void;
+    idl:string;
 }
 export const MappedUl = ({data, removeTask, changeCheckBox}: PropsType) => {
 
