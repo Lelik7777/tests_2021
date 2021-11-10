@@ -9,7 +9,7 @@ export const MyTestComponent = ({}:PropsType) => {
  const [value,setValue]=useState<string>('');
   return(
       <div>
-          <Input title={value} setTitle={setValue}/>
+          <Input valueInput={value} setValueInput={setValue}/>
           <Button title={'add'} callBack={()=>{}}/>
       </div>
   )

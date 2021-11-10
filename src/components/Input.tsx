@@ -2,30 +2,32 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import '../App.css';
 
 type PropsType = {
-    title?: string;
-    setTitle?: (t: string) => void;
-    addTask?: (t: string) => void;
+    valueInput?: string;
+    setValueInput?: (t: string) => void;
+    addTask?: (t: string,idL:string) => void;
+
     setError?: (v: boolean) => void;
     error?: boolean;
+    idL?:string;
 }
-export const Input = ({title, setTitle, addTask, setError, error}: PropsType) => {
+export const Input = ({valueInput, setValueInput, addTask, setError, error,idL}: PropsType) => {
 
-    const titleTrim = title?.trim();
+    const titleTrim = valueInput?.trim();
     const onChangeInput = (ev: ChangeEvent<HTMLInputElement>) => {
-        setTitle?.(ev.currentTarget.value);
+        setValueInput?.(ev.currentTarget.value);
         setError?.(false);
     }
     const changeOnKeyPress = (ev: KeyboardEvent<HTMLInputElement>) => {
         if (ev.key === 'Enter' && titleTrim) {
-            addTask?.(titleTrim);
-            setTitle?.('');
+           idL&& addTask?.(titleTrim,idL);
+            setValueInput?.('');
         } else {
             setError?.(true)
         }
     }
     return (
         <input
-            value={title}
+            value={valueInput}
             type="text"
             placeholder={'enter new text'}
             onChange={onChangeInput}
