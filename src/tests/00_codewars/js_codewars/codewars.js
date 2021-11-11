@@ -49,3 +49,20 @@ const sortItOut = (array) => {
 
 }
 console.log(sortItOut([ 1.1, 2.2, 3.3, 4.4, 5.5, 6.6 ]));//?
+
+//Mumbling 7kyu
+//return string:
+// accum("abcd") -> "A-Bb-Ccc-Dddd"
+// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// accum("cwAt") -> "C-Ww-Aaa-Tttt"
+const accum = (s) => {
+ return  s.split('').reduce((a,x,i)=>{
+
+debugger
+     a.push(x)
+     console.log(a[i]);
+     return a;
+ },[])
+}
+
+console.log(accum("aaaaabbccddd"));

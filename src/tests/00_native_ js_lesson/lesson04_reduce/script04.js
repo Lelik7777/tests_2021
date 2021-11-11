@@ -59,7 +59,9 @@ console.log(students.reduce((a, x) => {
     if (x.scores >= 100) a.push(x);
     return a;
 }, []));
+console.log('stud');
 console.log(students.reduce((a,x)=>{(x.name==='Nick')&&(x.isMarried=true);return a},[]))
+/*
 console.log(students[2]);
 let a=3;
 let b='h3';
@@ -82,4 +84,4 @@ console.log(cities)
 const sort = (arr) => {
   return arr.filter(x=>x%2!==0).sort((a,b)=>a-b).concat(arr.filter(x=>x%2===0));
 }
-console.log(sort(array));
+console.log(sort(array));*/

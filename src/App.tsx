@@ -102,7 +102,7 @@ function App() {
         <div className="App">
             <div>
                 add new list
-                <Input/>
+                true?<Input/>: <input type="checkbox"/>
                 <Button title={'add'} callBack={()=>addList('')}/>
             </div>
             {
