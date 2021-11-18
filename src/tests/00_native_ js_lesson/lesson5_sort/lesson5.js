@@ -74,6 +74,7 @@ const students = [
         scores: 121
     },
 ];
+
 /*console.log(students.sort((a,b)=>{a.scores-b.scores}));*/
 console.log(students)
 console.log(students.sort((a,b)=>a.name.toLowerCase()<=b.name.toLowerCase()?-1:1));

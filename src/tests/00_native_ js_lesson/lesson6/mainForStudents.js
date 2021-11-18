@@ -76,18 +76,12 @@ console.log(students[0] === deepCopyStudents[0]);// - что должно быт
 
 //5. Отсортируйте deepCopyStudents по алфавиту (sort)???????
 console.log(deepCopyStudents);
-/*let sortByName = students.map(x => ({...x}).sort((a, b) => {
-    if (a.name <= b.name)
-        return -1;
-    else
-        return 1;
-    // return 0;
-}));*/
-//console.log(sortByName);
+let sortByName = students.map(x => ({...x})).sort((a, b) => a.name > b.name ? 1 : -1);
+console.log(sortByName);
 
 //5a. Отсортируйте deepCopyStudents по успеваемости(лучший идёт первым)(sort)
-let sortByScores = deepCopyStudents.sort((a, b) => a.scores - b.scores);
-console.log(sortByScores);
+//let sortByScores = deepCopyStudents.sort((a, b) => a.scores - b.scores);
+//console.log(sortByScores);
 
 //6. Сформируйте массив студентов, у которых 100 и более баллов (filter)
 let bestStudents = students.filter(x => x.scores >= 100);
