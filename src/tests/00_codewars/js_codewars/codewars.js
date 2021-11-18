@@ -55,16 +55,18 @@ console.log(sortItOut([1.1, 2.2, 3.3, 4.4, 5.5, 6.6]));//?
 // accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 // accum("cwAt") -> "C-Ww-Aaa-Tttt"
 const accum = (s) => {
-    const arr = (s.split(''));
-    const newArr = arr.reduce((a, x, i) => {
-        x.toLowerCase();
-        if (i > 0 && arr[i - 1] != x) {
-            a.push(x.toUpperCase());
-        } else a.push(x);
+    return s.split('').reduce((a, x, i) => {
+        a.push(x.toUpperCase());
+      for (let j=0;j<i;j++){
+          a.push(x.toLowerCase());
+      }
+      if(i<s.split('').length-1)
+        a.push('-');
         return a;
-
-    }, []);
-    return newArr;
+    }, []).join('');
 }
-
-console.log(accum("aaaaabbccddd"));
+const accum2 = (s) => {
+  return [...s].map((x,i)=>x.toUpperCase()+x.toLowerCase().repeat(i)).join('-');
+}
+console.log(accum2("ZpglnRxqenU"));
+console.log([...'hello'])
