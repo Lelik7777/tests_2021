@@ -1,37 +1,24 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import '../App.css';
 
 type PropsType = {
-    valueInput?: string;
-    setValueInput?: (t: string) => void;
-    addTask?: (t: string,idL:string) => void;
-
-    setError?: (v: boolean) => void;
-    error?: boolean;
-    idL?:string;
+  type:string;
+  callBack1:(e:ChangeEvent<HTMLInputElement>)=>void;
+  callBack2:(e:KeyboardEvent<HTMLInputElement>)=>void;
+  valueInput?:string;
+  error?:string;
 }
-export const Input = ({valueInput, setValueInput, addTask, setError, error,idL}: PropsType) => {
+export const Input = ({type,callBack1,callBack2,valueInput,error, ...props}: PropsType) => {
+    console.log('input rendering');
 
-    const titleTrim = valueInput?.trim();
-    const onChangeInput = (ev: ChangeEvent<HTMLInputElement>) => {
-        setValueInput?.(ev.currentTarget.value);
-        setError?.(false);
-    }
-    const changeOnKeyPress = (ev: KeyboardEvent<HTMLInputElement>) => {
-        if (ev.key === 'Enter' && titleTrim) {
-           idL&& addTask?.(titleTrim,idL);
-            setValueInput?.('');
-        } else {
-            setError?.(true)
-        }
-    }
+
     return (
         <input
             value={valueInput}
-            type="text"
+            type={type}
             placeholder={'enter new text'}
-            onChange={onChangeInput}
-            onKeyPress={changeOnKeyPress}
+            onChange={callBack1}
+            onKeyPress={callBack2}
             className={error ? 'error' : ''}
         />
     )

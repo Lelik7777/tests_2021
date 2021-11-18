@@ -35,7 +35,7 @@ console.log(solution('camelCamelCamelCamelCamelVfFFDfff'));//?
 //2 Disemvowel Trolls kata 7kyu
 //удалить из строки все гласные буквы
 const disemvowel = (s) => {
-     return s.replace(/[a,e,i,o,u,A,E,I,O,U]/g,'');
+    return s.replace(/[a,e,i,o,u,A,E,I,O,U]/g, '');
 
 }
 console.log(disemvowel("What are you, a communist?"));//?
@@ -44,11 +44,10 @@ console.log(disemvowel("What are you, a communist?"));//?
 //Sorting the Odd way! 7kyu
 //отсортировать массив: четные по убывающим значениям,а нечетные - по возрастающим
 const sortItOut = (array) => {
-   return  array.filter(x=>Math.floor(x)%2!==0).sort((a,b)=>a-b).
-    concat(array.filter(x=>Math.floor(x)%2===0).sort((a,b)=>b-a));
+    return array.filter(x => Math.floor(x) % 2 !== 0).sort((a, b) => a - b).concat(array.filter(x => Math.floor(x) % 2 === 0).sort((a, b) => b - a));
 
 }
-console.log(sortItOut([ 1.1, 2.2, 3.3, 4.4, 5.5, 6.6 ]));//?
+console.log(sortItOut([1.1, 2.2, 3.3, 4.4, 5.5, 6.6]));//?
 
 //Mumbling 7kyu
 //return string:
@@ -56,13 +55,16 @@ console.log(sortItOut([ 1.1, 2.2, 3.3, 4.4, 5.5, 6.6 ]));//?
 // accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 // accum("cwAt") -> "C-Ww-Aaa-Tttt"
 const accum = (s) => {
- return  s.split('').reduce((a,x,i)=>{
+    const arr = (s.split(''));
+    const newArr = arr.reduce((a, x, i) => {
+        x.toLowerCase();
+        if (i > 0 && arr[i - 1] != x) {
+            a.push(x.toUpperCase());
+        } else a.push(x);
+        return a;
 
-debugger
-     a.push(x)
-     console.log(a[i]);
-     return a;
- },[])
+    }, []);
+    return newArr;
 }
 
 console.log(accum("aaaaabbccddd"));

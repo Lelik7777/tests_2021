@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterType, TaskType} from './App';
 import {Button} from './components/Button';
 import {Input} from './components/Input';
@@ -14,10 +14,6 @@ export type TodoListType = {
     addTask: (t: string, idL: string) => void;
     changeCheckBox: (id: string, isD: boolean, idL: string) => void;
     filter: FilterType | string;
-    valueInput: string;
-    setValueInput: (s: string) => void;
-    error: boolean;
-    setError: (b: boolean) => void;
     removeList: (idL: string) => void;
     addList: (title: string) => void;
 }
@@ -31,13 +27,14 @@ export function TodoList({
                              addTask,
                              changeCheckBox,
                              filter,
-                             valueInput, setValueInput,
-                             error, setError,
                              removeList,
                              addList,
                          }: TodoListType) {
 
-    const titleTrim = valueInput.trim();
+    console.log('todoList rendering');
+    const [error, setError] = useState<boolean>(false);
+    const [valueInput, setValueInput] = useState<string>('');
+     const titleTrim = valueInput.trim();
     const mappedButtons = ['all', 'active', 'completed'].map((x, i) => {
         const callBack = () => filterButton(x, idL);
         return (
@@ -53,7 +50,20 @@ export function TodoList({
     const filterButton = (f: FilterType | string, Kid: string) => {
         getStatusTasks(f, idL);
     }
+    const onChangeInput = (ev: ChangeEvent<HTMLInputElement>) => {
+        setValueInput?.(ev.currentTarget.value);
+        setError?.(false);
+    }
+    const changeOnKeyPress = (ev: KeyboardEvent<HTMLInputElement>) => {
+        if (ev.key === 'Enter' && valueTrim) {
+            idL && addTask?.(valueTrim, idL);
+            setValueInput?.('');
+        } else {
+            setError?.(true)
+        }
+    }
     const callBack1 = () => removeList(idL);
+    const error1 = () => setError(false);
     return (
         <div className={'todoList'}>
             <div style={{display: 'flex', marginBottom: '20px'}}>
@@ -64,12 +74,7 @@ export function TodoList({
             </div>
             <div>
                 <Input
-                    valueInput={valueInput}
-                    setValueInput={setValueInput}
-                    addTask={addTask}
-                    setError={setError}
-                    error={error}
-                    idL={idL}
+
                 />
                 <Button title={'+'} callBack={addTaskOnClick}/>
                 {error && <p className={'error-message'}>Title is required</p>}

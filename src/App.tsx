@@ -24,6 +24,7 @@ export type TodoListType = {
 }
 
 function App() {
+    console.log('rendering app');
     const id1 = v1();
     const id2 = v1();
     const [todoLists, setTodoLists] = useState<TodoListType[]>([
@@ -44,8 +45,8 @@ function App() {
             {id: v1(), title: 'beer', isDone: false},
         ]
     });
-    const [valueInput, setValueInput] = useState<string>('');
-    const [error, setError] = useState<boolean>(false);
+   /* const [valueInput, setValueInput] = useState<string>('');
+    const [error, setError] = useState<boolean>(false);*/
 
     const getFilterTasks = (filer: FilterType | string, idL: string): TaskType[] => {
         switch (filer) {
@@ -93,16 +94,12 @@ function App() {
         filter={x.filter}
         removeList={removeList}
         addList={addList}
-        setError={setError}
-        error={error}
-        valueInput={valueInput}
-        setValueInput={setValueInput}
     />);
     return (
         <div className="App">
             <div>
                 add new list
-                true?<Input/>: <input type="checkbox"/>
+                {true?<Input/>: <input type="checkbox"/>}
                 <Button title={'add'} callBack={()=>addList('')}/>
             </div>
             {
