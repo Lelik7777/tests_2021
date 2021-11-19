@@ -31,7 +31,7 @@ console.log(solution4('camelCamelCamelCamelCamelVfFFDfff'))//?
 console.log(solution3('camelCamelCamelCamelCamelVfFFDfff'))
 console.log(solution2('camelCamelCamelCamelCamelVfFFDfff'))//?
 console.log(solution('camelCamelCamelCamelCamelVfFFDfff'));//?
-
+//----------------------------------------------------------------------------------------------------------------------
 //2 Disemvowel Trolls kata 7kyu
 //удалить из строки все гласные буквы
 const disemvowel = (s) => {
@@ -39,7 +39,7 @@ const disemvowel = (s) => {
 
 }
 console.log(disemvowel("What are you, a communist?"));//?
-
+//----------------------------------------------------------------------------------------------------------------------
 //3 task
 //Sorting the Odd way! 7kyu
 //отсортировать массив: четные по убывающим значениям,а нечетные - по возрастающим
@@ -48,7 +48,8 @@ const sortItOut = (array) => {
 
 }
 console.log(sortItOut([1.1, 2.2, 3.3, 4.4, 5.5, 6.6]));//?
-
+//----------------------------------------------------------------------------------------------------------------------
+//4 task
 //Mumbling 7kyu
 //return string:
 // accum("abcd") -> "A-Bb-Ccc-Dddd"
@@ -57,18 +58,23 @@ console.log(sortItOut([1.1, 2.2, 3.3, 4.4, 5.5, 6.6]));//?
 const accum = (s) => {
     return s.split('').reduce((a, x, i) => {
         a.push(x.toUpperCase());
-      for (let j=0;j<i;j++){
-          a.push(x.toLowerCase());
-      }
-      if(i<s.split('').length-1)
-        a.push('-');
+        for (let j = 0; j < i; j++) {
+            a.push(x.toLowerCase());
+        }
+        if (i < s.split('').length - 1)
+            a.push('-');
         return a;
     }, []).join('');
 }
 const accum2 = (s) => {
-  return [...s].map((x,i)=>x.toUpperCase()+x.toLowerCase().repeat(i)).join('-');
+    return [...s].map((x, i) => x.toUpperCase() + x.toLowerCase().repeat(i)).join('-');
 }
 console.log(accum2("ZpglnRxqenU"));
-console.log([...'hello'])
-console.log('a'.repeat(4));
-console.log([...'98789876'].reduce((a,x)=>a+(+x),0))
+
+//----------------------------------------------------------------------------------------------------------------------
+// 5 task
+//How good are you really? 8kyu
+const betterThanAverage = (classPoints, yourPoints) => {
+    return classPoints.reduce((a, b, i) => a + b) / classPoints.length < yourPoints;
+}
+console.log(betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69));
