@@ -72,9 +72,13 @@ const accum2 = (s) => {
 console.log(accum2("ZpglnRxqenU"));
 
 //----------------------------------------------------------------------------------------------------------------------
-// 5 task
+// 5 task:
+// You receive an array with your peers' test scores. Now calculate the average and compare your score!
+// Return True if you're better, else False!
 //How good are you really? 8kyu
 const betterThanAverage = (classPoints, yourPoints) => {
     return classPoints.reduce((a, b, i) => a + b) / classPoints.length < yourPoints;
 }
 console.log(betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69));
+//----------------------------------------------------------------------------------------------------------------------
+// 6 task:
