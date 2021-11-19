@@ -70,3 +70,5 @@ const accum2 = (s) => {
 }
 console.log(accum2("ZpglnRxqenU"));
 console.log([...'hello'])
+console.log('a'.repeat(4));
+console.log([...'98789876'].reduce((a,x)=>a+(+x),0))

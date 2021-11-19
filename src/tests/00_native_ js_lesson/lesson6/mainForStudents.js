@@ -74,14 +74,14 @@ console.log(students[0] === deepCopyStudents[0]);// - что должно быт
 // NB!!! Далее все преобразования выполняем не модифицируя исходный массив students
 // Вывод результатов - в консоль
 
-//5. Отсортируйте deepCopyStudents по алфавиту (sort)???????
+//5. Отсортируйте deepCopyStudents по алфавиту (sort)
 console.log(deepCopyStudents);
-let sortByName = students.map(x => ({...x})).sort((a, b) => a.name > b.name ? 1 : -1);
+let sortByName=students.map(x=>({...x})).sort((a,b)=>a.name>=b.name?1:-1);
 console.log(sortByName);
 
 //5a. Отсортируйте deepCopyStudents по успеваемости(лучший идёт первым)(sort)
-//let sortByScores = deepCopyStudents.sort((a, b) => a.scores - b.scores);
-//console.log(sortByScores);
+let sortByScores = deepCopyStudents.map(x=>({...x})).sort((a, b) => a.scores - b.scores);
+console.log(sortByScores);
 
 //6. Сформируйте массив студентов, у которых 100 и более баллов (filter)
 let bestStudents = students.filter(x => x.scores >= 100);
@@ -90,7 +90,7 @@ console.log(bestStudents);
 //6a. Получите массив ("вырежьте") из трёх лучших студентов из массива deepCopyStudents (splice)
 //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 
-let topStudents = deepCopyStudents.sort((a, b) => b.scores - a.scores).splice(0, 3);
+let topStudents = deepCopyStudents.map(x=>({...x})).sort((a, b) => b.scores - a.scores).splice(0, 3);
 console.log(topStudents);
 console.log(deepCopyStudents);
 
