@@ -35,10 +35,23 @@ console.log(solution('camelCamelCamelCamelCamelVfFFDfff'));//?
 //2 Disemvowel Trolls kata 7kyu
 //удалить из строки все гласные буквы
 const disemvowel = (s) => {
-    return s.replace(/[a,e,i,o,u,A,E,I,O,U]/g, '');
+    return s.split('').filter(x => x !== 'a' && x !== 'A' && x !== 'e' && x !== 'E' && x !== 'i' && x !== 'I' && x !== 'o' && x !== 'O' && x !== 'u' && x !== 'U').join('');
 
 }
+const disemvowel2 = (s) => {
+  const vowels=['a','e','i','o','u'];
+  return s.split('').filter(x=>vowels.indexOf(x.toLowerCase())===-1).join('');
+}
+console.log(disemvowel2("What are you, a communist?"));
 console.log(disemvowel("What are you, a communist?"));//?
+const disemvowel3 = (s) => {
+    const vowels=['a','e','i','o','u'];
+    return s.split('').filter(x=>!vowels.includes(x.toLowerCase())).join('');
+}
+console.log(disemvowel3("What are you, a communist?"));
+const disemvowel4 = (s) => s.replace(/[a,e,i,o,u]/gi, '');
+
+console.log(disemvowel4("What are you, a communist?"));
 //----------------------------------------------------------------------------------------------------------------------
 //3 task
 //Sorting the Odd way! 7kyu
