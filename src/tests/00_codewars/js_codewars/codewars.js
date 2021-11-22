@@ -95,3 +95,17 @@ const betterThanAverage = (classPoints, yourPoints) => {
 console.log(betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69));
 //----------------------------------------------------------------------------------------------------------------------
 // 6 task:
+//Jumping number is the number that All adjacent digits in it differ by 1.
+//Given a number, Find if it is Jumping or not .
+const jumpingNumber = (n) => {
+   // debugger
+  let arr=n.toString().split('');
+  let a=true;
+    for (let i=0;i<arr.length-1;i++){
+      if(arr.length>1&&Math.abs(arr[i]-arr[i+1])!==1){
+          return "Not!!";
+      }
+  }
+    return "Jumping!!";
+}
+console.log(jumpingNumber(7678));//?
