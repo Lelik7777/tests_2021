@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
 import {v1} from 'uuid';
-import {MyTestComponent} from './components/MyTestComponent';
-import {Input} from './components/Input';
 import {Button} from './components/Button';
+import {AddItemForm} from './components/AddItemForm';
 //import {solution1} from './tests/00_codewars/test01';
 
 //solution1();
@@ -45,8 +44,8 @@ function App() {
             {id: v1(), title: 'beer', isDone: false},
         ]
     });
-   /* const [valueInput, setValueInput] = useState<string>('');
-    const [error, setError] = useState<boolean>(false);*/
+    /* const [valueInput, setValueInput] = useState<string>('');
+     const [error, setError] = useState<boolean>(false);*/
 
     const getFilterTasks = (filer: FilterType | string, idL: string): TaskType[] => {
         switch (filer) {
@@ -78,8 +77,11 @@ function App() {
     }
     const addList = (title: string) => {
         const newList: TodoListType = {id: v1(), title, filter: 'all'};
-      setTodoLists([...todoLists,newList]);
-      setTasks({...tasks,[newList.id]:[]});
+        setTodoLists([...todoLists, newList]);
+        setTasks({...tasks, [newList.id]: []});
+    }
+    const changeTitleList = (t:string,idL:string) => {
+
     }
     const mappedList = todoLists.map(x => <
         TodoList
@@ -97,16 +99,12 @@ function App() {
     />);
     return (
         <div className="App">
-            <div>
-                add new list
-                {true?<Input/>: <input type="checkbox"/>}
-                <Button title={'add'} callBack={()=>addList('')}/>
-            </div>
+            <AddItemForm callBack={addList} titleButton={'add'}/>
             {
                 mappedList
             }
 
-            <MyTestComponent/>
+
         </div>
     );
 }

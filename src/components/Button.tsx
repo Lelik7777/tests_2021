@@ -11,8 +11,7 @@ type PropsType = {
 export const Button = ({title, callBack, filter, name}: PropsType) => {
 
 
-
     return (
-        <button onClick={callBack} className={filter === name ? 'active' : ''}>{title}</button>
+        <button onClick={callBack} className={!filter ? '' : filter === name ? 'active' : ''}>{title}</button>
     )
 }

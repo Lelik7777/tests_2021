@@ -1,29 +1,36 @@
-html,body{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: floralwhite;
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: floralwhite;
 }
-.App{
-  display: flex;
+
+.App {
+    display: flex;
 }
-.todoList{
-  margin: 50px;
+
+.todoList {
+    margin: 50px;
 }
-.todoList>div input{
-  border-top: none;
+
+.todoList > div input {
+    border-top: none;
 }
-.todoList>div input::placeholder{
-  color: darkgrey;
-  margin-left: 5px;
+
+.todoList > div input::placeholder {
+    color: darkgrey;
+    margin-left: 5px;
 }
-.error{
-  border: 3px solid red;
+
+.error {
+    border: 3px solid red;
 }
-.error-message{
-  color: red;
-  margin: 0;
+
+.error-message {
+    color: red;
+    margin: 0;
 }
-.active{
-   background-color: cyan;
+
+.active {
+    background-color: cyan;
 }

@@ -2,24 +2,24 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import '../App.css';
 
 type PropsType = {
-  type:string;
-  callBack1:(e:ChangeEvent<HTMLInputElement>)=>void;
-  callBack2:(e:KeyboardEvent<HTMLInputElement>)=>void;
-  valueInput?:string;
-  error?:string;
+    type: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
+    valueInput?: string;
+    error?: string;
+    onBlur?: () => void;
 }
-export const Input = ({type,callBack1,callBack2,valueInput,error, ...props}: PropsType) => {
-    console.log('input rendering');
-
-
+export const Input = ({type, onChange, onKeyPress, valueInput, error, onBlur, ...props}: PropsType) => {
     return (
         <input
             value={valueInput}
             type={type}
             placeholder={'enter new text'}
-            onChange={callBack1}
-            onKeyPress={callBack2}
+            onChange={onChange}
+            onKeyPress={onKeyPress}
             className={error ? 'error' : ''}
+            onBlur={onBlur}
+            autoFocus
         />
     )
 }
