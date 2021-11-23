@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
 import {v1} from 'uuid';
-import {Button} from './components/Button';
 import {AddItemForm} from './components/AddItemForm';
 //import {solution1} from './tests/00_codewars/test01';
 
@@ -80,8 +79,11 @@ function App() {
         setTodoLists([...todoLists, newList]);
         setTasks({...tasks, [newList.id]: []});
     }
-    const changeTitleList = (t:string,idL:string) => {
-
+    const changeTitleList = (title: string, idL: string) => {
+        setTodoLists(todoLists.map(x => x.id === idL ? {...x, title} : x));
+    }
+    const changeTitleTask = (title: string, id: string, idL: string) => {
+        setTasks({...tasks, [idL]: tasks[idL].map(x => x.id === id ? {...x, title} : x)});
     }
     const mappedList = todoLists.map(x => <
         TodoList
@@ -96,6 +98,8 @@ function App() {
         filter={x.filter}
         removeList={removeList}
         addList={addList}
+        changeTitleList={changeTitleList}
+        changeTitleTask={changeTitleTask}
     />);
     return (
         <div className="App">

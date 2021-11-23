@@ -1,7 +1,6 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React from 'react';
 import {FilterType, TaskType} from './App';
 import {Button} from './components/Button';
-import {Input} from './components/Input';
 import {MappedUl} from './components/MappedUl';
 import {AddItemForm} from './components/AddItemForm';
 import {EditedSpan} from './components/EditedSpan';
@@ -18,6 +17,8 @@ export type TodoListType = {
     filter: FilterType | string;
     removeList: (idL: string) => void;
     addList: (title: string) => void;
+    changeTitleList: (t: string, idL: string) => void;
+    changeTitleTask: (t: string, id: string, idL: string) => void;
 }
 
 export function TodoList({
@@ -30,15 +31,38 @@ export function TodoList({
                              changeCheckBox,
                              filter,
                              removeList,
+                             changeTitleList,
+                             changeTitleTask,
+                             ...props
                          }: TodoListType) {
 
     console.log('todoList rendering');
     const mappedButtons = ['all', 'active', 'completed'].map((x, i) => {
-        const callBack = () => filterButton(x, idL);
-        return (
-            <Button key={i} title={x} callBack={callBack} name={x} filter={filter}/>
-        )
-    });
+            const callBack = () => filterButton(x, idL);
+            return (
+                <Button key={
+                    i
+                }
+                        title=
+                            {
+                                x
+                            }
+                        callBack=
+                            {
+                                callBack
+                            }
+                        name=
+                            {
+                                x
+                            }
+                        filter=
+                            {
+                                filter
+                            }
+                />
+            )
+        })
+    ;
 
     const filterButton = (f: FilterType | string, Kid: string) => {
         getStatusTasks(f, idL);
@@ -48,10 +72,15 @@ export function TodoList({
     const callBack2 = (t: string) => {
         addTask(t, idL);
     };
+    const changeTitle = (t: string) => {
+        changeTitleList(t, idL)
+    };
     return (
         <div className={'todoList'}>
             <div style={{display: 'flex', marginBottom: '20px'}}>
-                <EditedSpan title={title0} changeTitle={()=>{}}/>
+                <EditedSpan title={title0}
+                            changeTitle={changeTitle}
+                            fontSize={1.5}/>
                 <Button title={'x'} callBack={callBack1}/>
             </div>
             <div>
@@ -61,6 +90,7 @@ export function TodoList({
                       removeTask={removeTask}
                       changeCheckBox={changeCheckBox}
                       idL={idL}
+                      changeTitleTask={changeTitleTask}
             />
             <div>
                 {mappedButtons}
