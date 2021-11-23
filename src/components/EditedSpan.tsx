@@ -4,10 +4,10 @@ import {Input} from './Input';
 type PropsType = {
     title: string;
     changeTitle: (t: string) => void;
-    fontSize:number
+    fontSize: number
 }
-export const EditedSpan = ({title, changeTitle,fontSize, ...props}: PropsType) => {
-    const style = {fontSize: fontSize+'rem', marginRight: '5px', fontWeight: 600};
+export const EditedSpan = ({title, changeTitle, fontSize, ...props}: PropsType) => {
+    const style = {fontSize: fontSize + 'rem', marginRight: '5px', fontWeight: 600};
     const [edited, setEdited] = useState<boolean>(false);
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<boolean>(false);
@@ -40,7 +40,6 @@ export const EditedSpan = ({title, changeTitle,fontSize, ...props}: PropsType) =
                   onDoubleClick={() => setEdited(true)}
             >
                {error ? <span style={{color: 'red', fontSize: '1rem'}}>Error:enter text</span> : title}
-
       </span>
     )
 }
