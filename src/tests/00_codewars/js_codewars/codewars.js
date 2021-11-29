@@ -118,4 +118,30 @@ console.log(jumpingNumber(7678));//?
 const spinWords = (string) => {
   return string.split(' ').map(x=>x.split('').length>=5?x.split('').reverse().join(''):x).join(' ');
 }
-console.log(spinWords("Spinning words sda dsf"))
+console.log(spinWords("Spinning words sda dsf"));
+//test 8:
+//Find the odd int 6kyu
+/*Given an array of integers, find the one that appears an odd number of times.
+    There will always be only one integer that appears an odd number of times.*/
+const findOdd = (A) => {
+let a;
+    while (A.length>0){
+    let count=0;
+    let arr=A.filter(x=>x===A[count]);
+    A=A.filter(x=>x!==A[count]);
+    if(arr.length%2!==0) a=arr[0];
+    count++;
+}
+if(A===0)return 0;
+if(A.length===1) return A[0];
+    return a;
+};
+const findOdd1 = (a) => {
+  return a.find(x=>a.filter(z=>z===x).length%2);
+}
+console.log(findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]));
+console.log(findOdd([1,1,2,-2,5,2,4,4,-1,-2,5]));
+console.log(findOdd(0));
+console.log(findOdd([4]))
+console.log(findOdd1([1,1,2,-2,5,2,4,4,-1,-2,5]));
+console.log([2,3,4,4,4,5,6,6,6].length%2)
