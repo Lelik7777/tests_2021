@@ -39,14 +39,14 @@ const disemvowel = (s) => {
 
 }
 const disemvowel2 = (s) => {
-  const vowels=['a','e','i','o','u'];
-  return s.split('').filter(x=>vowels.indexOf(x.toLowerCase())===-1).join('');
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    return s.split('').filter(x => vowels.indexOf(x.toLowerCase()) === -1).join('');
 }
 console.log(disemvowel2("What are you, a communist?"));
 console.log(disemvowel("What are you, a communist?"));//?
 const disemvowel3 = (s) => {
-    const vowels=['a','e','i','o','u'];
-    return s.split('').filter(x=>!vowels.includes(x.toLowerCase())).join('');
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    return s.split('').filter(x => !vowels.includes(x.toLowerCase())).join('');
 }
 console.log(disemvowel3("What are you, a communist?"));
 const disemvowel4 = (s) => s.replace(/[a,e,i,o,u]/gi, '');
@@ -98,16 +98,24 @@ console.log(betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69));
 //Jumping number is the number that All adjacent digits in it differ by 1.
 //Given a number, Find if it is Jumping or not .
 const jumpingNumber = (n) => {
-   // debugger
-  let arr=n.toString().split('');
-  let a=true;
-    for (let i=0;i<arr.length-1;i++){
-      if(arr.length>1&&Math.abs(arr[i]-arr[i+1])!==1){
-          return "Not!!";
-      }
-  }
+    // debugger
+    let arr = n.toString().split('');
+    let a = true;
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr.length > 1 && Math.abs(arr[i] - arr[i + 1]) !== 1) {
+            return "Not!!";
+        }
+    }
     return "Jumping!!";
 }
 console.log(jumpingNumber(7678));//?
 //----------------------------------------------------------------------------------------------------------------------
 // task 7:
+//Stop gninnipS My sdroW!  6kyu
+/*Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+    Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" spinWords( "This is another test" )=> returns "This is rehtona test"*/
+const spinWords = (string) => {
+  return string.split(' ').map(x=>x.split('').length>=5?x.split('').reverse().join(''):x).join(' ');
+}
+console.log(spinWords("Spinning words sda dsf"))

@@ -14,7 +14,7 @@ export type ActionType = {
     type: 'sum' | 'sub' | 'div' | 'mult';
     num: number;
 }
-export const culc = (state: number, action: ActionType) => {
+export const reducer = (state: number, action: ActionType) => {
     switch (action.type) {
         case 'sum':
             return state + action.num;
