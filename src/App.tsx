@@ -4,7 +4,7 @@ import {TodoList} from './TodoList';
 import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm';
 import {addTaskAC, changeCheckBoxAC, changeTitleTaskAC, removeTaskAC, taskReducer} from './redux/taskReducer';
-import {listsReducer} from './redux/listsReducer';
+import {addListAC, changeTitleListAC, getStatusTasksAC, listsReducer, removeListAC} from './redux/listsReducer';
 //import {solution1} from './tests/00_codewars/test01';
 
 //solution1();
@@ -27,7 +27,7 @@ function App() {
     console.log('rendering app');
     const id1 = v1();
     const id2 = v1();
-    const [todoLists, setListsDispatch] = useReducer(listsReducer,[
+    const [todoLists, setListsDispatch] = useReducer(listsReducer, [
         {id: id1, title: 'to learn', filter: 'all'},
         {id: id2, title: 'to buy', filter: 'active'},
     ]);
@@ -58,28 +58,25 @@ function App() {
     }
     const removeTask = (id: string, idL: string): void => setTasksDispatch(removeTaskAC(id, idL));
 
-    const getStatusTasks = (filter: FilterType | string, idL: string) => {
-        setListsDispatch(todoLists.map(x => x.id === idL ? {...x, filter} : x));
-    }
+    const getStatusTasks = (filter: FilterType | string, idL: string) =>
+        setListsDispatch(getStatusTasksAC(filter, idL));
 
     const addTask = (title: string, idL: string): void => setTasksDispatch(addTaskAC(title, idL));
 
     const changeCheckBox = (id: string, isDone: boolean, idL: string) => setTasksDispatch(changeCheckBoxAC(id, isDone, idL));
 
     const removeList = (idL: string) => {
-        setListsDispatch(todoLists.filter(x => x.id !== idL));
+        setListsDispatch(removeListAC(idL));
         delete tasks[idL];
     }
 
     const addList = (title: string) => {
-        const newList: TodoListType = {id: v1(), title, filter: 'all'};
-        setListsDispatch([...todoLists, newList]);
-        //setDispatch({...tasks, [newList.id]: []});
+        setListsDispatch(addListAC(title));
+        setDispatch({...tasks, [newList.id]: []});
     }
 
-    const changeTitleList = (title: string, idL: string) => {
-        setListsDispatch(todoLists.map(x => x.id === idL ? {...x, title} : x));
-    }
+    const changeTitleList = (title: string, idL: string) =>
+        setListsDispatch(changeTitleListAC(title, idL));
 
     const changeTitleTask = (title: string, id: string, idL: string) => setTasksDispatch(changeTitleTaskAC(title, id, idL));
 

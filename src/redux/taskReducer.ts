@@ -1,7 +1,7 @@
 import {TasksType} from '../App';
 import {v1} from 'uuid';
 
-export const taskReducer = (state: TasksType, action: ActionType) => {
+export const taskReducer = (state: TasksType, action: ActionType): TasksType => {
     switch (action.type) {
         case 'REMOVE-TASK':
             return {...state, [action.payload.idL]: state[action.payload.idL].filter(x => x.id !== action.payload.id)};
@@ -35,13 +35,10 @@ export const taskReducer = (state: TasksType, action: ActionType) => {
     }
 }
 type ActionType = ReturnType<typeof removeTaskAC | typeof addTaskAC | typeof changeCheckBoxAC | typeof changeTitleTaskAC>
-//type ActionType =RemoveTaskType|AddTaskType
-//type RemoveTaskType=ReturnType<typeof removeTaskAC>
 
 export const removeTaskAC = (id: string, idL: string) => {
     return {type: 'REMOVE-TASK', payload: {id: id, idL: idL}} as const
 }
-//type AddTaskType=ReturnType<typeof addTaskAC>
 
 export const addTaskAC = (title: string, idL: string) => ({type: 'ADD-TASK', payload: {title, idL}}) as const;
 
