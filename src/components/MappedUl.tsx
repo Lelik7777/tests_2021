@@ -3,6 +3,7 @@ import {TaskType} from '../App';
 import {InputCheckBox} from './InputCheckBox';
 import '../App.css';
 import {EditedSpan} from './EditedSpan';
+import {Button} from './Button';
 
 type PropsType = {
     data: TaskType[];
@@ -39,6 +40,7 @@ export const MappedUl = ({
                                         changeTitle={changeTitle}
                                         fontSize={1}
                             />
+                            <Button title={'x'} callBack={()=>removeTask(x.id,idL)}/>
                         </li>
                     )
                 })

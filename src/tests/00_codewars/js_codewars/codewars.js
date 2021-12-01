@@ -119,6 +119,7 @@ const spinWords = (string) => {
   return string.split(' ').map(x=>x.split('').length>=5?x.split('').reverse().join(''):x).join(' ');
 }
 console.log(spinWords("Spinning words sda dsf"));
+//--------------------------------------------------------------------------------
 //test 8:
 //Find the odd int 6kyu
 /*Given an array of integers, find the one that appears an odd number of times.
@@ -144,4 +145,36 @@ console.log(findOdd([1,1,2,-2,5,2,4,4,-1,-2,5]));
 console.log(findOdd(0));
 console.log(findOdd([4]))
 console.log(findOdd1([1,1,2,-2,5,2,4,4,-1,-2,5]));
-console.log([2,3,4,4,4,5,6,6,6].length%2)
+console.log([2,3,4,4,4,5,6,6,6].length%2);
+//------------------------------------------------------------------------------
+//test 9:
+
+/*[4, 1, 2, 3].sort((a,b)=>{
+    if(a>b){
+        count++;
+        return 1
+    }
+    if(a<b){
+        return -1;
+    }
+    return 0;
+})*/
+let array=[6,5,4,3,2,1];
+const countInversions= (array) => {
+    let count=0;
+    array.sort((a,b)=>{
+        if(a<b){
+            count++;
+            return -1;
+        }
+        if(a>b) return 1
+        return 0;
+    })
+    return count;
+}
+
+
+
+console.log([4, 1, 2, 3].sort((a,b,i)=>a-b));
+console.log([6,5,4,3,2,1].sort((a,b)=>a-b));
+console.log(countInversions([6,5,4,3,2,1]))
