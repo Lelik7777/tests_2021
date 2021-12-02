@@ -30,11 +30,13 @@ export const taskReducer = (state: TasksType, action: ActionType): TasksType => 
                     title: action.payload.title
                 } : x)
             };
+        case 'CREATE-TASK':
+            return {...state, [action.payload.idL]: []};
         default:
             return {...state};
     }
 }
-type ActionType = ReturnType<typeof removeTaskAC | typeof addTaskAC | typeof changeCheckBoxAC | typeof changeTitleTaskAC>
+type ActionType = ReturnType<typeof removeTaskAC | typeof addTaskAC | typeof changeCheckBoxAC | typeof changeTitleTaskAC | typeof createTaskAC>
 
 export const removeTaskAC = (id: string, idL: string) => {
     return {type: 'REMOVE-TASK', payload: {id: id, idL: idL}} as const
@@ -51,3 +53,6 @@ export const changeTitleTaskAC = (title: string, id: string, idL: string) => ({
     type: 'CHANGE-TITLE-TASK',
     payload: {title, id, idL}
 }) as const;
+
+
+export const createTaskAC = (idL: string) => ({type: 'CREATE-TASK', payload: {idL}}) as const;

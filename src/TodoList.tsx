@@ -16,7 +16,6 @@ export type TodoListType = {
     changeCheckBox: (id: string, isD: boolean, idL: string) => void;
     filter: FilterType | string;
     removeList: (idL: string) => void;
-    addList: (title: string) => void;
     changeTitleList: (t: string, idL: string) => void;
     changeTitleTask: (t: string, id: string, idL: string) => void;
 }

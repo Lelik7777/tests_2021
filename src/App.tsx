@@ -3,7 +3,14 @@ import './App.css';
 import {TodoList} from './TodoList';
 import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm';
-import {addTaskAC, changeCheckBoxAC, changeTitleTaskAC, removeTaskAC, taskReducer} from './redux/taskReducer';
+import {
+    addTaskAC,
+    changeCheckBoxAC,
+    changeTitleTaskAC,
+    createTaskAC,
+    removeTaskAC,
+    taskReducer
+} from './redux/taskReducer';
 import {addListAC, changeTitleListAC, getStatusTasksAC, listsReducer, removeListAC} from './redux/listsReducer';
 //import {solution1} from './tests/00_codewars/test01';
 
@@ -27,12 +34,12 @@ function App() {
     console.log('rendering app');
     const id1 = v1();
     const id2 = v1();
-    const [todoLists, setListsDispatch] = useReducer(listsReducer, [
+    const [todoLists, dispatchLists] = useReducer(listsReducer, [
         {id: id1, title: 'to learn', filter: 'all'},
         {id: id2, title: 'to buy', filter: 'active'},
     ]);
 
-    const [tasks, setTasksDispatch] = useReducer(taskReducer, {
+    const [tasks, dispatchTasks] = useReducer(taskReducer, {
         [id1]: [
             {id: v1(), title: 'Html&&css', isDone: true},
             {id: v1(), title: 'Js', isDone: true},
@@ -56,29 +63,29 @@ function App() {
                 return tasks[idL];
         }
     }
-    const removeTask = (id: string, idL: string): void => setTasksDispatch(removeTaskAC(id, idL));
+    const removeTask = (id: string, idL: string): void => dispatchTasks(removeTaskAC(id, idL));
 
     const getStatusTasks = (filter: FilterType | string, idL: string) =>
-        setListsDispatch(getStatusTasksAC(filter, idL));
+        dispatchLists(getStatusTasksAC(filter, idL));
 
-    const addTask = (title: string, idL: string): void => setTasksDispatch(addTaskAC(title, idL));
+    const addTask = (title: string, idL: string): void => dispatchTasks(addTaskAC(title, idL));
 
-    const changeCheckBox = (id: string, isDone: boolean, idL: string) => setTasksDispatch(changeCheckBoxAC(id, isDone, idL));
+    const changeCheckBox = (id: string, isDone: boolean, idL: string) => dispatchTasks(changeCheckBoxAC(id, isDone, idL));
 
     const removeList = (idL: string) => {
-        setListsDispatch(removeListAC(idL));
+        dispatchLists(removeListAC(idL));
         delete tasks[idL];
     }
 
-    const addList = (title: string) => {
-        setListsDispatch(addListAC(title));
-        setDispatch({...tasks, [newList.id]: []});
+    const addList = (title: string,idL:string) => {
+        dispatchLists(addListAC(title,idL));
+       dispatchTasks(createTaskAC(idL));
     }
 
     const changeTitleList = (title: string, idL: string) =>
-        setListsDispatch(changeTitleListAC(title, idL));
+        dispatchLists(changeTitleListAC(title, idL));
 
-    const changeTitleTask = (title: string, id: string, idL: string) => setTasksDispatch(changeTitleTaskAC(title, id, idL));
+    const changeTitleTask = (title: string, id: string, idL: string) => dispatchTasks(changeTitleTaskAC(title, id, idL));
 
     const mappedList = todoLists.map(x => <
         TodoList
@@ -92,13 +99,12 @@ function App() {
         changeCheckBox={changeCheckBox}
         filter={x.filter}
         removeList={removeList}
-        addList={addList}
         changeTitleList={changeTitleList}
         changeTitleTask={changeTitleTask}
     />);
     return (
         <div className="App">
-            <AddItemForm callBack={addList} titleButton={'add'}/>
+            <AddItemForm  callBack={addList} titleButton={'add'} idL={v1()}/>
             {
                 mappedList
             }

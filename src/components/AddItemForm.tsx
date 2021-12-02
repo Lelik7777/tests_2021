@@ -3,15 +3,16 @@ import {Button} from './Button';
 import {Input} from './Input';
 
 type PropsType = {
-    callBack: (t: string) => void;
+    callBack: (t: string,idL:string) => void;
     titleButton: string;
+    idL?:string;
 }
-export const AddItemForm = ({callBack, titleButton, ...props}: PropsType) => {
+export const AddItemForm = ({callBack, titleButton,idL}: PropsType) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<boolean>(false)
     let valueTrim = value.trim();
     const callBack1 = () => {
-        valueTrim && callBack(valueTrim);
+        idL&&valueTrim && callBack(valueTrim,idL);
         !valueTrim && setError(true);
         valueTrim && setValue('');
     }
@@ -20,7 +21,7 @@ export const AddItemForm = ({callBack, titleButton, ...props}: PropsType) => {
         setError(false);
     }
     const onKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-        valueTrim && e.key === 'Enter' && callBack(valueTrim);
+       idL&& valueTrim && e.key === 'Enter' && callBack(valueTrim,idL);
         valueTrim && e.key === 'Enter' && setValue('');
         !valueTrim && setError(true);
     };
