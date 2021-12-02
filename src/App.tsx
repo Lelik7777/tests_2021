@@ -81,9 +81,6 @@ function App() {
         let idL=v1();
         dispatchLists(addListAC(title,idL));
        dispatchTasks(createTaskAC(idL));
-        //const newList: TodoListType = {id: v1(), title, filter: 'all'};
-        //setTodoLists([...todoLists, newList]);
-       // setTasks({...tasks, [newList.id]: []})
     }
 
     const changeTitleList = (title: string, idL: string) =>
