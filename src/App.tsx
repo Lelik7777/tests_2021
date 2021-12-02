@@ -68,7 +68,7 @@ function App() {
     const getStatusTasks = (filter: FilterType | string, idL: string) =>
         dispatchLists(getStatusTasksAC(filter, idL));
 
-    const addTask = (title: string, idL: string): void => dispatchTasks(addTaskAC(title, idL));
+    const addTask = (title: string, idL: string) => dispatchTasks(addTaskAC(title, idL));
 
     const changeCheckBox = (id: string, isDone: boolean, idL: string) => dispatchTasks(changeCheckBoxAC(id, isDone, idL));
 
@@ -77,9 +77,13 @@ function App() {
         delete tasks[idL];
     }
 
-    const addList = (title: string,idL:string) => {
+    const addList = (title: string) => {
+        let idL=v1();
         dispatchLists(addListAC(title,idL));
        dispatchTasks(createTaskAC(idL));
+        //const newList: TodoListType = {id: v1(), title, filter: 'all'};
+        //setTodoLists([...todoLists, newList]);
+       // setTasks({...tasks, [newList.id]: []})
     }
 
     const changeTitleList = (title: string, idL: string) =>
@@ -104,7 +108,7 @@ function App() {
     />);
     return (
         <div className="App">
-            <AddItemForm  callBack={addList} titleButton={'add'} idL={v1()}/>
+            <AddItemForm  callBack={addList} titleButton={'add'}/>
             {
                 mappedList
             }

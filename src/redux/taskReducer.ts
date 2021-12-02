@@ -4,8 +4,10 @@ import {v1} from 'uuid';
 export const taskReducer = (state: TasksType, action: ActionType): TasksType => {
     switch (action.type) {
         case 'REMOVE-TASK':
+            console.log('remove task')
             return {...state, [action.payload.idL]: state[action.payload.idL].filter(x => x.id !== action.payload.id)};
         case 'ADD-TASK':
+            console.log('add task')
             return {
                 ...state,
                 [action.payload.idL]: [...state[action.payload.idL], {
@@ -15,6 +17,7 @@ export const taskReducer = (state: TasksType, action: ActionType): TasksType => 
                 }]
             };
         case 'CHANGE-CHECK-BOX':
+            console.log('change checkbox')
             return {
                 ...state,
                 [action.payload.idL]: state[action.payload.idL].map(x => x.id === action.payload.id ? {
