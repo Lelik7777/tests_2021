@@ -12,9 +12,10 @@ import {
     taskReducer
 } from './redux/taskReducer';
 import {addListAC, changeTitleListAC, getStatusTasksAC, listsReducer, removeListAC} from './redux/listsReducer';
+import {getTriangleType} from './tests/00_native_ js_lesson/lesson08/lesson_8';
 //import {solution1} from './tests/00_codewars/test01';
 
-//solution1();
+getTriangleType(2,2,2);
 export type TaskType = {
     id: string;
     title: string;
