@@ -99,6 +99,9 @@ export function sumFirstNumbers(N: number): number {
 
 
 export function getBanknoteList(amountOfMoney: number): Array<number> {
+/*if(amountOfMoney>1000){
+    amountOfMoney%1000
+}*/
     //...здесь пишем код.
     // В return стоит "заглушка", чтоб typescript не ругался
     return [1]

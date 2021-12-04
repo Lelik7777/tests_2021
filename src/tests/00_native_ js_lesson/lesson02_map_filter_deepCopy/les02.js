@@ -86,3 +86,16 @@ function checkEl(arr,el) {
 checkEl(str,'h');//?
 let[a,b,c]=[1,3,4];
 console.log(a);//?
+const user={
+    name:'alex',
+    address:{
+        city:'Simferopol',
+        street:{
+            title:'Kirova',
+        }
+    }
+}
+const copy={...user,address: {...user.address,street: {...user.address.street}}}
+copy.address.street.title='Chehova';
+console.log(user.address.street.title)
+console.log(copy.address.street.title)

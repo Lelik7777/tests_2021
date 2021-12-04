@@ -15,7 +15,7 @@ import {addListAC, changeTitleListAC, getStatusTasksAC, listsReducer, removeList
 import {getTriangleType} from './tests/00_native_ js_lesson/lesson08/lesson_8';
 //import {solution1} from './tests/00_codewars/test01';
 
-getTriangleType(2,2,2);
+//getTriangleType(2,2,2);
 export type TaskType = {
     id: string;
     title: string;
@@ -117,3 +117,4 @@ function App() {
 }
 
 export default App;
+c
