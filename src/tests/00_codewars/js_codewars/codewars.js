@@ -157,18 +157,43 @@ const countInversions = (array) => {
     let count = 0;
     for (let i = 0; i < array.length - 1; i++) {
         for (let j = 0; j < array.length - 1 - i; j++) {
-            if (array[j] > array[j+1]) {
-                [array[j], array[j+1]] = [array[j+1], array[j]];
+            if (array[j] > array[j + 1]) {
+                [array[j], array[j + 1]] = [array[j + 1], array[j]];
                 count++
             }
         }
     }
     return count;
 }
+
 function countInversions2(data) {
-    return data.reduce((total, i, index) =>  data.slice(index).filter(j =>  (i > j)).length + total, 0)+' '+data;
+    return data.reduce((total, i, index) => data.slice(index).filter(j => (i > j)).length + total, 0) + ' ' + data;
 }
 
 console.log(countInversions([6, 5, 4, 3, 2, 1]))
-console.log(countInversions2([6,5,4,3,2,1]));
-console.log(2400%1000)
+console.log(countInversions2([6, 5, 4, 3, 2, 1]));
+console.log(2400 % 1000);
+
+//----------------------------------------------------------------------
+//test 10: Minimum Steps (Array Series #6) 7kyu
+//Given an array of N integers, you have to find how many times you have to add up the smallest numbers in the array until their Sum becomes greater or equal to K.
+const minimumSteps = (numbers, value) => {
+    let a = numbers.splice(numbers.indexOf(Math.min(...numbers)), 1)[0];
+    let count = 0;
+    if (value < a) return count;
+    while (numbers.length) {
+
+        a += numbers.splice(numbers.indexOf(Math.min(...numbers)), 1)[0];
+        count++;
+        if (a >= value) {
+            break;
+        }
+    }
+
+    return count//?
+}
+const minimumSteps2 = (arr, value) => {
+    return arr.sort((a, b) => a - b).filter(f => (value -= f) > 0).length;
+}
+console.log(minimumSteps2([8, 9, 10, 4, 2], 23))
+console.log(minimumSteps([8, 9, 10, 4, 2], 1), 3);//?
