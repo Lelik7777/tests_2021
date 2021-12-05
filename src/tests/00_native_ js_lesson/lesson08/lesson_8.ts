@@ -99,10 +99,67 @@ export function sumFirstNumbers(N: number): number {
 
 
 export function getBanknoteList(amountOfMoney: number): Array<number> {
-/*if(amountOfMoney>1000){
-    amountOfMoney%1000
-}*/
-    //...здесь пишем код.
-    // В return стоит "заглушка", чтоб typescript не ругался
-    return [1]
+    let arr: number[] = [];
+    if (Math.floor(amountOfMoney / 1000)) {
+        for (let i = 1; i < +(amountOfMoney / 1000).toFixed(); i++) {
+            arr.push(1000);
+        }
+        amountOfMoney = amountOfMoney % 1000;
+    }
+
+    if (Math.floor(amountOfMoney / 500)) {
+        for (let i = 0; i < +(amountOfMoney / 500).toFixed(); i++) {
+            arr.push(500);
+        }
+        amountOfMoney = amountOfMoney % 500;
+    }
+    if (Math.floor(amountOfMoney / 100)) {
+        for (let i = 1; i < +(amountOfMoney / 100).toFixed(); i++) {
+            arr.push(100);
+        }
+        amountOfMoney = amountOfMoney % 100;
+    }
+    if (Math.floor(amountOfMoney / 50)
+    ) {
+        for (let i = 0; i < +(amountOfMoney / 50).toFixed(); i++) {
+            arr.push(50);
+        }
+        amountOfMoney = amountOfMoney % 50;
+    }
+    if (Math.floor(amountOfMoney / 20)
+    ) {
+        for (let i = 0; i < +(amountOfMoney / 20).toFixed(); i++) {
+            arr.push(20);
+        }
+        amountOfMoney = amountOfMoney % 20;
+    }
+    if (Math.floor(amountOfMoney / 10)
+    ) {
+        for (let i = 0; i < +(amountOfMoney / 10).toFixed(); i++) {
+            arr.push(10);
+        }
+        amountOfMoney = amountOfMoney % 10;
+    }
+    if (Math.floor(amountOfMoney / 5)) {
+        for (let i = 0; i < +(amountOfMoney / 5).toFixed(); i++) {
+            arr.push(5);
+        }
+        amountOfMoney = amountOfMoney % 5;
+    }
+    if (Math.floor(amountOfMoney / 2)) {
+        for (let i = 1; i < +(amountOfMoney / 2).toFixed(); i++) {
+            arr.push(2);
+        }
+        amountOfMoney = amountOfMoney % 2;
+    }
+    if (amountOfMoney) {
+        for (let i = 0; i < amountOfMoney; i++) {
+            arr.push(1);
+        }
+    }
+    return arr;
 }
+
+let num = 399
+console.log(getBanknoteList(49))
+console.log(!!Math.floor(500 / 500));

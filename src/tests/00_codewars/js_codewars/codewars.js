@@ -166,7 +166,9 @@ const countInversions = (array) => {
     return count;
 }
 function countInversions2(data) {
-    return data.reduce((total, i, index) =>  data.slice(index).filter(j =>  (i > j)).length + total, 0);
+    return data.reduce((total, i, index) =>  data.slice(index).filter(j =>  (i > j)).length + total, 0)+' '+data;
 }
 
 console.log(countInversions([6, 5, 4, 3, 2, 1]))
+console.log(countInversions2([6,5,4,3,2,1]));
+console.log(2400%1000)
