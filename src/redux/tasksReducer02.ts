@@ -21,11 +21,17 @@ export const tasksReducer02 = (state = initialState, action: ActionType): TasksT
                     isDone: false
                 }]
             };
+        case 'ADD-LIST':
+        return {...state,[action.payload.id]:[]};
+        case 'REMOVE-LIST':
+           // debugger;
+           let{[action.payload.idL]:[],...newState}={...state};
+            return newState;
         default:
             return state;
     }
 }
-export type ActionTypeTasks = ReturnType<typeof addTask>
+export type ActionTasksType = ReturnType<typeof addTask>
 export const addTask = (title: string, idL: string) => {
     return {
         type: 'ADD-TASK',

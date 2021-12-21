@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from 'redux';
-import {ActionTypeTasks, tasksReducer02} from './tasksReducer02';
-import {todoListReducer02} from './todoListReducer02';
-export type ActionType=ActionTypeTasks;
+import {ActionTasksType, tasksReducer02} from './tasksReducer02';
+import {ActionTodoListsType, todoListReducer02} from './todoListReducer02';
+export type ActionType=ActionTasksType|ActionTodoListsType;
 const rootReducer = combineReducers({
     tasks:tasksReducer02,
     todoLists:todoListReducer02,
