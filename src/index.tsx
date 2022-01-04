@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import {AppWithSelector} from './AppWithSelector';
 import {store} from './redux/store';
+import {AppWithAxios} from './AppWithAxios';
+import {Github} from './AppUse';
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
-      <AppWithSelector/>
+      {/*<AppWithAxios/>
+*/}
+          <Github/>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

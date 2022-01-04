@@ -197,3 +197,11 @@ const minimumSteps2 = (arr, value) => {
 }
 console.log(minimumSteps2([8, 9, 10, 4, 2], 23))
 console.log(minimumSteps([8, 9, 10, 4, 2], 1), 3);//?
+
+const xhr=new XMLHttpRequest();
+console.log(xhr);
+xhr.open('GET','http://google.com');
+xhr.send(null);
+xhr.onload=()=>{
+    console.log(`load: ${xhr.status} ${xhr.response}`);
+}
