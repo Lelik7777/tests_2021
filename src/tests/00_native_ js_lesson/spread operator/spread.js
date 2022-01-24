@@ -38,6 +38,10 @@ const [a,...b]=[200,44,44,55,66,4];
 console.log(a)
 console.log(b)
 
+const ar=['bob','alex','sam','ann'];
+console.log(ar.some(x=>x=='sam'))//?
 
-
-
+const man={name:'bob',age:44,friends:['ann','nick']}
+const {name,...rest}=man;
+console.log( typeof name)
+console.log( typeof rest)

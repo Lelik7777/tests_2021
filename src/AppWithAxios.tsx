@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {createObj} from './draft00/draftTypeScript';
+
+
 export const AppWithAxios = () => {
     const [post,setPost]=useState<any>(null);
     const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
