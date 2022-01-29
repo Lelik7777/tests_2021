@@ -75,3 +75,5 @@ arrStrings2.forEach((x,i)=>{
     x.forEach((x2,i2)=>{
     })
 })
+console.log('hello')
+console.log('hello,world');
