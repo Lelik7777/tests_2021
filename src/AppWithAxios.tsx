@@ -1,35 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {createObj} from './draft00/draftTypeScript';
 
 
 export const AppWithAxios = () => {
-    const [post,setPost]=useState<any>(null);
-    const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
+    const users: { id: string; name: string }[] = [
+        {id: '1', name: 'bob'},
+        {id: '2', name: 'alex'},
+        {id: '3', name: 'ann'},
+    ];
+    const [filterUsers, setFilterUsers] = useState<{ id: string; name: string }[]>(users);
+    const [value, setValue] = useState<string>('');
 
+    const getFilterUsers = () => {
 
+        if (filterUsers.find(x => x.name === value))
+            setFilterUsers(filterUsers.filter(x => x.name == value.toLowerCase()));
 
-    useEffect(()=>{
-        console.log('useEffect');
-        axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        else
+            alert('name isn`t in current list');
+        setValue('');
+    }
+        return (
+            <div>
+                {/* <h1>{post.title}</h1>
+          <p>{post.body}</p>*/}
+                <div>
+                    <input value={value} type="text" onChange={(e) => setValue(e.currentTarget.value)}/>
+                    <button type={'button'} onClick={getFilterUsers}>search</button>
+                    <button onClick={() => setFilterUsers(users)}>reset</button>
+                    {filterUsers.map(x => <div key={x.id} style={{margin: '30px'}}>{x.name}</div>)}
+                </div>
+            </div>
+        );
+    }
 
-        axios.get(baseURL,{headers: {
-            'Access-Control-Allow-Origin': 'GET',
-                'Content-Type': 'application/json'
-        }}
-    ).then((response)=>{
-            console.log('response',response);
-            setPost(response);
-        }).catch((error)=>{
-            console.warn(error);
-        });
-    },[]);
-    if(!post)return  null;
-  return(
-      <div>
-          <h1>{post.title}</h1>
-          <p>{post.body}</p>
-      </div>
-  );
-}

@@ -24,5 +24,6 @@ const handlerButtons = (e) => {
  e.stopImmediatePropagation();
   if(e.target.tagName==='BUTTON')
       alert(e.target.name);
+    console.log(e.bubbles)//?
 }
 $sm.addEventListener('click',handlerButtons);
