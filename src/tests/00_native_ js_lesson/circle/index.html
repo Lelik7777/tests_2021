@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>circle</title>
+    <script src="script.js"></script>
+    <style>
+        .circle {
+            transition-property: height, width;
+            transition-duration: 4s;
+            position: fixed;
+            background-color: blue;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .circle:hover {
+            width: 100px;
+            height: 100px;
+        }
+
+        .text {
+            font-size: 14px;
+            transition-property: font-size;
+            transition-duration: 4s;
+
+        }
+
+        .text:hover {
+            font-size: 36px;
+        }
+
+    </style>
 </head>
 <body>
-$END$
+<button onclick="showCircle(150,150,100)">showCircle</button>
+<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+<p>Lorem ipsum dolor sit.</p>
 </body>
 </html>
