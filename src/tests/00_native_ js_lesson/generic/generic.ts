@@ -23,7 +23,16 @@ class UniversalClass<T> implements UniverseI<T> {
         return this.value;
     }
 }
-const objNum=new UniversalClass<Number>(5);
+const objNum=new UniversalClass<Number >(5);
 console.log(objNum.getValue())//?
 const objString=new UniversalClass<string>('hello');
 console.log(objString.getValue())//?
+type UserType={
+    name:string;
+    age:number;
+}
+const obj1:UserType={
+    name:'alex',
+    age:33,
+}
+
