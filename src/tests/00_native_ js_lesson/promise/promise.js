@@ -139,4 +139,4 @@ const makeRequestOnOneMoment = () => {
           console.log('3'+res[2].data)
       })
 }
-makeRequestOnOneMoment()
+makeRequestOnOneMoment();
