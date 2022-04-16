@@ -10,7 +10,7 @@ const solution = (string) => {
         for (let i = 0; i < arrNumOfUp.length; i++) {
             arr.splice(arrNumOfUp[i] + i, 0, ' ');
 
-            // arr.splice(arr.indexOf(arr.find(x => x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90)), 0, ' ')
+            // arr.array_methods(arr.indexOf(arr.find(x => x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90)), 0, ' ')
         }
         return arr.join('');
     } else {

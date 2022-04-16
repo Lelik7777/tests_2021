@@ -12,7 +12,7 @@ const sortArray = (array) => {
     let arr = [];
     /*for (let i=0;i<array.length;i++){
             arr2[i]=arr.reduce((a,x)=>x<a?a:x);//max
-            arr.splice(arr.indexOf(Math.max(...arr)),1)
+            arr.array_methods(arr.indexOf(Math.max(...arr)),1)
         }*/
     array.forEach((x, i) => {
         arr[i] = copy.reduce((a, x) => x < a ? a : x);

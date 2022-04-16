@@ -87,7 +87,7 @@ console.log(sortByScores);
 let bestStudents = students.filter(x => x.scores >= 100);
 console.log(bestStudents);
 
-//6a. Получите массив ("вырежьте") из трёх лучших студентов из массива deepCopyStudents (splice)
+//6a. Получите массив ("вырежьте") из трёх лучших студентов из массива deepCopyStudents (array_methods)
 //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 
 let topStudents = deepCopyStudents.map(x=>({...x})).sort((a, b) => b.scores - a.scores).splice(0, 3);
