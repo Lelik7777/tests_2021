@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import './App.css';
 import {TodoList} from './TodoList';
-import {v1} from 'uuid';
+
 import {AddItemForm} from './components/AddItemForm';
 import {
     addTaskAC,
@@ -12,6 +12,7 @@ import {
     taskReducer
 } from './redux/taskReducer';
 import {addListAC, changeTitleListAC, getStatusTasksAC, listsReducer, removeListAC} from './redux/listsReducer';
+import {v1} from 'uuid';
 //import {solution1} from './tests/00_codewars/test01';
 
 //getTriangleType(2,2,2);

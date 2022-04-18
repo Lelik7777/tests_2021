@@ -1,10 +1,10 @@
-function fun<T>(value: T): T {
+function fun00<T>(value: T): T {
     return value;
 }
 
-console.log(fun<number>(4));
-console.log(fun<string>('hello'));
-console.log(fun<Number[]>([2, 3, 4, 5]));
+console.log(fun00<number>(4));
+console.log(fun00<string>('hello'));
+console.log(fun00<Number[]>([2, 3, 4, 5]));
 
 //generic for classis
 interface UniverseI<T> {
