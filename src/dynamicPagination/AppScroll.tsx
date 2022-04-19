@@ -8,7 +8,7 @@ type PhotosType = {
     thumbnailUrl: string;
 }
 export const AppScroll = () => {
-    const [photos, setPhotos] = React.useState<PhotosType[] >([]);
+    const [photos, setPhotos] = React.useState<PhotosType[]>([]);
     const [page, setPage] = React.useState(1);
     const [isFetching, setIsFetching] = React.useState(true);
     useEffect(() => {
@@ -19,7 +19,7 @@ export const AppScroll = () => {
             }
         })
             .then(res => {
-                setPhotos([...photos,...res.data])
+                setPhotos([...photos, ...res.data])
                 setPage(prev => prev + 1);
             }).finally(() => setIsFetching(false));
     }, [isFetching]);
@@ -30,18 +30,19 @@ export const AppScroll = () => {
         }
     }, []);
 
-    const handleScroll = (e:any):void => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100)
+    const handleScroll = (e: Event): void => {
+        const target: HTMLDocument = e.target as HTMLDocument;
+        if (target.documentElement.scrollHeight - (target.documentElement.scrollTop + window.innerHeight) < 100)
             setIsFetching(true);
 
-       /*  console.log('scrollHeight',e.target.documentElement.scrollHeight);
-         console.log('scrollTop',e.target.documentElement.scrollTop);
-         console.log('height',window.innerHeight)*/
+        /*  console.log('scrollHeight',e.target.documentElement.scrollHeight);
+          console.log('scrollTop',e.target.documentElement.scrollTop);
+          console.log('height',window.innerHeight)*/
 
     }
 
     return (
-        <div style={{margin: '20px'}} >
+        <div style={{margin: '20px'}}>
 
             {photos && photos.map((x) => <div>
                 <div>{x.id}. {x.title}</div>
