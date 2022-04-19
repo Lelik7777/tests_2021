@@ -31,12 +31,12 @@ export const AppScroll = () => {
     }, []);
 
     const handleScroll = (e:any):void => {
-        /*if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100)
-            setIsFetching(true);*/
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100)
+            setIsFetching(true);
 
-         console.log('scrollHeight',e.target.documentElement.scrollHeight);
+       /*  console.log('scrollHeight',e.target.documentElement.scrollHeight);
          console.log('scrollTop',e.target.documentElement.scrollTop);
-         console.log('height',window.innerHeight)
+         console.log('height',window.innerHeight)*/
 
     }
 
