@@ -99,27 +99,6 @@ const arrObj=[{x:1},{x:4},{x:5}];
 console.log(arrObj.reduce((prev,cur)=>{
 
    return  prev+cur.x
-},10))
+},10));
 
-function curry(func) {
 
-    return function curried(...args) {
-        if (args.length >= func.length) {
-            return func.apply(this, args);
-        } else {
-            return function(...args2) {
-                return curried.apply(this, args.concat(args2));
-            }
-        }
-    };
-
-}
-function sum(a, b, c) {
-    return a + b + c;
-}
-
-let curriedSum = curry(sum);
-
-//alert( curriedSum(1, 2, 3) );
-alert( curriedSum(1)(2,3) );
-alert( curriedSum(1)(2)(3) );// 6, всё ещё можно вызывать нормально
