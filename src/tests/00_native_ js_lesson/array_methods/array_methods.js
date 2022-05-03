@@ -93,7 +93,10 @@ console.log(arrNum.reverse());
 console.log(arrNum);
 console.log(arrNum.reverse());
 
-//reduce accept callback(accept prev,curr,currIndex,array) and initial value
+
+//reduce accept callback(accept prev,curr,currIndex,array)
+// and initial value(if it isn`t that prev=first value and curr=second value of array)
+//return new array
 console.log(arrNum.reduce((prev,curr)=>prev+curr,0));
 const arrObj=[{x:1},{x:4},{x:5}];
 console.log(arrObj.reduce((prev,cur)=>{
@@ -101,4 +104,42 @@ console.log(arrObj.reduce((prev,cur)=>{
    return  prev+cur.x
 },10));
 
+// Flattening an Array of Arrays
+let mulArray = [[3, 5], [1, 7], [12, 9]];
 
+console.log(mulArray.reduce((acc,curr)=>acc.concat(curr)));
+
+//count instances,properties in object
+let myCars = ['Mercedes-Benz', 'Jeep', 'Ferrari', 'Lamborghini', 'Mercedes-Benz', 'BMW', 'Ferrari'];
+
+console.log(myCars.reduce((acc,curr)=>{
+   if(curr in acc){
+      acc[curr]++;
+   }
+   else {
+      acc[curr]=1;
+   }
+   return acc;
+},{}));
+//group objects
+let student = [
+
+   { name: 'David', age: 23, hobby: 'fishing' },
+
+   { name: 'Rachel', age: 25, hobby: 'cooking' },
+
+   { name: 'Rahul', age: 22, hobby: 'fishing' }
+
+];
+function checkProp(arrObjs,prop) {
+   return arrObjs.reduce((acc,curr)=>{
+      const key=curr[prop];
+      if(!acc[key]){
+         acc[key]=[];
+      }
+      acc[key].push(curr);
+      return acc;
+   },{});
+}
+
+console.log(checkProp(student,'hobby'));
