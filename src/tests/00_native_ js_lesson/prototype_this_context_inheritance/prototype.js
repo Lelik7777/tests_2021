@@ -1,3 +1,4 @@
+//es5
 const Animal=function (prop) {
     this.name=prop.name;
     this.age=prop.age;
@@ -12,7 +13,7 @@ Animal.prototype.move=()=>{
 console.log(Animal.prototype);
 console.log( dog.move())
 const Cat=function (data) {
-
+//arguments- это встроенный параметр для метода .apply()
     Animal.apply(this,arguments);
     this.hasTail=data.hasTail;
     this.type=data.type;
@@ -33,4 +34,53 @@ console.log(cat);
 console.log(cat.hasVoice())
 cat.move()
 
+//es6+
+class AnimalNew{
+    constructor(data) {
+        this.name = data.name;
+        this.age = data.age;
+        this.isVoice = function () {
+            console.log('this voice from ', this.name);
+        }
+    }
 
+    hasVoice(){
+        console.log('base voice from ',this.name);
+    }
+}
+const pulkan=new AnimalNew({name:'pulkan',age:7});
+console.dir(pulkan);
+pulkan.isVoice();
+pulkan.hasVoice();
+
+class CatNew extends AnimalNew{
+    constructor(props) {
+        //обращение к конструктору родительского класса
+        super(props);
+        this.hasTail=props.hasTail;
+        this.type=props.type;
+    }
+    //переопределение родительского метода
+    hasVoice() {
+        console.log('changed cat`s voice for ',this.name )
+    }
+}
+const murzik=new CatNew({name:'murzik',age:2,hasTail:true,type:'cat'});
+console.dir(murzik);
+console.log(murzik.hasVoice());
+console.log(murzik.isVoice());
+//могу оперделить новый метод для глобального Object
+Object.prototype.whoAreYou=function () {
+    console.log('this object is ',this);
+}
+murzik.whoAreYou();
+// add method for global Array
+Array.prototype.myMapAndLog=function () {
+    console.log('aray for map',this);
+    return this.map.apply(this,arguments);
+}
+console.log([3,4,5,5].myMapAndLog(x=>x**2));
+String.prototype.toTag=function (tagName) {
+    return `<${tagName}>${this}</${tagName}>`
+}
+console.log('hello'.toTag('strong'))
