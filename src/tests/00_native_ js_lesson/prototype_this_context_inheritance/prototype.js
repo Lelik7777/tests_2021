@@ -8,8 +8,18 @@ const Animal=function (prop) {
 }
 const dog=new Animal({name:'palkan',age:5});
 console.dir(dog);
+console.log(dog.hasOwnProperty('age'))
+console.log('/////////////////////////')
+for (let key in dog){
+    console.log(key)
+}
+console.log('////////////////////////')
 Animal.prototype.move=()=>{
     console.log('entity can move ')};
+for (let key in dog){
+    console.log(key)
+}
+console.log('//////////////////////////')
 console.log(Animal.prototype);
 console.log( dog.move())
 const Cat=function (data) {
@@ -48,10 +58,13 @@ class AnimalNew{
         console.log('base voice from ',this.name);
     }
 }
+
+console.log('type of AnimalNew is ', typeof AnimalNew)
 const pulkan=new AnimalNew({name:'pulkan',age:7});
 console.dir(pulkan);
 pulkan.isVoice();
 pulkan.hasVoice();
+
 
 class CatNew extends AnimalNew{
     constructor(props) {
@@ -84,3 +97,4 @@ String.prototype.toTag=function (tagName) {
     return `<${tagName}>${this}</${tagName}>`
 }
 console.log('hello'.toTag('strong'))
+console.log(Object.values('hello world'))
