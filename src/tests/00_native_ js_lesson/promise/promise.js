@@ -86,26 +86,26 @@ const culc={
 culc.plus(5).minus(3).plus(3);
 console.log(culc.num);//?*/
 
-let fetch = (url) => {
-    return new Promise((res, rej) => {
-        switch (url) {
-            case 'google':
-                setTimeout(() => {
-                    res({data: ' from google'});
-                }, 2000);
-                break;
-            case 'yandex':
-                setTimeout(() => {
-                    res({data: ' from yandex'})
-                }, 4000);
-                break;
-            default:
-                setTimeout(() => {
-                    res({data: ' from anywhere'})
-                }, 1000)
-        }
-    });
-}
+// let fetch = (url) => {
+//     return new Promise((res, rej) => {
+//         switch (url) {
+//             case 'google':
+//                 setTimeout(() => {
+//                     res({data: ' from google'});
+//                 }, 2000);
+//                 break;
+//             case 'yandex':
+//                 setTimeout(() => {
+//                     res({data: ' from yandex'})
+//                 }, 4000);
+//                 break;
+//             default:
+//                 setTimeout(() => {
+//                     res({data: ' from anywhere'})
+//                 }, 1000)
+//         }
+//     });
+// }
 /*fetch('').then(res=>{
     console.log(res.data)
 })
@@ -130,7 +130,7 @@ const makeRequest = async () => {
     const res3=await fetch('');
     res3&&console.log(res3.data);
 }
-makeRequest();
+//makeRequest();
 const makeRequestOnOneMoment = () => {
   Promise.all([fetch('google'),fetch('yandex'),fetch('')])
       .then(res=>{
@@ -139,4 +139,39 @@ const makeRequestOnOneMoment = () => {
           console.log('3'+res[2].data)
       })
 }
-makeRequestOnOneMoment();
+//makeRequestOnOneMoment();
+
+const getUsers = async () => {
+  const res=await fetch('https://jsonplaceholder.typicode.com/users');
+  return await res.json();
+}
+const getPosts = async () => {
+  const res= await fetch('https://jsonplaceholder.typicode.com/posts?number=10');
+  return await res.json();
+}
+const getPosts2=()=>{
+    return fetch('https://jsonplaceholder.typicode.com/posts?number=10').then(res=>res.json());
+}
+getPosts().then(data=>console.log(data));
+getPosts2().then(data=>console.log(data));
+Promise.all([getUsers(),getPosts()]).then(res=>console.log(res))
+
+//срабатывает только один - то, что располежен первым
+const promise =new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        reject('promise is reject')
+        resolve('promise is resolved')
+    },3000)
+});
+promise.then(value=>console.log(value)).catch(err=>console.log(err));
+const promise1=new Promise((res,rej)=>{
+    res(1);
+    setTimeout(()=>{
+        res(2)
+    },4000)
+});
+promise1.then(alert);
+function delay(ms) {
+    return new Promise(res=>setTimeout(res,ms))
+};
+delay(6000).then(()=>alert('execute in 6 sec'))
