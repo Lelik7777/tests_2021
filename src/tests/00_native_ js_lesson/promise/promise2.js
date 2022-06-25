@@ -92,15 +92,53 @@ new Promise((res, rej) => {
 //событие для отлавливания глобальной ошибки,которая не была обработана catch
 //таким образом существует событие unhandledrejection,возникающее при необработанной ошибке,
 // которое можно улавливать обработчиком событий
-window.addEventListener('unhandledrejection', function(event) {
+window.addEventListener('unhandledrejection', function (event) {
     // объект события имеет два специальных свойства:
     alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
     alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
 });
 
 
-// необработанная ошибка
-new Promise((res,rej)=>{
+// необработанная  синхронная  ошибка
+new Promise((res, rej) => {
     //goHome();
     throw new Error('необработанная ошибка в catch')
-}).then(res=>console.log(res));
+}).then(res => console.log(res));
+
+console.log('hello')
+window.addEventListener('unhandledrejection',(event)=>{
+    console.log(event.promise)
+    console.log(event.reason)
+    console.log(event.target)
+})
+
+new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        throw new Error("Whoops!");
+
+    }, 5000);
+}).then(()=>console.log('promise worked fine')).catch(er=>console.log(er));
+console.log('выполнения кода после промиса с асинхронной ошибкой')
+
+//Promise.all
+// возвращает массив результатов,если все принятые промисы отработали без ошибок,
+//если хоть один промис отработает с ошибкой,то вернется ошибка
+let urls = [
+    'https://api.github.com/users/iliakan',
+    'https://api.github.com/users/remy',
+    'https://api.github.com/users/jeresig',
+    'https://no-such-url'
+    // new Error('ошибочный url')
+];
+let res = urls.map(x => fetch(x));
+Promise.all(res)
+    .then(res => {
+        console.log(res)
+        res.map(x => console.log(`${x.url}:${x.status}`));
+    }).catch(er => console.log('ошибка в promise.all: ', er.message))
+Promise.all([
+    new Promise((res, rej) => setTimeout(() => res(1), 4000)),
+    new Promise((res, rej) => setTimeout(() => rej(new Error('ошибка в промисе')), 1000))
+]).catch(er => console.log(er));
+
+
