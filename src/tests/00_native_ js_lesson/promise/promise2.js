@@ -46,7 +46,7 @@ const askMom = () => {
 
 askMom();
 const firstPromise = new Promise((res) => res('first'));
-const secondPromise = new Promise((res, rej) => rej(new Error('error')));
+const secondPromise = new Promise((res, rej) => rej(new Error('error in second promise')));
 firstPromise.then((res) => {
     console.log('first res:', res);
     return secondPromise
@@ -106,18 +106,18 @@ new Promise((res, rej) => {
 }).then(res => console.log(res));
 
 console.log('hello')
-window.addEventListener('unhandledrejection',(event)=>{
+window.addEventListener('unhandledrejection', (event) => {
     console.log(event.promise)
     console.log(event.reason)
     console.log(event.target)
 })
 
-new Promise(function(resolve, reject) {
+new Promise(function (resolve, reject) {
     setTimeout(() => {
         throw new Error("Whoops!");
 
     }, 5000);
-}).then(()=>console.log('promise worked fine')).catch(er=>console.log(er));
+}).then(() => console.log('promise worked fine')).catch(er => console.log(er));
 console.log('выполнения кода после промиса с асинхронной ошибкой')
 
 //Promise.all
@@ -127,14 +127,14 @@ let urls = [
     'https://api.github.com/users/iliakan',
     'https://api.github.com/users/remy',
     'https://api.github.com/users/jeresig',
-    'https://no-such-url'
+    //'https://no-such-url'
     // new Error('ошибочный url')
 ];
 let res = urls.map(x => fetch(x));
 Promise.all(res)
     .then(res => {
-        console.log(res)
-        res.map(x => console.log(`${x.url}:${x.status}`));
+        console.log(res);
+        res.forEach(x => console.log(`${x.url}:${x.status}`));
     }).catch(er => console.log('ошибка в promise.all: ', er.message))
 Promise.all([
     new Promise((res, rej) => setTimeout(() => res(1), 4000)),
@@ -142,3 +142,69 @@ Promise.all([
 ]).catch(er => console.log(er));
 
 
+let names = ['iliakan', 'remy', 'lelik7777'];
+let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+Promise.all(requests).then(res => {
+    res.forEach(x => console.log(`${x.url}:${x.status}`));
+    console.log(res);
+    return res;
+}).then(res => Promise.all(res.map(x => x.json())))
+    .then(res => console.log(res))
+
+//Promise.allSettled
+
+let urls2 = [
+    'https://api.github.com/users/iliakan',
+    'https://api.github.com/users/remy',
+    'https://api.github.com/users/jeresig',
+    'https://no-such-url'
+    // new Error('ошибочный url')
+];
+
+Promise.allSettled(urls2.map(x => fetch(x))).then(res => {
+    console.log(res)
+    res.forEach((result, num) => {
+        if (result.status === 'fulfilled') {
+            console.log(`${num}:${result.value.status}`)
+        }
+        if (result.status === 'rejected') {
+            console.log(`${num}:${result.reason}`)
+        }
+
+    })
+}).catch((er) => console.log(er));
+
+//Promise.race()
+Promise.race(urls2.map(x => fetch(x))).then(res => console.log('first promise', res)).catch(er => console.log(er));
+
+// async await
+
+(async () => {
+    let response = await fetch('https://api.github.com/users/jeresig');
+    let user = await response.json();
+    console.log(user.blog)
+})();
+
+async function fun() {
+    throw  new Error('error');
+}
+
+fun().then(() => console.log('work good')).catch(er => console.log('сработала ошибка', er));
+
+class Thenable {
+    constructor(num) {
+        this.num = num;
+    }
+
+    then(res, rej) {
+        alert(res);
+        setTimeout(res(this.num * 3), 2000);
+    }
+}
+//можно использовать then или синтаксический сахар await
+async function funAsync() {
+    //new Thenable(3).then(res=>alert(res))
+    const res= await new Thenable(3);
+    alert(res);
+}
+funAsync();
