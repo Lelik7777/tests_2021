@@ -191,6 +191,7 @@ async function fun() {
 
 fun().then(() => console.log('work good')).catch(er => console.log('сработала ошибка', er));
 
+//создание класса,у которого есть метод then,что позволяем применять await
 class Thenable {
     constructor(num) {
         this.num = num;
