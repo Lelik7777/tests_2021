@@ -1,10 +1,12 @@
+//ф-ция генератор,когда вызвана, возвращает специальный объект "генератор"
 function* generator(){
     yield 1;
     yield 2;
     return 3;
 }
-
+// "функция-генератор" создаёт объект "генератор"
 let a=generator();
+
 console.log(a)
 console.log(a.next())
 console.log(a.next())
@@ -65,30 +67,3 @@ for (let o of gen) {
     console.log(o); // Не будет вызван
 }
 
-console.log('hello world'.split(' '))
-const [firstWord,secondWord]='hello world'.split(' ');
-console.log(firstWord, secondWord)
-const [aa,,,bb,cc]='hello';
-console.log(aa,bb,cc);
-const [one,sec,third]=new Set([1,3,4]);
-console.log(one,sec,third);
-const options={
-    title:'menu',
-}
-const{title,width:w=100}=options;
-console.log(title,w)
-console.log(options);
-let options2 = {
-    size: {
-        width: 100,
-        height: 200
-    },
-    items: ["Cake", "Donut"],
-    extra: true
-};
-const {
-    size:{width,height},
-    items:[cake,donut],
-    extra
-}=options2;
-console.log(width,height,cake,donut,extra)
