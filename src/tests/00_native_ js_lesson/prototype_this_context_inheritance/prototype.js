@@ -98,3 +98,33 @@ String.prototype.toTag=function (tagName) {
 }
 console.log('hello'.toTag('strong'))
 console.log(Object.values('hello world'))
+
+console.log('*******************************************************************************************')
+let animal = {
+    eats: true,
+    walk() {
+        console.log("Animal walk");
+    }
+};
+
+let rabbit = {
+    jumps: true,
+    __proto__: animal
+};
+
+let longEar = {
+    earLength: 10,
+    __proto__: rabbit
+};
+
+// walk взят из цепочки прототипов
+longEar.walk(); // Animal walk
+console.log(longEar.jumps); // true (из rabbit);
+console.log('before',rabbit.walk());
+rabbit.walk=function (){
+    console.log('rabbit walk')
+}
+console.log(animal.walk());
+console.log('after',rabbit.walk());
+console.log(rabbit)
+console.log(longEar)

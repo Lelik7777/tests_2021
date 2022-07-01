@@ -71,28 +71,43 @@ for (let o of gen) {
 let [a0, b0, c0, d0] = [3, 4, 5, 6];
 console.log(a0, b0, c0, d0)
 
+//можно извлечь итератор массива
+const array = [1, 3, 6, 7, 9];
+const iteratorArray = array[Symbol.iterator]();
+console.log(iteratorArray);//Array Iterator{}
+//console.log(iteratorArray.next())//{value: 1, done: false}
+//console.log(iteratorArray.next())//{value: 3, done: false}
+//как работает for...of под капотом
+const array2 = ['hello', 'my', 'world', '!']
+const generatorArray2 = array2[Symbol.iterator]();
+let result2 = generatorArray2.next();
+while (!result2.done) {
+    const el = result2.value;
+    console.log(el);
+    result2 = generatorArray2.next();
+}
+
 // итерируемый объект
 
 class IterableObject extends Object {
     constructor(obj) {
         super();
-        Object.assign(this, obj);
+        Object.assign(this,)
     }
-
-    [Symbol.iterator]() {
-        return {
-            next() {
-                return {
-                    value: undefined,
-                    done: false,
-                }
-            }
-        }
-    }
+    hello(){};
+    saySomeThing(){};
 }
+const iterableObj=new IterableObject({a:3,b:6})
+console.log(iterableObj);
+console.log(IterableObject===IterableObject.prototype.constructor);
 
-const iterableObj = new IterableObject({1: 'a', 2: 'b', 3: 'c'});
-console.log(iterableObj[Symbol.iterator]().next())
+let animal={
+    eats:true,
+}
+let rabbit={
+    jumps:true,
+    __proto__:animal,
+}
+console.log(rabbit);
 
-
-
+    //rabbit.__proto__=animal;
