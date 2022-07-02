@@ -147,4 +147,4 @@ let admin = {
     isAdmin: true
 };
 console.log(admin.fullName)
-console.log(Object.getOwnPropertyDescriptors(user))
+console.log(Object.getOwnPropertyDescriptors(user));

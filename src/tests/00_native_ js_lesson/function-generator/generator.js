@@ -96,5 +96,9 @@ class IterableObject extends Object {
         super();
         Object.assign(this,obj);
     }
-
+sayHello(){
+    console.log('hello')
 }
+}
+const iterableObj=new IterableObject({a:3});
+console.log(iterableObj)

@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Prototype</title>
 </head>
 <body>
+<img id="randomImg" src="https://picsum.photos/400" alt="random image">
+<p class="text"></p>
 <script src="prototype.js"></script>
+<script>
+    const $img = document.querySelector('#randomImg');
+    const $text = document.querySelector('.text');
+    $img.addEventListener('load', addText);
 
+    function addText() {
+        setTimeout(() => $text.innerHTML = 'image loaded', 1000);
+    }
+</script>
 </body>
 </html>
