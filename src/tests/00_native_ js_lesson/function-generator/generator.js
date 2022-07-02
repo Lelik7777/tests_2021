@@ -1,4 +1,6 @@
 //ф-ция генератор,когда вызвана, возвращает специальный объект "генератор"
+
+
 function* generator() {
     yield 1;
     yield 2;
@@ -92,22 +94,7 @@ while (!result2.done) {
 class IterableObject extends Object {
     constructor(obj) {
         super();
-        Object.assign(this,)
+        Object.assign(this,obj);
     }
-    hello(){};
-    saySomeThing(){};
-}
-const iterableObj=new IterableObject({a:3,b:6})
-console.log(iterableObj);
-console.log(IterableObject===IterableObject.prototype.constructor);
 
-let animal={
-    eats:true,
 }
-let rabbit={
-    jumps:true,
-    __proto__:animal,
-}
-console.log(rabbit);
-
-    //rabbit.__proto__=animal;

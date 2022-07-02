@@ -82,7 +82,7 @@ const murzik=new CatNew({name:'murzik',age:2,hasTail:true,type:'cat'});
 console.dir(murzik);
 console.log(murzik.hasVoice());
 console.log(murzik.isVoice());
-//могу оперделить новый метод для глобального Object
+//могу определить новый метод для глобального Object
 Object.prototype.whoAreYou=function () {
     console.log('this object is ',this);
 }
@@ -128,3 +128,23 @@ console.log(animal.walk());
 console.log('after',rabbit.walk());
 console.log(rabbit)
 console.log(longEar)
+//this in prototype
+let user = {
+    name: "John",
+    surname: "Smith",
+
+    set fullName(value) {
+        [this.name, this.surname] = value.split(" ");
+    },
+
+    get fullName() {
+        return `${this.name} ${this.surname}`;
+    }
+};
+
+let admin = {
+    __proto__: user,
+    isAdmin: true
+};
+console.log(admin.fullName)
+console.log(Object.getOwnPropertyDescriptors(user))
