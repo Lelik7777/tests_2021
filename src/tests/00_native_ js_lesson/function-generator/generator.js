@@ -94,11 +94,29 @@ while (!result2.done) {
 class IterableObject extends Object {
     constructor(obj) {
         super();
-        Object.assign(this,obj);
+        Object.assign(this, obj);
     }
-sayHello(){
-    console.log('hello')
+
+    [Symbol.iterator]() {
+        const entries=Object.entries(this);
+        let index=-1;
+        return {
+            next() {
+                index++;
+                const  res={
+                    done: index>=entries.length,
+                    value: entries[index],
+                }
+                return res;
+            }
+        }
+    }
+
 }
-}
-const iterableObj=new IterableObject({a:3});
+
+const iterableObj = new IterableObject({a: 3,b:4});
 console.log(iterableObj)
+console.log(typeof IterableObject);
+for (const[key,value] of iterableObj) {
+    console.log(`${key}:${value}`)
+}
