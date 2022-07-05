@@ -15,6 +15,7 @@ console.log(a.next())
 console.log(a.next())
 console.log(a.next())
 console.log(a.next())
+console.log(a.next())
 //генераторы - это итерируемая сущность,поэтому для перебора можно использовать for of , только нужно использовать
 // для возвращения только yield, поскольку return for of не увидит
 function* generator2() {
@@ -91,32 +92,78 @@ while (!result2.done) {
 
 // итерируемый объект
 
-class IterableObject extends Object {
+const arr1 = [1, 3, 4, 5];
+const iterArr1 = arr1[Symbol.iterator]();
+let iterStep = iterArr1.next();
+console.log(iterStep);
+while (!iterStep.done) {
+    console.log(iterStep.value);
+    iterStep = iterArr1.next();
+}
+for (const iterStepElement of arr1) {
+    console.log(iterStepElement)
+}
+const obj22 = {a: 3, b: 5, c: 7};
+for (const [key, value] of Object.entries(obj22)) {
+    console.log(`${key}: ${value}`)
+}
+
+class IterableObj extends Object {
     constructor(obj) {
         super();
         Object.assign(this, obj);
     }
 
     [Symbol.iterator]() {
-        const entries=Object.entries(this);
-        let index=-1;
+        let entries = Object.entries(this);
+        let index = -1;
         return {
             next() {
                 index++;
-                const  res={
-                    done: index>=entries.length,
-                    value: entries[index],
+                return {
+                    done: index >= entries.length,
+                    value: entries[index]
                 }
-                return res;
             }
         }
     }
-
 }
 
-const iterableObj = new IterableObject({a: 3,b:4});
-console.log(iterableObj)
-console.log(typeof IterableObject);
-for (const[key,value] of iterableObj) {
-    console.log(`${key}:${value}`)
+const iterableObj = new IterableObj({a: 3, b: 6, c: 7});
+for (const el of iterableObj) {
+    console.log(el)
+}
+
+// снова генераторы
+console.log()
+console.log(`%c********************СНОВА ГЕНЕРАТОРЫ******************`,'color:blue');
+function* generatorNew() {
+    let index=0;
+    while(index<100){
+        yield index;
+        console.log(index);
+        index++;
+    }
+}
+const aaa=generatorNew();
+console.log(aaa);
+while(!aaa.next().done){
+    aaa.next();
+}
+function* getNumber() {
+    console.log('start');
+
+    const first = yield 1;
+    console.log(first);
+
+    const second = yield 2;
+    console.log(second);
+
+    const third = yield 3;
+    console.log(third);
+}
+const iterGetNum=getNumber();
+
+while(!iterGetNum.next().done){
+    iterGetNum.next();
 }
