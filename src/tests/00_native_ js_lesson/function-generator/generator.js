@@ -139,7 +139,7 @@ console.log()
 console.log(`%c********************СНОВА ГЕНЕРАТОРЫ******************`,'color:blue');
 function* generatorNew() {
     let index=0;
-    while(index<100){
+    while(index<10){
         yield index;
         console.log(index);
         index++;
@@ -154,16 +154,40 @@ function* getNumber() {
     console.log('start');
 
     const first = yield 1;
-    console.log(first);
+    console.log('first:',first);
 
     const second = yield 2;
-    console.log(second);
+    console.log('second:',second);
 
     const third = yield 3;
-    console.log(third);
+    console.log('third:',third);
 }
 const iterGetNum=getNumber();
 
-while(!iterGetNum.next().done){
-    iterGetNum.next();
+console.log(iterGetNum.next('a'));
+console.log(iterGetNum.next('b'));
+console.log(iterGetNum.next('c'));
+console.log(iterGetNum.next('d'));
+console.log(iterGetNum.next('e'))
+// for (const number of iterGetNum) {
+//     console.log('element of for',number)
+// }
+
+//генератот для чисел фибоначчи
+function* fibonachi() {
+    let[prev,cur]=[0,1];
+    while(true){
+        [prev,cur]=[cur,prev+cur];
+        //console.log(cur);
+        yield cur;
+    }
 }
+function numberFibonachi(n,fun){
+    for (const number of fun) {
+        if(number>n) break;
+        console.log(number)
+    }
+}
+numberFibonachi(100,fibonachi());
+const result=[0,1];
+console.log(result)
