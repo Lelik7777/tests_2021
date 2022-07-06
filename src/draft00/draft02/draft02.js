@@ -20,4 +20,13 @@ console.log('собственно объект промис: ',promise);
 const promise2=new Promise((res,rej)=>rej('promise has rejected'));
 console.log('собственно объект промис',promise2)
 const promise3=new Promise(res=>{});
-console.log(promise3)
+console.log(promise3);
+
+const userData = {
+  firstName: "Brad",
+  lastName: "Traversy",
+  age: 38,
+  fullName(){
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
