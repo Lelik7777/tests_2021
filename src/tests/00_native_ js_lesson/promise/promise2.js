@@ -189,7 +189,21 @@ async function fun() {
     throw  new Error('error');
 }
 
-fun().then(() => console.log('work good')).catch(er => console.log('сработала ошибка', er));
+//можно после catch поставить then и он отработает, а в его callback залетит то,что
+//возращает catch or undefined,если ничего не возвращает
+//если же в then возникает ошибка, то ее поймает,идущий следом catch
+fun()
+    .then(() => console.log('work good'))
+    .catch(er => {
+        console.log('сработала ошибка', er);
+        return 'catch worked normally';
+    })
+    .then((res) => {
+        console.log('continue work after catch and ...', res);
+        throw new Error('error in then');
+    })
+    .catch(err => console.log('сработал последний catch... ', err))
+
 
 //создание класса,у которого есть метод then,что позволяем применять await
 class Thenable {
@@ -202,10 +216,21 @@ class Thenable {
         setTimeout(res(this.num * 3), 2000);
     }
 }
+
 //можно использовать then или синтаксический сахар await
 async function funAsync() {
     //new Thenable(3).then(res=>alert(res))
-    const res= await new Thenable(3);
+    const res = await new Thenable(3);
     alert(res);
 }
+
 funAsync();
+
+new Promise(function() {
+    noSuchFunction(); // Ошибка (нет такой функции)
+})
+    .then(() => {
+        // обработчики .then, один или более
+    }); // без .catch в самом конце!
+
+console.log('%cкод после глобальной ошибки','font-size:20px; color:red;')
