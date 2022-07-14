@@ -30,3 +30,9 @@ const userData = {
     return `${this.firstName} ${this.lastName}`;
   }
 }
+userData.__proto__={job:'programmer'}
+userData.__proto__.getJob=function () {
+  console.log(this.job)
+}
+console.log(userData)
+userData.getJob();

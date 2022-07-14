@@ -51,7 +51,7 @@ firstPromise.then((res) => {
     console.log('first res:', res);
     return secondPromise
 })
-    .then((res) => alert(res))
+    .then((res) => console.log(res))
     .catch(er => console.log(er));
 const obj = {
     a: 5,
@@ -94,8 +94,8 @@ new Promise((res, rej) => {
 // которое можно улавливать обработчиком событий
 window.addEventListener('unhandledrejection', function (event) {
     // объект события имеет два специальных свойства:
-    alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
-    alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
+    console.log(event.promise); // [object Promise] - промис, который сгенерировал ошибку
+    console.log(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
 });
 
 
@@ -107,9 +107,13 @@ new Promise((res, rej) => {
 
 console.log('hello')
 window.addEventListener('unhandledrejection', (event) => {
-    console.log(event.promise)
-    console.log(event.reason)
-    console.log(event.target)
+    //используя этот метод,мы убираем появление в консоле по умолчанию сообщения об ошибке
+    //event.preventDefault();
+    console.log(event.type)
+    console.log(event.promise);
+    console.log(event.reason);
+    console.log(event.target);
+    console.log(event)
 })
 
 new Promise(function (resolve, reject) {
@@ -226,11 +230,11 @@ async function funAsync() {
 
 funAsync();
 
-new Promise(function() {
+new Promise(function () {
     noSuchFunction(); // Ошибка (нет такой функции)
 })
     .then(() => {
         // обработчики .then, один или более
     }); // без .catch в самом конце!
 
-console.log('%cкод после глобальной ошибки','font-size:20px; color:red;')
+console.log('%cкод после глобальной ошибки', 'font-size:20px; color:red;')
