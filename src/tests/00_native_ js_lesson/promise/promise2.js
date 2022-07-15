@@ -231,10 +231,28 @@ async function funAsync() {
 funAsync();
 
 new Promise(function () {
-    noSuchFunction(); // Ошибка (нет такой функции)
+    //noSuchFunction(); // Ошибка (нет такой функции)
 })
     .then(() => {
         // обработчики .then, один или более
     }); // без .catch в самом конце!
 
 console.log('%cкод после глобальной ошибки', 'font-size:20px; color:red;')
+
+//сокращенная запись вывода данных результа промиса, но выводит без указания в какой строке произошло!
+new Promise(res => res('promise worked normally in string 244'))
+    .then(console.log).catch(err => console.log(err));
+
+//пример await
+async function f() {
+
+    let promise = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("готово!"), 5000)
+    });
+
+    //promise.then(res => console.log(res));
+    //это то же самое,что и код выше
+ let result = await promise; // будет ждать, пока промис не выполнится (*)
+}
+
+f();

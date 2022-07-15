@@ -33,10 +33,23 @@ const loadScript = (src, callback) => {
     document.body.append(script);
 }
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', (err, value) => {
-    console.log(`скрипт ${value.src} loaded`);
+    if(err){
+        //handle error
+        console.log(err)
+    }else {
+        console.log(`скрипт ${value.src} loaded`);
+    }
+
 
 });
-loadScript('sdf', (err, value) => console.log(err))
+loadScript('sdf', (err, value) => {
+    if(err){
+        //handle error
+        console.log(err)
+    }else {
+        console.log(`скрипт ${value.src} loaded`);
+    }
+});
 console.log('код после вызова ф-ции loadScript')
 
 
@@ -44,21 +57,13 @@ const funSuper = (text, callback) => {
     console.log(text);
     callback();
 }
-funSuper('funSuper worked the first time', (err, value) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('first callback worked');
-        funSuper('funSuper worked the second time', (err, value) => {
-            if (err) {
-                //handleError(err)
-                console.log(err);
-            } else {
-                console.log('second callback worked')
-            }
-        });
+funSuper('funSuper worked the first time', () => {
+    console.log('first callback worked');
+    funSuper('funSuper worked the second time', () => {
+        console.log('second callback worked')
 
-    }
+    });
+
 
 });
 //асинхронный колбэк
@@ -82,22 +87,22 @@ loadPage(showData);
 loadPageByThen(showData);
 
 //пример ада колбэков
-// const loadPageWithCallbackHell = () => {
-//     fetch('https://jsonplaceholder.typicode.com/todos/1')
-//         .then(res => res.json())
-//         .then(data => { //внутри этого колбэка снова вызывается fetch
-//             console.log('got server response');
-//             console.log(data);
-//             fetch('https://jsonplaceholder.typicode.com/users/' + data.userId)
-//                 .then(res => res.json())
-//                 .then(data => {
-//                     console.log('got server response');
-//                     console.log(data);
-//
-//                 })
-//         })
-// }
-//loadPageWithCallbackHell();
+const loadPageWithCallbackHell = () => {
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(res => res.json())
+        .then(data => { //внутри этого колбэка снова вызывается fetch
+            console.log('got server response');
+            console.log(data);
+            fetch('https://jsonplaceholder.typicode.com/users/' + data.userId)
+                .then(res => res.json())
+                .then(data => {
+                    console.log('got server response');
+                    console.log(data);
+
+                })
+        })
+}
+loadPageWithCallbackHell();
 //исправление ада колбэкав
 const showDate = (data) => {
     console.log('got server response');
@@ -113,7 +118,7 @@ const loadPageWithoutHell = (url, param1, param2, callback) => {
         .then(res => res.json())
         .then(data => callback(data))
 }
-loadPageWithoutHell('https://jsonplaceholder.typicode.com/', 'todos/1','users/', showDate)
+loadPageWithoutHell('https://jsonplaceholder.typicode.com/', 'todos/1', 'users/', showDate)
 
 // create button
 const $button = document.createElement('button');
