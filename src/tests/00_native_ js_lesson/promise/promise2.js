@@ -245,14 +245,50 @@ new Promise(res => res('promise worked normally in string 244'))
 
 //пример await
 async function f() {
+    try {
+        let promise = new Promise((resolve, reject) => {
+            //если запущу закомментированную строчку кода, то сработает блок catch
+            //setTimeout(()=>reject(new Error('promise with error')),5000);
+            setTimeout(() => resolve("готово!"), 5000)
+        });
+        //promise.then(res => console.log(res));
+        //это то же самое,что и код выше
+        let result = await promise; // будет ждать, пока промис не выполнится (*)
+        console.log(result)
+    } catch (e) {
+        console.log(e);
+    }
 
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve("готово!"), 5000)
-    });
-
-    //promise.then(res => console.log(res));
-    //это то же самое,что и код выше
- let result = await promise; // будет ждать, пока промис не выполнится (*)
 }
 
 f();
+
+//Перепишите один из примеров раздела Цепочка промисов, используя async/await вместо .then/catch:
+function loadJson(url) {
+    return fetch(url)
+        .then(response => {
+            if (response.status == 200) {
+                return  response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+}
+
+loadJson('no-such-user.json') // (3)
+    .catch(e=>console.log(e)); // Error: 404
+
+async function loadJsonAsync(url) {
+    try {
+        const res = await fetch(url);
+        if (res.status === 200) {
+            return  await  res.json();
+        } else {
+            throw new Error((res.status));
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+loadJsonAsync('no-such-user.json');
+

@@ -30,3 +30,13 @@ const userData = {
     return `${this.firstName} ${this.lastName}`;
   }
 }
+console.log(new Promise(res=>res('hello')))
+
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 6000));
+
+  return 10;
+}
+
+console.log(wait())
+//wait().then(res=>console.log(res))
