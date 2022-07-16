@@ -1,42 +1,35 @@
 const checkSimpleNum = (num) => {
-  let isSimple = true;
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) isSimple = false;
-  }
-  return isSimple;
+    let isSimple = true;
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) isSimple = false;
+    }
+    return isSimple;
 };
 console.log(checkSimpleNum(7));
 
 function sum(a, b) {
-  return a + b;
+    return a + b;
 }
 
-const ar1=[3,4,5,5,5];
-const ar2=[2,3,45,6,7];
-console.log([...ar1,...ar2])
+const ar1 = [3, 4, 5, 5, 5];
+const ar2 = [2, 3, 45, 6, 7];
+console.log([...ar1, ...ar2])
 console.log(...ar1)
-const promise=new Promise(res=>res('promise has done'));
-console.log('собственно объект промис: ',promise);
-const promise2=new Promise((res,rej)=>rej('promise has rejected'));
-console.log('собственно объект промис',promise2)
-const promise3=new Promise(res=>{});
+const promise = new Promise(res => res('promise has done'));
+console.log('собственно объект промис: ', promise);
+const promise2 = new Promise((res, rej) => rej('promise has rejected'));
+console.log('собственно объект промис', promise2)
+const promise3 = new Promise(res => {
+});
 console.log(promise3);
 
 const userData = {
-  firstName: "Brad",
-  lastName: "Traversy",
-  age: 38,
-  fullName(){
-    return `${this.firstName} ${this.lastName}`;
-  }
-}
-console.log(new Promise(res=>res('hello')))
-
-async function wait() {
-  await new Promise(resolve => setTimeout(resolve, 6000));
-
-  return 10;
+    firstName: "Brad",
+    lastName: "Traversy",
+    age: 38,
+    fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
 }
 
-console.log(wait())
-//wait().then(res=>console.log(res))
+fetch('https://jsonplaceholder.typicode.com/posts').then(res=>res.json()).then(json=>console.log(json))
