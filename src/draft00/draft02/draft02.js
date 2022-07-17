@@ -32,4 +32,7 @@ const userData = {
     }
 }
 
-fetch('https://jsonplaceholder.typicode.com/posts').then(res=>res.json()).then(json=>console.log(json))
+const zero=0;
+const isZero=Boolean(zero);
+console.log(isZero)
+console.log(zero)
