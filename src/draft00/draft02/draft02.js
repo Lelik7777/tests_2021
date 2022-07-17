@@ -32,7 +32,16 @@ const userData = {
     }
 }
 
-const zero=0;
-const isZero=Boolean(zero);
-console.log(isZero)
-console.log(zero)
+function fun(a,b,...rest) {
+    console.log(`first argument: ${a}
+second argument: ${b}
+rest arguments: ${rest}`)
+    console.log(rest)
+};
+
+fun('hello', 'world','alex','bob',44,true)
+console.log(String(1000))
+console.log(1000)
+const array000=[3,3,6,8,0,9,2,1];
+const iterator=array000[Symbol.iterator];
+console.log(0.1+0.3==0.4)
