@@ -72,6 +72,7 @@ console.log(Array.from(pseudoPair))
 console.log(pseudoPair)
 console.log(JSON.stringify(str));
 console.log(Array.from(str));
+console.log(str.split(''))
 //также я могу в массив превратить обычную стоку этими двумя методами
 console.log(Array.from('hello world'));
 console.log('hello'.split(''));
@@ -82,3 +83,10 @@ while (true){
     if(res.done) break;
     console.log(res.value);
 }
+let str2 = '𝒳😂𩷶';
+//кастомный slice для строк с суррогатными парами
+function slice(str, start, end) {
+    return Array.from(str).slice(start, end).join('');
+}
+
+console.log(slice(str2,1,3))

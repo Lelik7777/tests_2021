@@ -12,8 +12,8 @@ let a = generator();
 let b=generator();
 let c =generator();
 console.log(a)
-console.log(a.next())
-console.log(a.next())
+console.log(a.next().value)
+console.log(JSON.stringify(a.next(),null,' '))
 console.log(a.next())
 console.log(a.next())
 console.log(a.next())
