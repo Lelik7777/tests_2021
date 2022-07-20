@@ -31,17 +31,9 @@ const userData = {
         return `${this.firstName} ${this.lastName}`;
     }
 }
-const range = {
-    from: 1,
-    to: 5,
-    [Symbol.iterator]() {
-        this.current = this.from;
-        return this;
-    },
-    next() {
-        return this.current <= this.to ? {done: false, value: this.current++} : {done: true, value: undefined};
-    }
+async function fun(callback) {
+     return new Promise((res,rej)=>res('promise has done'))
 }
-for (const rangeElement of range) {
-    console.log(rangeElement)
-}
+
+console.log(fun())
+fun().then(res=>console.log(res))
