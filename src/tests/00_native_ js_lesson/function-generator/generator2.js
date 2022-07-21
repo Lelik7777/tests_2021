@@ -32,15 +32,26 @@ for (const number of rangeGenerator) {
     console.log(number)
 }
 
-function* generateNum(start,end) {
-    for(let value=start;value<=end;value++) yield value;
+function* genSequenceNum(start, end) {
+    for (let i = start; i <= end; i++) {
+        yield i;
+    }
 }
-function* generatePassword() {
-    yield* generateNum(48,57);
-    yield* generateNum(65,90);
+
+fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => res.json()).then(json => console.log(json));
+
+function* getJson(src) {
+    let res = yield fetch(src);
+    //let json = yield res.json();
+    //yield json;
 }
-let str='';
-for (const number of generatePassword()) {
-    str+=String.fromCharCode(number);
-}
-console.log(str.trim())
+
+const iter=getJson('https://jsonplaceholder.typicode.com/todos/1');
+let a=iter.next();
+let b=iter.next();
+let c=iter.next();
+console.log(a.value)
+console.log(b)
+console.log(c)
+
+
