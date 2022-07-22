@@ -56,8 +56,14 @@ console.log(c)
 
 //реализация возможности yield не только выдавать значения наружу, но и принимать их извне
 function* gen001() {
+
     let res=yield 'return some value';
+    yield 'last yield';
+    console.log(res);
 };
 const generator001=gen001();
-console.log()
+console.log(generator001.next().value);
+console.log(generator001.next().value);
+generator001.next()
+//console.log(generator001.next('outer data'))
 
