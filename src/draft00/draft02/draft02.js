@@ -31,9 +31,5 @@ const userData = {
         return `${this.firstName} ${this.lastName}`;
     }
 }
-async function fun(callback) {
-     return new Promise((res,rej)=>res('promise has done'))
-}
 
-console.log(fun())
-fun().then(res=>console.log(res))
+

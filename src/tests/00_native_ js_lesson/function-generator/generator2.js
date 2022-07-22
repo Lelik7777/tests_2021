@@ -40,9 +40,9 @@ function* genSequenceNum(start, end) {
 
 fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => res.json()).then(json => console.log(json));
 
-function* getJson(src) {
-    let res = yield fetch(src);
-    //let json = yield res.json();
+async function* getJson(src) {
+    let res =  yield  fetch(src);
+    let json = yield  res.json();
     //yield json;
 }
 
@@ -54,4 +54,10 @@ console.log(a.value)
 console.log(b)
 console.log(c)
 
+//реализация возможности yield не только выдавать значения наружу, но и принимать их извне
+function* gen001() {
+    let res=yield 'return some value';
+};
+const generator001=gen001();
+console.log()
 
