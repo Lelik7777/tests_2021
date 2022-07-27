@@ -111,14 +111,14 @@ console.log(user1);
 console.log(user2);
 
 // применение return в ф-ции-конструкторе
-function BigUser() {
+function BigUser(name) {
 
-    this.name = "Вася";
-    return 5;
+    this.name = name;
+   // return 5;
     return {age: 34};  // <-- возвращает этот объект
 }
 
-const bigUser = new BigUser();
+const bigUser = new BigUser('bob');
 console.log(bigUser);
 
 function Calculate() {
@@ -146,3 +146,13 @@ let accumulator=new Accumulator(4);
 accumulator.read();
 accumulator.read();
 console.log(accumulator.value);
+//опциональная цепочка
+let obj={};
+console.log(obj?.name);// undefined
+delete obj?.name;
+
+// symbol
+const id1=Symbol('id');
+const id2=Symbol('id');
+console.log(id1);
+console.log(id2);
