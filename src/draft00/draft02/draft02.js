@@ -31,4 +31,8 @@ const userData = {
         return `${this.firstName} ${this.lastName}`;
     }
 }
-
+function showName() {
+    console.log(this.firstName);
+}
+userData.f=showName;
+userData.f();
