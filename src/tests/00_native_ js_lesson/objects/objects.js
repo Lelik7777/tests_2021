@@ -157,10 +157,14 @@ const id1 = Symbol('id1');
 const id2 = Symbol('id2 description');
 console.log(id1);
 console.log(id2.description);
-
+const id3=id1;
+console.log(id3==id1);// return true
 const bob = {
     name: 'bob',
 };
 let id = Symbol('id of bob');
 bob[id] = 100;
-console.log(bob[id])
+console.log(bob)
+console.log(bob[id]);
+bob[id]='hello';
+console.log(bob)

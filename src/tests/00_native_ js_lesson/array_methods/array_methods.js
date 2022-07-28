@@ -143,3 +143,33 @@ function checkProp(arrObjs,prop) {
 }
 
 console.log(checkProp(student,'hobby'));
+
+//create array
+
+const newArr=new Array('hello','age',3,5,6);
+console.log(newArr)
+console.log(newArr.at(0))
+let fruits = ["Апельсин", "Груша"];
+// push,pop, shift ,unshift, at
+console.log(fruits.unshift('Яблоко'));
+console.log(fruits.push('cherry'))
+console.log(fruits)
+console.log(fruits.at(-1))
+const copyFruits=fruits;
+console.log('fruits',fruits);
+copyFruits.push('виноград');
+console.log('fruits',fruits);
+//быстрый способ обнулить массив
+//copyFruits.length=0;
+console.log(copyFruits)
+console.log(fruits)
+fruits.push('one fruit','second fruit');
+console.log(fruits)
+
+let arr = ["a", "b"];
+
+arr.push(function() {
+   alert( this );
+})
+console.log(arr)
+arr[2]();
