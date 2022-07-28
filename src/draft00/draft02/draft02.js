@@ -22,17 +22,17 @@ console.log('собственно объект промис', promise2)
 const promise3 = new Promise(res => {
 });
 console.log(promise3);
-
+const userAny={
+    head:true,
+    legs:true,
+    wings:false,
+}
 const userData = {
     firstName: "Brad",
     lastName: "Traversy",
     age: 38,
     fullName() {
         return `${this.firstName} ${this.lastName}`;
-    }
+    },
+    __proto__:userAny,
 }
-function showName() {
-    console.log(this.firstName);
-}
-userData.f=showName;
-userData.f();

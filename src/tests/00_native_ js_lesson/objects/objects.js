@@ -114,7 +114,7 @@ console.log(user2);
 function BigUser(name) {
 
     this.name = name;
-   // return 5;
+    // return 5;
     return {age: 34};  // <-- возвращает этот объект
 }
 
@@ -123,7 +123,7 @@ console.log(bigUser);
 
 function Calculate() {
     this.read = function () {
-        this.value1 = +prompt('enter digit');
+        //this.value1 = +prompt('enter digit');
     }
     this.sum = function () {
         return this.value1 + this.value1;
@@ -139,20 +139,28 @@ console.log(calculate.sum());
 function Accumulator(value) {
     this.value = value;
     this.read = function () {
-        this.value += +prompt('enter digit', 0);
+        //this.value += +prompt('enter digit', 0);
     }
 }
-let accumulator=new Accumulator(4);
+
+let accumulator = new Accumulator(4);
 accumulator.read();
 accumulator.read();
 console.log(accumulator.value);
 //опциональная цепочка
-let obj={};
+let obj = {};
 console.log(obj?.name);// undefined
 delete obj?.name;
 
 // symbol
-const id1=Symbol('id');
-const id2=Symbol('id');
+const id1 = Symbol('id1');
+const id2 = Symbol('id2 description');
 console.log(id1);
-console.log(id2);
+console.log(id2.description);
+
+const bob = {
+    name: 'bob',
+};
+let id = Symbol('id of bob');
+bob[id] = 100;
+console.log(bob[id])
