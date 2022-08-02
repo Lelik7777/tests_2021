@@ -22,10 +22,10 @@ console.log('собственно объект промис', promise2)
 const promise3 = new Promise(res => {
 });
 console.log(promise3);
-const userAny={
-    head:true,
-    legs:true,
-    wings:false,
+const userAny = {
+    head: true,
+    legs: true,
+    wings: false,
 }
 const userData = {
     firstName: "Brad",
@@ -34,5 +34,12 @@ const userData = {
     fullName() {
         return `${this.firstName} ${this.lastName}`;
     },
-    __proto__:userAny,
+    __proto__: userAny,
 }
+let fruits = ["Апельсин", "Груша"];
+const camelize = (str) => {
+
+}
+console.log('ee-asf-sadf'.split('').filter(x=>x!='-'))
+let arr = [5, 3, 8, 1];
+console.log(arr.map(x=>x>=1&&x<=4?x:null).filter(x=>x))
