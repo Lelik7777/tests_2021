@@ -36,10 +36,7 @@ const userData = {
     },
     __proto__: userAny,
 }
-let fruits = ["Апельсин", "Груша"];
-const camelize = (str) => {
 
-}
-console.log('ee-asf-sadf'.split('').filter(x=>x!='-'))
-let arr = [5, 3, 8, 1];
-console.log(arr.map(x=>x>=1&&x<=4?x:null).filter(x=>x))
+let fruits = ["Апельсин", "Груша",'абрикос',"вишня"];
+console.log(fruits.slice(1,3))
+console.log(fruits.at(-1))
