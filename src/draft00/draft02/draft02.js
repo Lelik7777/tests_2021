@@ -38,5 +38,17 @@ const userData = {
 }
 
 let fruits = ["Апельсин", "Груша",'абрикос',"вишня"];
-console.log(fruits.slice(1,3))
-console.log(fruits.at(-1))
+console.log(fruits.splice(-1,1))
+console.log(fruits)
+const mapUser=new Map(Object.entries(userData));
+console.log(mapUser)
+for (const mapUserElement of mapUser.entries()) {
+    console.log(mapUserElement[1])
+}
+
+let mapFruits = new Map();
+mapFruits.set('banana', 1);
+mapFruits.set('orange', 2);
+mapFruits.set('meat', 4);
+console.log(mapFruits)
+console.log(Object.fromEntries(mapFruits))

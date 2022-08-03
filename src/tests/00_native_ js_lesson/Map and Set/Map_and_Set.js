@@ -46,3 +46,17 @@ console.log(set);
 for (const setElement of set) {
     console.log(setElement)
 }
+
+//задачи
+//Создайте функцию unique(arr), которая вернёт массив уникальных, не повторяющихся значений массива arr.
+function unique(arr) {
+    const set=new Set();
+    arr.forEach(x=>set.add(x));
+    return Array.from(set);
+    //return Array.from(new Set(arr));
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+console.log(unique(values))
