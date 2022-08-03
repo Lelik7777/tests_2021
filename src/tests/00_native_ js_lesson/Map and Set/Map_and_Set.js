@@ -60,3 +60,22 @@ let values = ["Hare", "Krishna", "Hare", "Krishna",
     "Krishna", "Krishna", "Hare", "Hare", ":-O"
 ];
 console.log(unique(values))
+
+//WeekMap and WeakSet
+//WeekMap - ключи только в виде объектов,которые удаляются,если ссылка на объект исчезает - этим и отличается от Map
+//таким образом происходит автоматизация очищения коллекции,когда пропадает ссылка на объект,который был ключом,а с ним
+// пропадают и данные,хранящиеся в свойстве с этим ключом
+let john={name:'john'};
+const mapJohn=new Map(Object.entries(john));
+const weakMapJohn=new WeakMap();
+weakMapJohn.set(john,'some data about john')
+console.log('map john: ',mapJohn);
+console.log('weakMap john:' ,weakMapJohn);
+//обратно получить объект из Map
+console.log(Object.fromEntries(mapJohn));
+//теперь удаляю ссылку на объект,который был помещен в Map
+john=null;
+//но в Map он остался
+console.log(mapJohn);
+//console.log(weakMapJohn)
+
