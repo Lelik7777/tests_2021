@@ -38,17 +38,23 @@ const userData = {
 }
 
 let fruits = ["Апельсин", "Груша",'абрикос',"вишня"];
-console.log(fruits.splice(-1,1))
-console.log(fruits)
-const mapUser=new Map(Object.entries(userData));
-console.log(mapUser)
-for (const mapUserElement of mapUser.entries()) {
-    console.log(mapUserElement[1])
-}
 
-let mapFruits = new Map();
-mapFruits.set('banana', 1);
-mapFruits.set('orange', 2);
-mapFruits.set('meat', 4);
-console.log(mapFruits)
-console.log(Object.fromEntries(mapFruits))
+let urls2 = [
+    'https://api.github.com/users/iliakan',
+    'https://api.github.com/users/remy',
+    'https://api.github.com/users/jeresig',
+    'https://no-such-url'
+    // new Error('ошибочный url')
+];
+
+Promise.allSettled(urls2.map(x=>fetch(x))).then(res=>{
+    res.forEach((x,i)=>{
+        if(x.result=='fulfilled'){
+            //console.log(urls2[i])
+        }
+
+        else {
+            console.log(x)
+        }
+    })
+})
