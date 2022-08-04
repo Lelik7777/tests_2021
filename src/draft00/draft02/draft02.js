@@ -47,14 +47,13 @@ let urls2 = [
     // new Error('ошибочный url')
 ];
 
-Promise.allSettled(urls2.map(x=>fetch(x))).then(res=>{
-    res.forEach((x,i)=>{
-        if(x.result=='fulfilled'){
-            //console.log(urls2[i])
-        }
+const ourArray = [1, 2, 3];
 
-        else {
-            console.log(x)
-        }
-    })
-})
+const iterator = ourArray[Symbol.iterator]();
+
+console.log(iterator);
+console.log(iterator.next())
+for (const number of iterator) {
+    console.log(number)
+}
+console.log('a'.codePointAt(0))
