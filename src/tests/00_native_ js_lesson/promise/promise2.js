@@ -177,6 +177,23 @@ Promise.allSettled(urls2.map(x => fetch(x))).then(res => {
 
     })
 }).catch((er) => console.log(er));
+(async ()=>{
+    const res= await Promise.allSettled(urls2.map(x=>fetch(x)));
+    console.log(res)
+    try{
+        for (let i=0;i<res.length;i++){
+            if(res[i].status=='fulfilled')
+                console.log(await res[i].value.json());
+            if(res[i].status=='rejected')
+                console.log( await  res[i].reason)
+        }
+    }catch (e) {
+        console.log(e);
+    }
+
+
+})()
+
 
 //Promise.race()
 Promise.race(urls2.map(x => fetch(x))).then(res => console.log('first promise', res)).catch(er => console.log(er));

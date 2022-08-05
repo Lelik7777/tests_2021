@@ -40,20 +40,28 @@ const userData = {
 let fruits = ["Апельсин", "Груша",'абрикос',"вишня"];
 
 let urls2 = [
-    'https://api.github.com/users/iliakan',
-    'https://api.github.com/users/remy',
-    'https://api.github.com/users/jeresig',
+    'https://jsonplaceholder.typicode.com/todos/1',
+    'https://jsonplaceholder.typicode.com/todos/2',
+    'https://jsonplaceholder.typicode.com/todos/3',
     'https://no-such-url'
     // new Error('ошибочный url')
 ];
 
-const ourArray = [1, 2, 3];
+(async ()=>{
+    const res= await Promise.allSettled(urls2.map(x=>fetch(x)));
+    console.log(res)
+    try{
+        for (let i=0;i<res.length;i++){
+            if(res[i].status=='fulfilled')
+            console.log(await res[i].value.json());
+            if(res[i].status=='rejected')
+                console.log( await  res[i].reason)
+        }
+    }catch (e) {
+        console.log(e);
+    }
 
-const iterator = ourArray[Symbol.iterator]();
 
-console.log(iterator);
-console.log(iterator.next())
-for (const number of iterator) {
-    console.log(number)
-}
-console.log('a'.codePointAt(0))
+})()
+
+console.log()
