@@ -1,4 +1,3 @@
-
 const checkSimpleNum = (num) => {
     let isSimple = true;
     for (let i = 2; i < num; i++) {
@@ -40,6 +39,7 @@ const userData = {
 }
 
 let fruits = ["Апельсин", "Груша", 'абрикос', "вишня"];
+console.log(fruits.pop('абрикос'))
 
 let urls2 = [
     'https://jsonplaceholder.typicode.com/todos/1',
@@ -49,22 +49,35 @@ let urls2 = [
     'https://no-such-url'
     // new Error('ошибочный url')
 ];
-const promiseFun = (src) => {
-  return new Promise((res,rej)=>{
-  loadImg(src,(err,img)=>{
-      if(err) rej(err);
-      else res(img)
-  })
-  })
-};
-function loadImg(src,callback) {
-    const img=document.createElement('img');
-    img.src=src;
-    img.onload=()=>callback(null,img);
-    img.onerror=()=>callback(new Error(`error when loaded img with src= ${src}`));
-    document.body.append(img);
-};
-promiseFun('https://picsum.photos/344').then(img=>console.log(`img ${img} loaded wiht src= ${img.src}`)).catch(er=>console.log(er));
-for (const keys in userData) {
-    if(userData.hasOwnProperty(keys))console.log(keys)
+
+function User(name) {
+    if (!new.target) return new User(name);
+    this.name = name;
 }
+
+console.log(User('bob'));
+
+//function finds primes
+const isPrime = (n) => {
+    for (let i = 2; i < n; i++) {
+        if (n % i === 0) return false;
+    }
+    return true;
+}
+const findPrimes = (num) => {
+    console.log('primes: ')
+    for (let i = 2; i <= num; i++) {
+        if (!isPrime(i)) continue;
+        console.log(i);
+    }
+}
+findPrimes(33);
+// function async
+async function f() {
+    //await new Promise((res, rej) => setTimeout( rej, 4000,new Error('error')));
+    await new Promise((res, rej) => setTimeout( res, 4000,'resolved'));
+    return 'f worked';
+}
+
+console.log(f());
+f().then(res => console.log(res)).catch(er => console.log(er));
