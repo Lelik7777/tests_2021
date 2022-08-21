@@ -60,13 +60,53 @@ prom1.then(res => {
     console.log(res);
     return prow3
 }).then(res => console.log(res)).catch(er => console.log(er));
-let  weakMap1= new WeakMap();
-const bob={name:'bob'};
-weakMap1.set(bob,'name is bob');
-weakMap1.set(userData,'user data')
+let weakMap1 = new WeakMap();
+const bob = {name: 'bob'};
+weakMap1.set(bob, 'name is bob');
+weakMap1.set(userData, 'user data')
 console.log(weakMap1);
 console.log(weakMap1.has(bob));
 console.log(weakMap1.has(userData));
 console.log(weakMap1.get(bob));
 console.log('age' in userData);
 console.log('job' in userData);
+const mapN = new Map(Object.entries(userData));
+console.log(mapN);
+for (const el of Object.entries(userData)) {
+    console.log(el);
+}
+console.log(Object.entries(userData));
+//промисификация
+const loadImg = (src, callback) => {
+    const img = document.createElement('img');
+    const p = document.createElement('p');
+    p.innerHTML = 'you can see new image';
+    img.src = src;
+    img.onload = () => {
+        callback(null,img)
+        document.body.prepend(p, img);
+    };
+    img.onerror = () => callback(new Error('error when loaded image'));
+
+}
+const createPromise = (src) => {
+    return new Promise((res, rej) => {
+        loadImg(src, (err, img) => {
+            if (err) rej(err);
+            else {
+                res(img);
+            }
+        })
+    })
+};
+createPromise('https://picsum.photos/344')
+    .then(res => console.log(`image with src= ${res.src} loaded successfully`))
+    .catch(er => console.log('error is',er));
+async function wait() {
+    await new Promise(resolve => setTimeout(resolve, 6000));
+
+    return 10;
+}
+
+console.log(wait())
+
