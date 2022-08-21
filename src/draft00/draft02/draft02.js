@@ -108,5 +108,12 @@ async function wait() {
     return 10;
 }
 
-console.log(wait())
+console.log(wait());
+let mapFruits = new Map();
+mapFruits.set('banana', 1);
+mapFruits.set('orange', 2);
+mapFruits.set('meat', 4);
+console.log(Object.fromEntries(mapFruits));
+const copyUserData=Object.assign({},userData);
+console.log(copyUserData)
 
