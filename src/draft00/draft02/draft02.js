@@ -49,35 +49,24 @@ let urls2 = [
     'https://no-such-url'
     // new Error('ошибочный url')
 ];
-
-function User(name) {
-    if (!new.target) return new User(name);
-    this.name = name;
-}
-
-console.log(User('bob'));
-
-//function finds primes
-const isPrime = (n) => {
-    for (let i = 2; i < n; i++) {
-        if (n % i === 0) return false;
-    }
-    return true;
-}
-const findPrimes = (num) => {
-    console.log('primes: ')
-    for (let i = 2; i <= num; i++) {
-        if (!isPrime(i)) continue;
-        console.log(i);
-    }
-}
-findPrimes(33);
-// function async
-async function f() {
-    //await new Promise((res, rej) => setTimeout( rej, 4000,new Error('error')));
-    await new Promise((res, rej) => setTimeout( res, 4000,'resolved'));
-    return 'f worked';
-}
-
-console.log(f());
-f().then(res => console.log(res)).catch(er => console.log(er));
+//promise chain
+const prom1 = new Promise(res => res(1));
+const prom2 = new Promise(res => res(2));
+const prow3 = new Promise((res, rej) => rej(new Error('error')));
+prom1.then(res => {
+    console.log(res);
+    return prom2
+}).then(res => {
+    console.log(res);
+    return prow3
+}).then(res => console.log(res)).catch(er => console.log(er));
+let  weakMap1= new WeakMap();
+const bob={name:'bob'};
+weakMap1.set(bob,'name is bob');
+weakMap1.set(userData,'user data')
+console.log(weakMap1);
+console.log(weakMap1.has(bob));
+console.log(weakMap1.has(userData));
+console.log(weakMap1.get(bob));
+console.log('age' in userData);
+console.log('job' in userData);
