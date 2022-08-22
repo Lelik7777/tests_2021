@@ -52,9 +52,9 @@ let urls2 = [
     // new Error('ошибочный url')
 ];
 let bob={name:'bob'};
-const tom={name:'tom'};
-const ann={name:'ann'};
-const nick={name:'nick'};
+let tom={name:'tom'};
+let ann={name:'ann'};
+let nick={name:'nick'};
 const arrUsers=[bob,tom,ann,nick]
 const text=`it is `;
 const siteData=new WeakMap();
@@ -106,12 +106,32 @@ fruits.length=19;
 console.log(fruits)
 console.log(fruits[18]);
 console.log(fruits[120]);
-//counter for site
-const visitedSite=new WeakMap();
-function checkUsers(user) {
-    let count=visitedSite.get(user)||0;
-    visitedSite.set(user,count+1);
+//counter site visits by user
+const visitedUsers=new WeakMap();
+const countVisitsUser = (user,collection) => {
+  let count=collection.get(user)||0;
+  collection.set(user,++count);
 }
-checkUsers(ann);
-checkUsers(tom);
-console.log(visitedSite)
+// const count = (num,fun) => {
+//     while (num>0){
+//         fun();
+//         num--;
+//     }
+// }
+// count(3,countVisitsUser(tom,visitedUsers));
+// count(2,countVisitsUser(ann,visitedUsers));
+// count(4,countVisitsUser(nick,visitedUsers));
+console.log(visitedUsers);
+//function cache
+const cache =new WeakMap();
+const  manipulationsWithObj = (obj,cache) => {
+
+  if(!cache.has(obj)){
+      cache.set(obj,'some value for object')
+     }
+
+  return cache.get(obj)
+}
+console.log(manipulationsWithObj(userData,cache));
+
+console.log(manipulationsWithObj(userData,cache));
