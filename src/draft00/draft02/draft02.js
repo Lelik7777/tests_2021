@@ -55,14 +55,36 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-console.log('before process');
-const start1=Date.now();
-const process = () => {
-  for (let i=0;i<1e10;i++){
-
-  }
+const visitedUsers = new WeakMap();
+const count = (user) => {
+    let count = visitedUsers.get(user) || 0;
+    return visitedUsers.set(user, ++count);
 }
-process();
+count(bob);
+count(bob);
+count(bob);
+count(ann);
+count(ann);
+count(nick);
+console.log(visitedUsers);
+nick = null;
+console.log(visitedUsers.has(nick));
 
-console.log('after process: ',(Date.now()-start1)/1000+' sec');
+const cache = new WeakMap();
 
+function calculate(obj) {
+    const start = Date.now();
+    if (!cache.has(obj)) {
+        for (let i = 0; i < 1e8; i++) {
+        }
+        const process = 'some changes in object';
+        cache.set(obj, process);
+    }
+    return {
+        0: cache.get(obj),
+        'time for calculate': Date.now() - start,
+    }
+};
+console.log(calculate(userData));
+console.log(calculate(userData));
+console.log(calculate(userData));
