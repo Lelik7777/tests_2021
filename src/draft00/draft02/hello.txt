@@ -1,0 +1,2 @@
+write text in hello.txt from draft.js
+add some text in hello.txt

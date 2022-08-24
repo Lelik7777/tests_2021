@@ -54,14 +54,18 @@ let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
-//complex calculation
-const calculationHard = () => {
-  const start=Date.now();
-    for (let i=0;i<1e9;i++){
-
-  }
-    console.log(Date.now()-start);
-}
-calculationHard();
-//
-setTimeout((a,b)=>console.log(a+b),2000,2,3);
+const fs = require('fs');
+fs.writeFile('hello.txt', 'write text in hello.txt from draft.js', (er) => {
+    if (er) throw er;
+    fs.readFile('hello.txt', 'utf8', (er, data) => {
+        if (er) throw er;
+        console.log(data);
+    })
+});
+fs.appendFile('hello.txt', '\nadd some text in hello.txt', err => {
+    if(err) throw err;
+    fs.readFile('hello.txt','utf8',(er,data)=>{
+        if(er) throw er;
+        console.log(data);
+    })
+})
