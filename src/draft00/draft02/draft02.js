@@ -54,18 +54,15 @@ let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
-const fs = require('fs');
-fs.writeFile('hello.txt', 'write text in hello.txt from draft.js', (er) => {
-    if (er) throw er;
-    fs.readFile('hello.txt', 'utf8', (er, data) => {
-        if (er) throw er;
-        console.log(data);
-    })
-});
-fs.appendFile('hello.txt', '\nadd some text in hello.txt', err => {
-    if(err) throw err;
-    fs.readFile('hello.txt','utf8',(er,data)=>{
-        if(er) throw er;
-        console.log(data);
-    })
-})
+
+console.log('before process');
+const start1=Date.now();
+const process = () => {
+  for (let i=0;i<1e10;i++){
+
+  }
+}
+process();
+
+console.log('after process: ',(Date.now()-start1)/1000+' sec');
+
