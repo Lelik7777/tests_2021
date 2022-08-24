@@ -53,30 +53,15 @@ let bob = {name: 'bob'};
 let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
-const arrUsers = [bob, tom, ann, nick]
+const arrUsers = [bob, tom, ann, nick];
+//complex calculation
+const calculationHard = () => {
+  const start=Date.now();
+    for (let i=0;i<1e9;i++){
 
-const cache = new WeakMap();
-
-async function process(obj, cache) {
-    const start = new Date().getTime();
-    let end = new Date().getTime();
-    if (!cache.has(obj)) {
-        await new Promise(res => {
-            setTimeout(res, 2000);
-        })
-        const actionWithObj = 'some actions under obj';
-        cache.set(obj, actionWithObj);
-        end = new Date().getTime();
-    }
-    let dif = end - start;
-    return {
-        0: cache.get(obj),
-        1: dif,
-    }
+  }
+    console.log(Date.now()-start);
 }
-
-process(userData, cache).then(res => console.log(res));
-process(userData, cache).then(res => console.log(res));
-process(userData, cache).then(res => console.log(res));
-process(userData, cache).then(res => console.log(res));
-process(userData, cache).then(res => console.log(res));
+calculationHard();
+//
+setTimeout((a,b)=>console.log(a+b),2000,2,3);
