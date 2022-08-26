@@ -1,27 +1,4 @@
-const checkSimpleNum = (num) => {
-    let isSimple = true;
-    for (let i = 2; i < num; i++) {
-        if (num % i === 0) isSimple = false;
-    }
-    return isSimple;
-};
-console.log(checkSimpleNum(7));
-
-function sum(a, b) {
-    return a + b;
-}
-
-const ar1 = [3, 4, 5, 5, 5];
-const ar2 = [2, 3, 45, 6, 7];
-console.log([...ar1, ...ar2])
-console.log(...ar1)
-const promise = new Promise(res => res('promise has done'));
-console.log('собственно объект промис: ', promise);
-const promise2 = new Promise((res, rej) => rej('promise has rejected'));
-console.log('собственно объект промис', promise2)
-const promise3 = new Promise(res => {
-});
-console.log(promise3);
+console.log('%cdraft02','color:green;font-size:16px;margin-left:200px;')
 const userAny = {
     head: true,
     legs: true,
@@ -39,7 +16,7 @@ const userData = {
 }
 
 let fruits = ["Апельсин", "Груша", 'абрикос', "вишня"];
-console.log(fruits.pop('абрикос'))
+
 
 let urls2 = [
     'https://jsonplaceholder.typicode.com/todos/1',
@@ -55,36 +32,21 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const visitedUsers = new WeakMap();
-const count = (user) => {
-    let count = visitedUsers.get(user) || 0;
-    return visitedUsers.set(user, ++count);
+const collectionUserData=new Map(Object.entries(userData));
+console.log(collectionUserData);
+//обработка неявной ошибки,именно неявной - без использования reject
+//если же использовать reject,то
+new Promise((res,rej)=>{
+    setTimeout(()=>{
+        throw new Error('error')
+    },3000)
+}).catch(er=>console.log(er));
+
+async function wait() {
+   await new Promise(resolve => setTimeout(resolve, 6000));
+
+    return 'this function wait 6 sec'
 }
-count(bob);
-count(bob);
-count(bob);
-count(ann);
-count(ann);
-count(nick);
-console.log(visitedUsers);
-nick = null;
-console.log(visitedUsers.has(nick));
 
-const cache = new WeakMap();
-
-function calculate(obj) {
-    const start = Date.now();
-    if (!cache.has(obj)) {
-        for (let i = 0; i < 1e8; i++) {
-        }
-        const process = 'some changes in object';
-        cache.set(obj, process);
-    }
-    return {
-        0: cache.get(obj),
-        'time for calculate': Date.now() - start,
-    }
-};
-console.log(calculate(userData));
-console.log(calculate(userData));
-console.log(calculate(userData));
+console.log(wait())
+wait().then(res=>console.log(res));
