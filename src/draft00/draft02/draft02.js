@@ -32,21 +32,34 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const collectionUserData=new Map(Object.entries(userData));
-console.log(collectionUserData);
-//обработка неявной ошибки,именно неявной - без использования reject
-//если же использовать reject,то
-new Promise((res,rej)=>{
-    setTimeout(()=>{
-        throw new Error('error')
-    },3000)
-}).catch(er=>console.log(er));
 
-async function wait() {
-   await new Promise(resolve => setTimeout(resolve, 6000));
-
-    return 'this function wait 6 sec'
+const man={gender:'male'};
+const user={name:'bob',job:'programmer',__proto__: man};
+console.log(user);
+for (const prop in user) {
+    console.log(prop);
 }
-
-console.log(wait())
-wait().then(res=>console.log(res));
+let a=0;
+let b=0;
+do{
+    console.log('show value a=  ',a )
+}while(a>0);
+console.log(a==true)
+console.log(a==false)
+while (!a){
+    console.log(a);
+    if (b>20) break;
+    b++;
+}
+function f(a,b,...rest) {
+    console.log(a);
+    console.log(b);
+    console.log(rest);
+};
+f(4,5,6,7,7,7,7,);
+new Promise((res,rej)=>{
+   // throw new Error('error');
+    setTimeout(function () {
+        throw new Error('error');
+    },0);
+}).catch(er=>console.log(er));
