@@ -1,4 +1,4 @@
-console.log('%cdraft02','color:green;font-size:16px;margin-left:200px;')
+console.log('%cdraft02', 'color:green;font-size:16px;margin-left:200px;')
 const userAny = {
     head: true,
     legs: true,
@@ -33,33 +33,27 @@ let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
 
-const man={gender:'male'};
-const user={name:'bob',job:'programmer',__proto__: man};
-console.log(user);
-for (const prop in user) {
-    console.log(prop);
-}
-let a=0;
-let b=0;
-do{
-    console.log('show value a=  ',a )
-}while(a>0);
-console.log(a==true)
-console.log(a==false)
-while (!a){
-    console.log(a);
-    if (b>20) break;
-    b++;
-}
-function f(a,b,...rest) {
-    console.log(a);
-    console.log(b);
-    console.log(rest);
+setTimeout((a, b) => {
+    console.log(a + b);
+    return a + b;
+}, 1000, 4, 5);
+
+function sum(a, b) {
+    console.log(a + b);
+    return a + b;
 };
-f(4,5,6,7,7,7,7,);
-new Promise((res,rej)=>{
-   // throw new Error('error');
-    setTimeout(function () {
-        throw new Error('error');
-    },0);
-}).catch(er=>console.log(er));
+setTimeout(sum, 2000, 23, 5);
+setTimeout('sum(4,44)', 3000);
+
+const objGenerator = {
+    from: 1,
+    to: 4,
+    * [Symbol.iterator]() {
+        for (let i=this.from;i<=this.to;i++){
+            yield i;
+        }
+    }
+}
+for (const number of objGenerator) {
+    console.log(number);
+}
