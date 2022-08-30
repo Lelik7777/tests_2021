@@ -32,48 +32,37 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-//использование коллекции WeakMap для кэширования
-const cache = new WeakMap();
-const execute = (obj, cache) => {
-    let start = Date.now();
-    if (!cache.has(obj)) {
+//recursion
+function pow(x, n) {
 
-        for (let i = 0; i < 1e9; i++) {
-        }
-        cache.set(obj, 'some data');
+    for (var i = 0, res = 1; i < n; i++) {
+        res *= x;
     }
-    return {
-        0: cache.get(obj),
-        1: Date.now() - start,
-    }
+    return res;
 }
-console.log(execute(userData,cache));
-console.log(execute(userData,cache));
-console.log(execute(userData,cache));
 
-//использование коллекции WeakMap() для проверки количества посещений сайта пользователями
+console.log(pow(3, 3));
 
-const usersVisited=new WeakMap();
-const countVisits = (user) => {
-  let count=usersVisited.get(user)||0;
-  usersVisited.set(user,++count);
+function powRecursion(x, n) {
+    return (n === 1) ? x : x * powRecursion(x, n - 1);
+}
+
+console.log(powRecursion(3, 4));
+
+function factorialNum(num) {
+    return num === 1 ? 1 : num * factorialNum(num - 1);
+}
+
+console.log(factorialNum(5));
+
+//range numbers get by recursion
+
+const range = (start, end) => {
+   if(end-start==2) return [start+1];
+   else {
+       const array=range(start,end-1);
+       array.push(end-1);
+       return array;
+   }
 };
-countVisits(bob);
-countVisits(bob);
-countVisits(ann);
-countVisits(nick);
-countVisits(ann);
-console.log(usersVisited);
-nick=null;
-console.log(usersVisited.has(nick));
-
-//using WeakSet for checking user visit the site
-const usersVisitedSite=new WeakSet();
-for (const user of arrUsers) {
-    if(!usersVisitedSite.has(user)){
-        usersVisitedSite.add(user);
-    }
-}
-console.log(usersVisitedSite.has(ann));
-ann=null;
-console.log(usersVisitedSite.has(ann));
+console.log(range(3,7))
