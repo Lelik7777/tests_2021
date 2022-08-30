@@ -34,48 +34,79 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-
-
-console.log(255..toString(16));
-
-function loadImg(src,callback) {
-const img=document.createElement('img');
-img.src=src;
-img.onload=()=>{
-    callback(null,img);
+const visitSite=new WeakMap();
+const countVisitsUsers = (user) => {
+let count=visitSite.get(user)||0;
+visitSite.set(user,++count)
 }
-img.onerror=()=>callback(new Error('error by loading image'));
-document.body.prepend(img);
-}
-function promiseLoad(src) {
-    return new Promise((res,rej)=>{
-        loadImg(src,(err,img)=>{
-            if(err) rej(err);
-            res(img);
-        })
-    })
-};
-promiseLoad('https://picsum.photos/400').then(res=>console.log(res.src)).catch(er=>console.log(er));
-Object.seal(userData);
+countVisitsUsers(tom);
+countVisitsUsers(tom);
+countVisitsUsers(ann);
+countVisitsUsers(ann);
+countVisitsUsers(nick);
+console.log(visitSite)
+const newDiv=document.createElement('div');
+newDiv.innerHTML='hello! it is new div';
+newDiv.style.backgroundColor='yellow';
+newDiv.style.marginTop='20px';
+document.body.append(newDiv);
+newDiv.remove();
 
-userData.job='programmer';
-delete userData.age;
-userData.age=55;
-console.log(userData);
-console.log(parseInt('100px'));
-const [a,b,c,d]=[3,4,true,'hello'];
-console.log(a,b,c,d);
-function calculationComplete() {
-    const start=Date.now();
-    for (let i=0;i<1e10;i++){}
-    console.log('time spent :',Date.now()-start,'ms');
+const objIterable={
+    from:1,
+    to:6,
+    *[Symbol.iterator](){
+        for (let i=this.from;i<=this.to;i++){
+            yield i;
+        }
+    }
 }
-calculationComplete();
-async function funSome() {
+console.log(Array.from(objIterable));
+function f(a,b,...rest) {
+    console.log(arguments);
+    console.log(Array.from(arguments));
+}
+f(3,4,5,6,7,8,8,);
+
+console.log(Math.round(Math.random()*10));
+const weakSet=new WeakSet();
+
+async function asyncFun() {
     const promise=new Promise(res=>{
-        setTimeout(res,3000,'done');
+        setTimeout(res,2000,'done');
     });
-   let res= await promise;
+    const res=await promise;
     console.log(res);
+};
+asyncFun()
+
+async function f1() {
+    let promise=new Promise(res=>{
+        setTimeout(res,3000,'done promise in f1');
+    });
+    let res=await promise;
+    console.log(res);
+
 }
-funSome()
+f1();
+
+const cach=new WeakMap();
+const process = (obj) => {
+    let start=Date.now();
+    let current=Date.now();
+  if(!cach.has(obj)){
+      for (let i=0;i<1e9;i++){}
+      current=Date.now();
+      let value='some calculations';
+      cach.set(obj,value);
+  }
+  return{
+      0:cach.get(obj),
+      1:current-start,
+  }
+}
+console.log(process(userData));
+console.log(process(userData));
+console.log(process(userData));
+
+
