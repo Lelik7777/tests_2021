@@ -1,5 +1,3 @@
-
-
 console.log('%cdraft02', 'color:green;font-size:16px;margin-left:200px;')
 const userAny = {
     head: true,
@@ -34,79 +32,48 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const visitSite=new WeakMap();
-const countVisitsUsers = (user) => {
-let count=visitSite.get(user)||0;
-visitSite.set(user,++count)
-}
-countVisitsUsers(tom);
-countVisitsUsers(tom);
-countVisitsUsers(ann);
-countVisitsUsers(ann);
-countVisitsUsers(nick);
-console.log(visitSite)
-const newDiv=document.createElement('div');
-newDiv.innerHTML='hello! it is new div';
-newDiv.style.backgroundColor='yellow';
-newDiv.style.marginTop='20px';
-document.body.append(newDiv);
-newDiv.remove();
+//использование коллекции WeakMap для кэширования
+const cache = new WeakMap();
+const execute = (obj, cache) => {
+    let start = Date.now();
+    if (!cache.has(obj)) {
 
-const objIterable={
-    from:1,
-    to:6,
-    *[Symbol.iterator](){
-        for (let i=this.from;i<=this.to;i++){
-            yield i;
+        for (let i = 0; i < 1e9; i++) {
         }
+        cache.set(obj, 'some data');
+    }
+    return {
+        0: cache.get(obj),
+        1: Date.now() - start,
     }
 }
-console.log(Array.from(objIterable));
-function f(a,b,...rest) {
-    console.log(arguments);
-    console.log(Array.from(arguments));
-}
-f(3,4,5,6,7,8,8,);
+console.log(execute(userData,cache));
+console.log(execute(userData,cache));
+console.log(execute(userData,cache));
 
-console.log(Math.round(Math.random()*10));
-const weakSet=new WeakSet();
+//использование коллекции WeakMap() для проверки количества посещений сайта пользователями
 
-async function asyncFun() {
-    const promise=new Promise(res=>{
-        setTimeout(res,2000,'done');
-    });
-    const res=await promise;
-    console.log(res);
+const usersVisited=new WeakMap();
+const countVisits = (user) => {
+  let count=usersVisited.get(user)||0;
+  usersVisited.set(user,++count);
 };
-asyncFun()
+countVisits(bob);
+countVisits(bob);
+countVisits(ann);
+countVisits(nick);
+countVisits(ann);
+console.log(usersVisited);
+nick=null;
+console.log(usersVisited.has(nick));
 
-async function f1() {
-    let promise=new Promise(res=>{
-        setTimeout(res,3000,'done promise in f1');
-    });
-    let res=await promise;
-    console.log(res);
-
+//using WeakSet for checking user visit the site
+const usersVisitedSite=new WeakSet();
+for (const user of arrUsers) {
+    if(!usersVisitedSite.has(user)){
+        usersVisitedSite.add(user);
+    }
 }
-f1();
-
-const cach=new WeakMap();
-const process = (obj) => {
-    let start=Date.now();
-    let current=Date.now();
-  if(!cach.has(obj)){
-      for (let i=0;i<1e9;i++){}
-      current=Date.now();
-      let value='some calculations';
-      cach.set(obj,value);
-  }
-  return{
-      0:cach.get(obj),
-      1:current-start,
-  }
-}
-console.log(process(userData));
-console.log(process(userData));
-console.log(process(userData));
-
-
+console.log(usersVisitedSite.has(ann));
+ann=null;
+console.log(usersVisitedSite.has(ann));
