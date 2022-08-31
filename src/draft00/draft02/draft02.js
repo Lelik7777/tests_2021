@@ -32,37 +32,27 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-//recursion
-function pow(x, n) {
+const factorialNum = (num) => {
+    return num === 1 ? 1 : num * factorialNum(num - 1);
+};
+console.log(factorialNum(5));
+//неявный try...catch
+new Promise((res, rej) => {
+    setTimeout(() => {
+        throw new Error('error');
+        //rej(new Error('error'))
+    }, 0)
+}).catch(er => console.log(er));
 
-    for (var i = 0, res = 1; i < n; i++) {
-        res *= x;
+const powNum = (num, degree) => {
+    return degree === 1 ? num : num * powNum(num, degree - 1);
+}
+console.log(powNum(2, 3));
+const powNumCicle = (num, degree) => {
+    let res = 1;
+    for (let i = 0; i < degree; i++) {
+        res *= num;
     }
     return res;
 }
-
-console.log(pow(3, 3));
-
-function powRecursion(x, n) {
-    return (n === 1) ? x : x * powRecursion(x, n - 1);
-}
-
-console.log(powRecursion(3, 4));
-
-function factorialNum(num) {
-    return num === 1 ? 1 : num * factorialNum(num - 1);
-}
-
-console.log(factorialNum(5));
-
-//range numbers get by recursion
-
-const range = (start, end) => {
-   if(end-start==2) return [start+1];
-   else {
-       const array=range(start,end-1);
-       array.push(end-1);
-       return array;
-   }
-};
-console.log(range(3,7))
+console.log(powNumCicle(2, 3));
