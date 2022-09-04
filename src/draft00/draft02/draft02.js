@@ -32,20 +32,46 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const arr = new Array(7);
-console.log(arr);
-console.log(Array.of(7));
+console.log(.25*345);
+console.log(.25*100);
+const factorial = (num) => {
+  return num===1?1:num*factorial(num-1);
+}
 
-const isPrime = (num) => {
-  for (let i=2;i<num;i++){
-      if(num%i===0) return false;
-  }
-  return true;
+console.log(factorial(5));
+console.log(arrUsers.splice(-2,2,'hello','world'));
+console.log(arrUsers);
+const newArr=arrUsers.splice(0,0);
+console.log(newArr);
+const pow = (num,degree) => {
+  return degree===1?num:num*pow(num,degree-1);
 }
-const isPrimes = (num) => {
-  for (let i=2;i<=num;i++){
-      if(!isPrime(i))continue;
-      console.log(i);
+console.log(pow(2,3));
+const userVisitedCite=new WeakMap();
+const countVisitsUser = (user,collection) => {
+  let count=collection.get(user)||0;
+  collection.set(user,++count);
+}
+countVisitsUser(bob,userVisitedCite);
+countVisitsUser(bob,userVisitedCite);
+countVisitsUser(ann,userVisitedCite);
+countVisitsUser(bob,userVisitedCite);
+countVisitsUser(nick,userVisitedCite);
+countVisitsUser(nick,userVisitedCite);
+console.log(userVisitedCite);
+
+const cache=new WeakMap();
+const process = (obj,collection) => {
+    const start=Date.now();
+  if(!cache.has(obj)) {
+      for (let i=0;i<1e9;i++){}
+      cache.set(obj,'some operation with obj');
+  }
+  return{
+      timeOperation:Date.now()-start,
+      value:cache.get(obj),
   }
 }
-isPrimes(44)
+console.log(process(userData,cache));
+console.log(process(userData,cache));
+console.log(process(userData,cache));
