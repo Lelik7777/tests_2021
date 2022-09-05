@@ -13,6 +13,13 @@ const userData = {
         return `${this.firstName} ${this.lastName}`;
     },
     __proto__: userAny,
+    some: {
+        t: 'hello',
+        toJSON() {
+            return 'test';
+        }
+    },
+
 }
 
 let fruits = ["Апельсин", "Груша", 'абрикос', "вишня"];
@@ -32,46 +39,34 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-console.log(.25*345);
-console.log(.25*100);
-const factorial = (num) => {
-  return num===1?1:num*factorial(num-1);
-}
+console.log(JSON.stringify(userData, function (key, value) {
+    if (typeof value === "number") {
+        return value + 1;
+    }
+    return value;
 
-console.log(factorial(5));
-console.log(arrUsers.splice(-2,2,'hello','world'));
-console.log(arrUsers);
-const newArr=arrUsers.splice(0,0);
-console.log(newArr);
-const pow = (num,degree) => {
-  return degree===1?num:num*pow(num,degree-1);
-}
-console.log(pow(2,3));
-const userVisitedCite=new WeakMap();
-const countVisitsUser = (user,collection) => {
-  let count=collection.get(user)||0;
-  collection.set(user,++count);
-}
-countVisitsUser(bob,userVisitedCite);
-countVisitsUser(bob,userVisitedCite);
-countVisitsUser(ann,userVisitedCite);
-countVisitsUser(bob,userVisitedCite);
-countVisitsUser(nick,userVisitedCite);
-countVisitsUser(nick,userVisitedCite);
-console.log(userVisitedCite);
-
-const cache=new WeakMap();
-const process = (obj,collection) => {
-    const start=Date.now();
-  if(!cache.has(obj)) {
-      for (let i=0;i<1e9;i++){}
-      cache.set(obj,'some operation with obj');
+}, ' '));
+var jsonDate = (new Date()).toJSON();
+var backToDate = new Date(jsonDate);
+console.log(backToDate)
+console.log(new Date())
+console.log('Сериализованный объект даты: ' + jsonDate);
+const f = (arg) => {
+  const inner = (arg2) => {
+    arg+=arg2;
   }
-  return{
-      timeOperation:Date.now()-start,
-      value:cache.get(obj),
-  }
+  return inner;
 }
-console.log(process(userData,cache));
-console.log(process(userData,cache));
-console.log(process(userData,cache));
+const map=new Map(Object.entries(userData));
+console.log(map);
+console.log(map.entries());
+console.log(map.keys());
+console.log(map.values());
+for (const mapElement of map.values()) {
+    console.log(mapElement);
+}
+// for (let i=0;i<Infinity;i++){
+//     let start=Date.now();
+//     if(start+1e9) break;
+//     console.log(i);
+// }
