@@ -39,34 +39,30 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-console.log(JSON.stringify(userData, function (key, value) {
-    if (typeof value === "number") {
-        return value + 1;
-    }
-    return value;
+const stringMy = 'some text';
+const copy = stringMy.toUpperCase();
+console.log(copy);
+let a = {name: 'some name'};
+let b = a;
+b.age = 23;
+console.log('a', a);
+console.log('b', b);
+const outer = (arg) => {
+    function inner(arg1) {
+       return  arg += arg1;
 
-}, ' '));
-var jsonDate = (new Date()).toJSON();
-var backToDate = new Date(jsonDate);
-console.log(backToDate)
-console.log(new Date())
-console.log('Сериализованный объект даты: ' + jsonDate);
-const f = (arg) => {
-  const inner = (arg2) => {
-    arg+=arg2;
-  }
-  return inner;
+    }
+
+    return inner;
 }
-const map=new Map(Object.entries(userData));
-console.log(map);
-console.log(map.entries());
-console.log(map.keys());
-console.log(map.values());
-for (const mapElement of map.values()) {
-    console.log(mapElement);
+const res1=outer(20);
+console.log(res1(5));
+console.log(res1(10));
+console.log(res1(15));
+
+Object.defineProperties(userData,{job:{value:'developer',writable:false,enumerable:false}});
+for (const res1Element of Object.keys(userData)) {
+    console.log(res1Element)
 }
-// for (let i=0;i<Infinity;i++){
-//     let start=Date.now();
-//     if(start+1e9) break;
-//     console.log(i);
-// }
+console.log(userData);
+
