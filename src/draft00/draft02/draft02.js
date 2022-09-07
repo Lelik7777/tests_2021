@@ -13,12 +13,7 @@ const userData = {
         return `${this.firstName} ${this.lastName}`;
     },
     __proto__: userAny,
-    some: {
-        t: 'hello',
-        toJSON() {
-            return 'test';
-        }
-    },
+
 
 }
 
@@ -39,30 +34,46 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const stringMy = 'some text';
-const copy = stringMy.toUpperCase();
-console.log(copy);
-let a = {name: 'some name'};
-let b = a;
-b.age = 23;
-console.log('a', a);
-console.log('b', b);
-const outer = (arg) => {
-    function inner(arg1) {
-       return  arg += arg1;
+Object.defineProperties(userData, {age: {value: 88}});
+console.log(userData.age);
 
+class Thenable {
+    constructor(num) {
+        this.num = num;
     }
 
-    return inner;
-}
-const res1=outer(20);
-console.log(res1(5));
-console.log(res1(10));
-console.log(res1(15));
+    then(resolve, reject) {
+        console.log(resolve);
+        setTimeout(() => {
+            resolve(this.num * 2);
+        }, 1000)
+    }
+};
 
-Object.defineProperties(userData,{job:{value:'developer',writable:false,enumerable:false}});
-for (const res1Element of Object.keys(userData)) {
-    console.log(res1Element)
+async function f() {
+    const res = await new Thenable(3);
+    console.log(res);
 }
-console.log(userData);
+
+f();
+const changed = JSON.stringify(userData, function (key, value) {
+    if (typeof value === "number") return value * 2;
+    return value;
+}, ' ');
+console.log(changed);
+const man = {
+    name: 'bob',
+    age: 33,
+    getName() {
+        return this.name;
+    },
+    getAge: function () {
+        return this.age;
+    }
+};
+console.log(man.getAge());
+console.log(man.getName());
+console.log(man);
+console.log(man['getAge']());
+
 
