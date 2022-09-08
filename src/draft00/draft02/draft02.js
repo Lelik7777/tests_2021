@@ -34,46 +34,36 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-Object.defineProperties(userData, {age: {value: 88}});
-console.log(userData.age);
+const copy=[...arrUsers];
+console.log(copy===arrUsers);
+console.log(...arrUsers);
+console.log(...fruits);
+console.log(userData+'hello');
+function User(name) {
 
-class Thenable {
-    constructor(num) {
-        this.num = num;
-    }
+    this.name=name;
+}
+const user1=new User('bob');
+console.log(user1);
+const user2=User('tom');
+console.log(user2);
+const map=new Map(Object.entries(userData));
+console.log(map);
+for (const mapElement of map) {
+    console.log(mapElement);
 
-    then(resolve, reject) {
-        console.log(resolve);
-        setTimeout(() => {
-            resolve(this.num * 2);
-        }, 1000)
-    }
-};
-
-async function f() {
-    const res = await new Thenable(3);
-    console.log(res);
+}
+console.log(map.keys());
+for (const el of map.entries()) {
+    console.log(el)
+}
+function f() {
+   return(
+       'hello'
+   ) ;
 }
 
-f();
-const changed = JSON.stringify(userData, function (key, value) {
-    if (typeof value === "number") return value * 2;
-    return value;
-}, ' ');
-console.log(changed);
-const man = {
-    name: 'bob',
-    age: 33,
-    getName() {
-        return this.name;
-    },
-    getAge: function () {
-        return this.age;
-    }
-};
-console.log(man.getAge());
-console.log(man.getName());
-console.log(man);
-console.log(man['getAge']());
+console.log(f());
+console.log(345*.25);
 
 
