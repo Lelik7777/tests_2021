@@ -34,36 +34,27 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const copy=[...arrUsers];
-console.log(copy===arrUsers);
-console.log(...arrUsers);
-console.log(...fruits);
-console.log(userData+'hello');
-function User(name) {
+// in залазит и в prototype
+console.log('firstName' in userData);
+console.log('jbo' in userData);
+console.log('head' in userData);
+const div2 = document.querySelector('.blue');
+div2.innerHTML = '<p>new paragraph</p>'
+console.log([...fruits, ...[3, 4, 5, 5]]);
+const [a, b, ...rest] = fruits;
+console.log(a, b, rest);
+const [name, age, job, city] = ['bob', 33, 'developer', 'Moscow'];
+console.log(name, age, job, city);
+setTimeout((a, b, c) => console.log(a + b + c), 2000, 5, 6, 7);
+const sum = (a, b, c) => {
+    console.log(a+b+c);
+}
+setTimeout('console.log(sum(4,4,4))', 3000);
+setTimeout(sum,4000,4,6,1);
+const set=new Set();
 
-    this.name=name;
-}
-const user1=new User('bob');
-console.log(user1);
-const user2=User('tom');
-console.log(user2);
-const map=new Map(Object.entries(userData));
-console.log(map);
-for (const mapElement of map) {
-    console.log(mapElement);
 
-}
-console.log(map.keys());
-for (const el of map.entries()) {
-    console.log(el)
-}
-function f() {
-   return(
-       'hello'
-   ) ;
-}
 
-console.log(f());
-console.log(345*.25);
+
 
 
