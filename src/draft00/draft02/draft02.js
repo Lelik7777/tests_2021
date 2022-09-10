@@ -34,24 +34,22 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-// in залазит и в prototype
-console.log('firstName' in userData);
-console.log('jbo' in userData);
-console.log('head' in userData);
-const div2 = document.querySelector('.blue');
-div2.innerHTML = '<p>new paragraph</p>'
-console.log([...fruits, ...[3, 4, 5, 5]]);
-const [a, b, ...rest] = fruits;
-console.log(a, b, rest);
-const [name, age, job, city] = ['bob', 33, 'developer', 'Moscow'];
-console.log(name, age, job, city);
-setTimeout((a, b, c) => console.log(a + b + c), 2000, 5, 6, 7);
-const sum = (a, b, c) => {
-    console.log(a+b+c);
+console.log(Math.trunc(13.956666))
+
+const obj1=Object.create(userAny,{name:{value:'bob',writable:true},job:{value:'developer'},age:{value:44}});
+console.log(obj1);
+const fun = (arr,...rest) => {
+    const copy=[...arr,...rest.flat(1)];
+    console.log(copy);
 }
-setTimeout('console.log(sum(4,4,4))', 3000);
-setTimeout(sum,4000,4,6,1);
-const set=new Set();
+fun([1,2,3],[4,5,6],[7,8,9],10,[11,12]);
+let id=Symbol('id of bob');
+const bob1={
+    name:'bob'
+}
+bob1[id]=100;
+console.log(bob1);
+console.log(bob1[id]);
 
 
 
