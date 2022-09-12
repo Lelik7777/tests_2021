@@ -34,24 +34,26 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-console.log(Math.trunc(13.956666))
-
-const obj1=Object.create(userAny,{name:{value:'bob',writable:true},job:{value:'developer'},age:{value:44}});
-console.log(obj1);
-const fun = (arr,...rest) => {
-    const copy=[...arr,...rest.flat(1)];
-    console.log(copy);
+const user = {
+    firstName: 'bob',
+    lastName: 'geits',
+    job: 'developer',
+    friends: ['mike', 'tom', 'ann'],
+    getFriends() {//что-то наподобие function declaration
+        //let myFriends=[...this.friends];
+        //return myFriends;
+        return this.friends;
+    },
+    getFriends2: function () {// что-то наподобие function expression - здесь ф-ция становится значением свойства объекта
+        return [...this.friends];
+    }
 }
-fun([1,2,3],[4,5,6],[7,8,9],10,[11,12]);
-let id=Symbol('id of bob');
-const bob1={
-    name:'bob'
+console.log(user["getFriends"]());
+const map=new Map(Object.entries(userData));
+for (const mapElement of map.values()) {
+    console.log(mapElement);
+
 }
-bob1[id]=100;
-console.log(bob1);
-console.log(bob1[id]);
-
-
 
 
 
