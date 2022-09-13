@@ -34,26 +34,62 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const user = {
-    firstName: 'bob',
-    lastName: 'geits',
-    job: 'developer',
-    friends: ['mike', 'tom', 'ann'],
-    getFriends() {//что-то наподобие function declaration
-        //let myFriends=[...this.friends];
-        //return myFriends;
-        return this.friends;
-    },
-    getFriends2: function () {// что-то наподобие function expression - здесь ф-ция становится значением свойства объекта
-        return [...this.friends];
-    }
-}
-console.log(user["getFriends"]());
-const map=new Map(Object.entries(userData));
-for (const mapElement of map.values()) {
-    console.log(mapElement);
+const visitedUsers= new WeakMap();
+new Promise((res, rej) => {
+    rej(new Error('error'));
+}).then(res => console.res);
 
+const countVistits = (user) => {
+    let count=visitedUsers.get(user)||0;
+    visitedUsers.set(user,++count);
 }
+countVistits(bob);
+countVistits(ann);
+countVistits(ann);
+countVistits(nick);
+countVistits(ann);
+console.log(visitedUsers)
+
+window.addEventListener('unhandledrejection', (ev) => {
+    ev.preventDefault();
+    console.log(ev.reason);
+    console.log(ev.promise);
+});
+const cache = new WeakMap();
+
+
+const process = (obj, cache) => {
+    const start = Date.now();
+    if (!cache.has(obj)) {
+        for (let i = 0; i < 1e9; i++) {
+        }
+        cache.set(obj, 'some operation with object');
+    }
+    return {
+        time: Date.now() - start,
+        value: cache.get(obj),
+    }
+};
+
+console.log(process(userData, cache));
+console.log(process(userData, cache));
+console.log(process(userData, cache));
+
+function* generateSequence(start,end) {
+    for (let i=start;i<end;i++) yield i;
+}
+function* generatePassword() {
+    yield* generateSequence(48,57);
+    yield* generateSequence(65,90);
+}
+let str='';
+for (const el of generatePassword()) {
+    str+=String.fromCharCode(el);
+}
+console.log(str);
+console.log(Math.abs(-.3333))
+
+
 
 
 
