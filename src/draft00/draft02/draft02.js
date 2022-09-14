@@ -34,60 +34,31 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const visitedUsers= new WeakMap();
-new Promise((res, rej) => {
-    rej(new Error('error'));
-}).then(res => console.res);
-
-const countVistits = (user) => {
-    let count=visitedUsers.get(user)||0;
-    visitedUsers.set(user,++count);
-}
-countVistits(bob);
-countVistits(ann);
-countVistits(ann);
-countVistits(nick);
-countVistits(ann);
-console.log(visitedUsers)
-
-window.addEventListener('unhandledrejection', (ev) => {
-    ev.preventDefault();
-    console.log(ev.reason);
-    console.log(ev.promise);
+const promise=new Promise((res,rej)=>{
+   rej(new Error('error'));
 });
-const cache = new WeakMap();
+console.log(promise);
+console.log('hello');
+console.log(Array.of(4));
+console.log(new Array(4));
 
-
-const process = (obj, cache) => {
-    const start = Date.now();
-    if (!cache.has(obj)) {
-        for (let i = 0; i < 1e9; i++) {
-        }
-        cache.set(obj, 'some operation with object');
+function* generateNum(start,end) {
+    for (let i=start;i<end;i++){
+        yield i;
     }
-    return {
-        time: Date.now() - start,
-        value: cache.get(obj),
-    }
-};
-
-console.log(process(userData, cache));
-console.log(process(userData, cache));
-console.log(process(userData, cache));
-
-function* generateSequence(start,end) {
-    for (let i=start;i<end;i++) yield i;
 }
 function* generatePassword() {
-    yield* generateSequence(48,57);
-    yield* generateSequence(65,90);
+    yield* generateNum(47,57);
+    yield* generateNum(93,110);
 }
 let str='';
 for (const el of generatePassword()) {
     str+=String.fromCharCode(el);
 }
 console.log(str);
-console.log(Math.abs(-.3333))
+let a=(3+4,4-1);
+console.log(a)
+
 
 
 
