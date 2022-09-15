@@ -34,32 +34,66 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const promise=new Promise((res,rej)=>{
-   rej(new Error('error'));
-});
-console.log(promise);
-console.log('hello');
-console.log(Array.of(4));
-console.log(new Array(4));
+//промисификация
 
-function* generateNum(start,end) {
-    for (let i=start;i<end;i++){
-        yield i;
+const loadImg = (src, callback) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.onload = () => callback(null, img);
+    img.onerror = () => callback(new Error('error of image loading'));
+    document.body.append(img);
+}
+const loadPromise = (src) => {
+    return new Promise((res, rej) => {
+        loadImg(src, (err, img) => {
+            if (err) rej(err)
+            else res(img);
+        })
+    })
+}
+loadPromise('https://picsum.photos/400').then(res => console.log(res.src)).catch(er => console.log(er));
+
+const newBob = Object.create(userAny, {
+    name: {value: 'bob'},
+    job: {value: 'developer', writable: true, enumerable: true, configurable: true}
+});
+newBob.name = 'tom'
+newBob.job = 'admin';
+console.log(newBob);
+console.log('for of');
+for (const newBobElement of Object.keys(newBob)) {
+    console.log(newBobElement);
+}
+console.log('for in ');
+for (const newBobKey in newBob) {
+    console.log(`${newBobKey}: ${newBob[newBobKey]}`);
+}
+
+class Thenable {
+    constructor(num) {
+        this.num = num;
+
+    }
+
+    then(resolve, reject) {
+        setTimeout(() => {
+            resolve(this.num * 2);
+        }, 0)
     }
 }
-function* generatePassword() {
-    yield* generateNum(47,57);
-    yield* generateNum(93,110);
-}
-let str='';
-for (const el of generatePassword()) {
-    str+=String.fromCharCode(el);
-}
-console.log(str);
-let a=(3+4,4-1);
-console.log(a)
 
+const obj22 = new Thenable(4);
+obj22.then(res => console.log(res));
 
+const name=Symbol('name');
+
+const man={
+    firstName:'bob',
+    age:33,
+}
+man[name]='bobby';
+console.log(man['name']);
+console.log(man)
 
 
 
