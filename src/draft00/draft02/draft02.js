@@ -12,6 +12,7 @@ const userData = {
         console.log('this is ', this);
         return `${this.firstName} ${this.lastName}`;
     },
+    'some object': {father: true, name: 'tom', age: 67},
     __proto__: userAny,
 
 
@@ -33,69 +34,24 @@ let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
+console.log(userData);
+//полная копия объекта
+let {...newUserData} = userData;
+console.log(newUserData == userData);//false
+//create empty object
+let {firstName, lastName, age, getFullName, 'some object': {}, ...newUser} = userData;
+console.log(userData)//{firstName: 'Brad', lastName: 'Traversy', age: 38, some object: {…}, getFullName: ƒ}
+console.log(newUser);//{}
+//частичное копирование свойств в новый объект
+let { 'some object':{},getFullName:a, ...copyUser} = userData;
+console.log(copyUser);//{firstName: 'Brad', lastName: 'Traversy', age: 38};
 
-//промисификация
-
-const loadImg = (src, callback) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.onload = () => callback(null, img);
-    img.onerror = () => callback(new Error('error of image loading'));
-    document.body.append(img);
+Object.freeze(userData);
+for (const el of Object.keys(userData)) {
+    console.log(el);
 }
-const loadPromise = (src) => {
-    return new Promise((res, rej) => {
-        loadImg(src, (err, img) => {
-            if (err) rej(err)
-            else res(img);
-        })
-    })
-}
-loadPromise('https://picsum.photos/400').then(res => console.log(res.src)).catch(er => console.log(er));
-
-const newBob = Object.create(userAny, {
-    name: {value: 'bob'},
-    job: {value: 'developer', writable: true, enumerable: true, configurable: true}
-});
-newBob.name = 'tom'
-newBob.job = 'admin';
-console.log(newBob);
-console.log('for of');
-for (const newBobElement of Object.keys(newBob)) {
-    console.log(newBobElement);
-}
-console.log('for in ');
-for (const newBobKey in newBob) {
-    console.log(`${newBobKey}: ${newBob[newBobKey]}`);
-}
-
-class Thenable {
-    constructor(num) {
-        this.num = num;
-
-    }
-
-    then(resolve, reject) {
-        setTimeout(() => {
-            resolve(this.num * 2);
-        }, 0)
-    }
-}
-
-const obj22 = new Thenable(4);
-obj22.then(res => console.log(res));
-
-const name=Symbol('name');
-
-const man={
-    firstName:'bob',
-    age:33,
-}
-man[name]='bobby';
-console.log(man['name']);
-console.log(man)
-
-
+console.log('userData',userData);
+Object.create({},{name:{value:'bob',c}})
 
 
 
