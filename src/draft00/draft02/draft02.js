@@ -34,24 +34,28 @@ let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
-console.log(userData);
-//полная копия объекта
-let {...newUserData} = userData;
-console.log(newUserData == userData);//false
-//create empty object
-let {firstName, lastName, age, getFullName, 'some object': {}, ...newUser} = userData;
-console.log(userData)//{firstName: 'Brad', lastName: 'Traversy', age: 38, some object: {…}, getFullName: ƒ}
-console.log(newUser);//{}
-//частичное копирование свойств в новый объект
-let { 'some object':{},getFullName:a, ...copyUser} = userData;
-console.log(copyUser);//{firstName: 'Brad', lastName: 'Traversy', age: 38};
 
-Object.freeze(userData);
-for (const el of Object.keys(userData)) {
-    console.log(el);
+const factorial = num => num === 1 ? 1 : factorial(num - 1) * num;
+console.log(factorial(5));
+console.log(Object.assign({},userData,{job:'developer',friends:['ann','tom']}));
+for (let i=0;i<20;i++){
+    console.log(Math.round(Math.random()*10));
 }
-console.log('userData',userData);
-Object.create({},{name:{value:'bob',c}})
+const {head,...newObj}=userAny;
+console.log(newObj);
+console.log(head);
+const range = (start,end) => {
+    if(end-start===2) return [start+1];
+    else {
+        const array=range(start,end-1);
+        array.push(end-1);
+        return array;
+    }
+}
+console.log(range(4,10))
+
+
+
 
 
 
