@@ -15,7 +15,9 @@ const userData = {
     'some object': {father: true, name: 'tom', age: 67},
     __proto__: userAny,
 
-
+    getYearBorn: function () {
+    return new Date().getFullYear()-this.age;
+    }
 }
 
 let fruits = ["Апельсин", "Груша", 'абрикос', "вишня"];
@@ -35,26 +37,39 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const factorial = num => num === 1 ? 1 : factorial(num - 1) * num;
-console.log(factorial(5));
-console.log(Object.assign({},userData,{job:'developer',friends:['ann','tom']}));
-for (let i=0;i<20;i++){
-    console.log(Math.round(Math.random()*10));
+console.log(userAny);
+console.log(Object.create(null, {name: {value: 'bob'}}));
+const fibinatti = (num) => {
+    return num < 2 ? num : fibinatti(num - 1) + fibinatti(num - 2);
 }
-const {head,...newObj}=userAny;
-console.log(newObj);
-console.log(head);
-const range = (start,end) => {
-    if(end-start===2) return [start+1];
-    else {
-        const array=range(start,end-1);
-        array.push(end-1);
-        return array;
+console.log(fibinatti(10))
+
+function fibonacci(num) {
+    if (num < 2) {
+        return num;
+    } else {
+        return fibonacci(num - 1) + fibonacci(num - 2);
     }
 }
-console.log(range(4,10))
 
-
+console.log(fibonacci(10))
+for (let i = 0; i <= 10; i++) {
+    console.log(fibonacci(i));
+}
+console.log(userData.getYearBorn())
+const pow = (num,degree) => {
+  return degree===1?num:pow(num,degree-1)*num;
+}
+console.log(pow(2,3));
+const range = (start,end) => {
+  if(end-start==2) return[start+1];
+  else {
+      const array=range(start,end-1);
+      array.push(end-1);
+      return array;
+  }
+}
+console.log(range(3,9))
 
 
 
