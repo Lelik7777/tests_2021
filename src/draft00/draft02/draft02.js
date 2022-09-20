@@ -16,7 +16,7 @@ const userData = {
     __proto__: userAny,
 
     getYearBorn: function () {
-    return new Date().getFullYear()-this.age;
+        return new Date().getFullYear() - this.age;
     }
 }
 
@@ -37,39 +37,46 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-console.log(userAny);
-console.log(Object.create(null, {name: {value: 'bob'}}));
-const fibinatti = (num) => {
-    return num < 2 ? num : fibinatti(num - 1) + fibinatti(num - 2);
-}
-console.log(fibinatti(10))
+console.log(userData.__proto__.head)
 
-function fibonacci(num) {
-    if (num < 2) {
-        return num;
-    } else {
-        return fibonacci(num - 1) + fibonacci(num - 2);
+class User {
+    constructor(name) {
+        this.name = name;
     }
 }
 
-console.log(fibonacci(10))
-for (let i = 0; i <= 10; i++) {
-    console.log(fibonacci(i));
+const user1 = new User('bob');
+console.log(user1);
+user1.__proto__ = {age: 30};
+console.log(user1);
+user1.__proto__.getYearBorn = function () {
+    return new Date().getFullYear() - this.age;
 }
-console.log(userData.getYearBorn())
-const pow = (num,degree) => {
-  return degree===1?num:pow(num,degree-1)*num;
-}
-console.log(pow(2,3));
-const range = (start,end) => {
-  if(end-start==2) return[start+1];
-  else {
-      const array=range(start,end-1);
-      array.push(end-1);
-      return array;
-  }
-}
-console.log(range(3,9))
+console.log(user1);
+console.log(user1.__proto__.getYearBorn());
+const a = 5.45;
+console.log(a);
+console.log(+a.toFixed());
+const b=new Number();
+console.log(b)
+const str=new String();
+console.log(str.valueOf());
+console.log(b.valueOf())
+console.log(userData.valueOf());
+console.log(''.valueOf())
+const c=3;
+console.log(c.valueOf());
+const _true=true;
+console.log(_true.valueOf());
+const someObj={name:'bob',age:33};
+console.log(someObj.valueOf());
+
+console.log(.25*345);
+console.log(Object.is(3,3));
+console.log(userData.hasOwnProperty('age'));
+console.log(Object.getOwnPropertyDescriptor(userData,'firstName'));
+console.log(1e4);
+console.log(1e-4);
 
 
 
