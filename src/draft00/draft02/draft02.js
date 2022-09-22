@@ -37,12 +37,39 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-console.log(typeof 30n);
+class Thenable {
+    constructor(num) {
+        this.num = num;
+    }
 
-console.log(Object.getOwnPropertyDescriptor(userData,'age'));
-console.log(1e4);
-console.log(1e-4);
-console.log(arrUsers.valueOf())
+    then(resolve, reject) {
+        console.log(resolve)
+        setTimeout(() => {
+            resolve(this.num * 10);
+        }, 0)
+    }
+}
 
+console.log(typeof Thenable)
+async function fun() {
+    let res = await new Thenable(5);
+    console.log(res);
+}
 
+fun();
+const res = new Thenable(4);
+res.then(res => console.log(res));
+
+if (!countProducts) deleteProductsCard();
+var countProducts = 100;
+
+function deleteProductsCard() {
+    console.log('product count delete to zero');
+}
+const obj={name:'bob'}
+const age=Symbol('age');
+const age2=Symbol('age');
+obj[age]=44;
+obj[age2]=44..toString(2);
+console.log(obj);
 
