@@ -37,39 +37,16 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-class Thenable {
-    constructor(num) {
-        this.num = num;
-    }
+const nestedArr=[3,4,[5,6]];
+const[,,[b,c]]=nestedArr;
+console.log(b,c);
 
-    then(resolve, reject) {
-        console.log(resolve)
-        setTimeout(() => {
-            resolve(this.num * 10);
-        }, 0)
-    }
+function fun({name='bob',age=33,job='developer'}) {
+    console.log(`his name is ${name}, age is ${age} and he work as ${job} `);
 }
-
-console.log(typeof Thenable)
-async function fun() {
-    let res = await new Thenable(5);
-    console.log(res);
+fun({name:'tom',job:'admin',isHe:true});
+function sum(...num) {
+    return num.reduce((acc,curr)=>acc+curr);
 }
-
-fun();
-const res = new Thenable(4);
-res.then(res => console.log(res));
-
-if (!countProducts) deleteProductsCard();
-var countProducts = 100;
-
-function deleteProductsCard() {
-    console.log('product count delete to zero');
-}
-const obj={name:'bob'}
-const age=Symbol('age');
-const age2=Symbol('age');
-obj[age]=44;
-obj[age2]=44..toString(2);
-console.log(obj);
-
+const arrNum=[4,5,6,7,5,4];
+console.log(sum(...arrNum));
