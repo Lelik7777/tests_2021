@@ -37,16 +37,15 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const nestedArr=[3,4,[5,6]];
-const[,,[b,c]]=nestedArr;
-console.log(b,c);
-
-function fun({name='bob',age=33,job='developer'}) {
-    console.log(`his name is ${name}, age is ${age} and he work as ${job} `);
+const nestedArr = [3, 4, [5, 6]];
+const [a, , [c, d]] = nestedArr;
+console.log(a, c, d);
+const fun = ({age = 33, name = 'bob', job = 'admin'}) => {
+    console.log(`it is ${name}, age is ${age}, work as ${job}`);
 }
-fun({name:'tom',job:'admin',isHe:true});
-function sum(...num) {
-    return num.reduce((acc,curr)=>acc+curr);
-}
-const arrNum=[4,5,6,7,5,4];
-console.log(sum(...arrNum));
+fun({name: 'tom', job: 'developer', location: {city: 'Moscow'}});
+console.log(userData.getName?.() ?? 'not exist');
+console.log(userData);
+console.log(Object.defineProperties(userData, {job: {value: 'developer'}, age: {value: 22}}))
+console.log(userData);
+console.log(Object.entries(userData));
