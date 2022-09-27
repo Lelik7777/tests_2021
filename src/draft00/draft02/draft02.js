@@ -36,87 +36,34 @@ let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
-const copy = {...userData};
-console.log(copy === userData);
-console.log('copy', copy);
-console.log(userData.getYeaBorn?.() ?? 'not exist');
-console.table(userData);
 
-function* gen(start, end) {
-    for (let i = start; i < end; i++) yield i;
+const obj={
+    firstName:'tom',
+    lastName:'jonson'
 }
 
-function* genPass() {
-    yield* gen(50, 70);
-    yield* gen(71 - 109);
+obj.getFullName=userData.getFullName;
+console.log(obj);
+console.log(obj.getFullName());
+console.log(obj['getFullName']());
+
+const maskNum = (num) => {
+  const str=String(num);
+  const length=str.length;
+    console.log('123'.padStart(5,'*'))
+  return str.slice(-4).padStart(length,'*');
+}
+console.log(maskNum(3444633754));
+const flights00 =
+    '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+const seeCode=str=>str.slice(0,3).toUpperCase();
+for (const flight of flights00.split('+')) {
+    const [type,from,to,time]=flight.split(';');
+    const output=`${type.startsWith('_Delayed')?'🔴':''}${type.replaceAll('_',' ')} from ${seeCode(from)}  to ${seeCode(to)} (${time.replace(':','h')})`.padStart(45,' ');
+    console.log(output);
 }
 
-const map = new Map(Object.entries(userData));
-console.log(map);
-console.log(map.entries());
-console.log(map.keys());
-console.log(map.values());
-for (const el of map.values()) {
-    console.log(el);
-}
-console.log(userData.valueOf());
-console.log(arrUsers.valueOf());
-const f = 44;
-console.log(f.valueOf());
-console.log(2e3);
-console.log(1e-2);
-
-if (!countProd) deleteProd();
-var countProd = 19;
-
-function deleteProd() {
-    console.log('all products delete');
-}
-
-function f1(name, age) {
-    return {name, age};
-}
-
-const bob1 = f1('bob', 88);
-console.log(bob1);
-const prom1 = new Promise((res, rej) => res('one'));
-const prom2 = new Promise((res, rej) => res('two'));
-prom1.then(res => {
-    console.log(res);
-    return prom2;
-}).then(res => console.log(res));
-console.log(Object.getOwnPropertyDescriptor(userData,{}));
-const tom11 = {
-    name: 'tom',
-    year: 2000,
-    getAge() {
-        console.log(new Date().getFullYear() - this.year);
-        function isUSSR() {
-            console.log(this.year<1993);
-            console.log(this);
-        }
-        isUSSR.call(this);
-    }
-}
-
-tom11.getAge();
-function f2(...rest) {
-    console.log(rest);
-    let sum=0;
-    for (const el of rest) {
-        sum+=el;
-    }
-    return sum;
-}
-
-console.log(f2(3,4,5,6));
-function User(name) {
-    this.name=name;
-}
-const userBob=User('bob');
-console.log(userBob);
-function f3() {
-    console.log(this);
-
-}
-f3();
+const set=new Set([arrUsers]);
+console.log(set);
+console.log([...set]);
+console.log(Array.from(set));
