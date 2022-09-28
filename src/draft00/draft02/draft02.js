@@ -37,33 +37,36 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-const obj={
-    firstName:'tom',
-    lastName:'jonson'
+function User(name) {
+    this.name = name;
+    return bob;
 }
 
-obj.getFullName=userData.getFullName;
-console.log(obj);
-console.log(obj.getFullName());
-console.log(obj['getFullName']());
-
-const maskNum = (num) => {
-  const str=String(num);
-  const length=str.length;
-    console.log('123'.padStart(5,'*'))
-  return str.slice(-4).padStart(length,'*');
+const user1 = new User('tom');
+const user2 = new User('nick');
+console.log(user1 === user2);
+const fun = ({name = 'tom', age = 33, job = 'admin'}) => {
+    console.log(` his name is ${name}, age is ${age} and he works a ${job}`);
 }
-console.log(maskNum(3444633754));
-const flights00 =
-    '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-const seeCode=str=>str.slice(0,3).toUpperCase();
-for (const flight of flights00.split('+')) {
-    const [type,from,to,time]=flight.split(';');
-    const output=`${type.startsWith('_Delayed')?'🔴':''}${type.replaceAll('_',' ')} from ${seeCode(from)}  to ${seeCode(to)} (${time.replace(':','h')})`.padStart(45,' ');
-    console.log(output);
+fun({name: 'bob', age: 45, job: 'developer'});
+fun({});
+
+const nestedArr=[3,4,[5,6]];
+const [a,,[b,c]]=nestedArr;
+console.log(a,b,c);
+const booking=[];
+function createBooking(flightNum,numPassengers=1,price=200*numPassengers) {
+    //ES5
+    //numPassengers??=3;
+    const bookingLoc={flightNum,numPassengers,price};
+    booking.push(bookingLoc);
+    console.log(booking);
+}
+createBooking(2,undefined,500);
+
+function maskNum(num) {
+    const str=num.toString();
+    return str.slice(-4).padStart(str.length,'*');
 }
 
-const set=new Set([arrUsers]);
-console.log(set);
-console.log([...set]);
-console.log(Array.from(set));
+console.log(maskNum(34434343434));
