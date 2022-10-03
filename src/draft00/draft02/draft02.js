@@ -37,36 +37,30 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 
-function User(name) {
-    this.name = name;
-    return bob;
-}
+console.log([...'hello']);
+console.log([...'😂']);
+console.log('😂'.split(''));
+console.log(Array.from('😂'));
+//const setTax = rate => value => value + rate * value;
+const setTax = function (rate) {
+    return function (value) {
+        return value + rate * value;
+    }
+};
 
-const user1 = new User('tom');
-const user2 = new User('nick');
-console.log(user1 === user2);
-const fun = ({name = 'tom', age = 33, job = 'admin'}) => {
-    console.log(` his name is ${name}, age is ${age} and he works a ${job}`);
+const range = (start, end) => {
+    if (end - start === 2) return [start + 1];
+    else {
+        const arr = range(start, end - 1);
+        arr.push(end - 1);
+        return arr;
+    }
 }
-fun({name: 'bob', age: 45, job: 'developer'});
-fun({});
+console.log(range(4, 9));
 
-const nestedArr=[3,4,[5,6]];
-const [a,,[b,c]]=nestedArr;
-console.log(a,b,c);
-const booking=[];
-function createBooking(flightNum,numPassengers=1,price=200*numPassengers) {
-    //ES5
-    //numPassengers??=3;
-    const bookingLoc={flightNum,numPassengers,price};
-    booking.push(bookingLoc);
-    console.log(booking);
+const getArrWithRandomValues = (length, from, end) => {
+    return Array.from({length}, () => Math.trunc(Math.random() * end - from + 1) + from);
 }
-createBooking(2,undefined,500);
-
-function maskNum(num) {
-    const str=num.toString();
-    return str.slice(-4).padStart(str.length,'*');
-}
-
-console.log(maskNum(34434343434));
+console.log(getArrWithRandomValues(20, 2, 10));
+//optional chain
+console.log(userData.getName?.());
