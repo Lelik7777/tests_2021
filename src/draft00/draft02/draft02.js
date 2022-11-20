@@ -36,31 +36,38 @@ let tom = {name: 'tom'};
 let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
-
-console.log([...'hello']);
 console.log([...'😂']);
-console.log('😂'.split(''));
-console.log(Array.from('😂'));
-//const setTax = rate => value => value + rate * value;
-const setTax = function (rate) {
-    return function (value) {
-        return value + rate * value;
-    }
-};
 
-const range = (start, end) => {
-    if (end - start === 2) return [start + 1];
-    else {
-        const arr = range(start, end - 1);
-        arr.push(end - 1);
-        return arr;
+function Man(name) {
+    this.name = name;
+}
+
+const bobby = new Man('bobby');
+console.log(Man.prototype.isPrototypeOf(bobby));
+console.log(bobby.name);
+
+class Person {
+    #fullName;
+
+    constructor(fullName) {
+        this.fullName = fullName;
+    }
+
+    set fullName(name) {
+        if (name.includes(' ')) this.#fullName = name;
+        else console.log('not correct name');
+    }
+
+    get fullName() {
+        return this.#fullName;
     }
 }
-console.log(range(4, 9));
 
-const getArrWithRandomValues = (length, from, end) => {
-    return Array.from({length}, () => Math.trunc(Math.random() * end - from + 1) + from);
-}
-console.log(getArrWithRandomValues(20, 2, 10));
-//optional chain
-console.log(userData.getName?.());
+const anay = new Person('ann');
+console.log(anay.fullName);
+const tommy = new Person('Tom Bombandil');
+console.log(tommy.fullName);
+
+console.log(Number('23_000'));
+console.log(Number.parseInt('23_00'));
+console.log(230_000)
