@@ -37,40 +37,52 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 console.log([...'😂']);
+const {...bob1} = bob;
+console.log('bob1',bob1)
+console.log([...new Set([4, 5, 6, 6, 5, 4])]);
+console.log(Array.from(new Set([4, 5, 6, 7, 7])));
 
-const b = new Number(6);
-console.log(b);
-console.log(new String('hello').valueOf());
-console.log(b.valueOf());
-window.addEventListener('load',function (e) {
-    console.log(e);
-});
-// window.addEventListener('beforeunload',function (e) {
-//     e.preventDefault();
-//     console.log(e);
-//     //это нужно,чтобы появилась pop-up с уточнениями
-//     e.returnValue='';
-// })
-const div = document.querySelector('.blue');
-console.log(Array.from(div.children));
-const array = ['р', "а", "з"]
-Array.from(div.childNodes).forEach(node => {
-    if (node.nodeName === '#text')
-        if (Array.from(node.textContent).some(x => array.find(y => y === x))) console.log(node);
-});
-let a=5n;
-console.log(typeof a)
-console.log({}.toString());
-Array.prototype.sum=function () {
-    return this.reduce((acc,curr)=>acc+curr);
-};
-console.log([3,4,5,6,7].sum());
-let mapFruits = new Map();
-mapFruits.set('banana', 1);
-mapFruits.set('orange', 2);
-mapFruits.set('meat', 4);
-console.log(mapFruits)
-console.log(Object.fromEntries(mapFruits));
-console.log([3,4,5].valueOf());
-console.log(bob.valueOf());
-console.log(a.valueOf())
+const req = new XMLHttpRequest();
+req.open('get', `https://restcountries.com/v3.1/name/russia`);
+req.send();
+req.addEventListener('load', function () {
+    const [data] = JSON.parse(req.responseText);
+    console.log(data)
+})
+const users = new WeakSet();
+users.add(bob);
+users.add(nick);
+users.delete(bob);
+console.log(users.has(bob));
+console.log(users.has(ann));
+
+//class declaration
+class Class {
+
+}
+
+//class expression
+const Class1 = class {
+
+}
+console.log(Number.parseInt('y13.44asdf'));
+console.log(Number.parseFloat('13.45asdf'));
+
+const loadImg = (path) => {
+    return new Promise((res, rej) => {
+        const img = document.createElement('img');
+        img.src = path;
+        img.addEventListener('load', function () {
+            res(img);
+        })
+        img.addEventListener('error', function () {
+            rej(new Error(`${img.src} didn't load `));
+        })
+    });
+}
+loadImg('https://picsum.photos/1000/500 ').then(img => document.body.append(img)).catch(er => console.log(er));
+
+console.log(Array.from('hello'));
+console.log('hello'.split(''));
+console.log([...'hello']);
+
