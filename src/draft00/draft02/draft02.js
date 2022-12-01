@@ -37,52 +37,13 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 console.log([...'😂']);
-const {...bob1} = bob;
-console.log('bob1',bob1)
-console.log([...new Set([4, 5, 6, 6, 5, 4])]);
-console.log(Array.from(new Set([4, 5, 6, 7, 7])));
 
-const req = new XMLHttpRequest();
-req.open('get', `https://restcountries.com/v3.1/name/russia`);
-req.send();
-req.addEventListener('load', function () {
-    const [data] = JSON.parse(req.responseText);
-    console.log(data)
+const _btn = document.querySelector('.button--image');
+const _img = document.querySelector('.image');
+_btn.addEventListener('click', function () {
+    _img.classList.toggle('hidden');
+    _btn.classList.toggle('true');
+    if (this.classList.contains('true')) {
+        this.textContent = 'open';
+    } else this.textContent = 'close';
 })
-const users = new WeakSet();
-users.add(bob);
-users.add(nick);
-users.delete(bob);
-console.log(users.has(bob));
-console.log(users.has(ann));
-
-//class declaration
-class Class {
-
-}
-
-//class expression
-const Class1 = class {
-
-}
-console.log(Number.parseInt('y13.44asdf'));
-console.log(Number.parseFloat('13.45asdf'));
-
-const loadImg = (path) => {
-    return new Promise((res, rej) => {
-        const img = document.createElement('img');
-        img.src = path;
-        img.addEventListener('load', function () {
-            res(img);
-        })
-        img.addEventListener('error', function () {
-            rej(new Error(`${img.src} didn't load `));
-        })
-    });
-}
-loadImg('https://picsum.photos/1000/500 ').then(img => document.body.append(img)).catch(er => console.log(er));
-
-console.log(Array.from('hello'));
-console.log('hello'.split(''));
-console.log([...'hello']);
-
