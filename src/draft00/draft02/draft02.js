@@ -37,13 +37,5 @@ let ann = {name: 'ann'};
 let nick = {name: 'nick'};
 const arrUsers = [bob, tom, ann, nick];
 console.log([...'😂']);
+/////////////////////////////////////////////////////////////////
 
-const _btn = document.querySelector('.button--image');
-const _img = document.querySelector('.image');
-_btn.addEventListener('click', function () {
-    _img.classList.toggle('hidden');
-    _btn.classList.toggle('true');
-    if (this.classList.contains('true')) {
-        this.textContent = 'open';
-    } else this.textContent = 'close';
-})
