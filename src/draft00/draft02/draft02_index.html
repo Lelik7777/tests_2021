@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>draft02</title>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
     <style>
         .hidden {
             display: none;
@@ -15,7 +20,9 @@
 <div class="blue">
     Раз
     <a href="#">ссылка в диве</a>
-    <p>some text</p>
+    <p class="paragraph special">some text</p>
+    <p class="paragraph ">some text</p>
+    <p class="paragraph ">some text</p>
     <div>some div</div>
 </div>
 <a href="page.html" #top>Ссылка body</a>
@@ -45,6 +52,27 @@
     </tr>
     </tbody>
 </table>
+
+<pre><code data-language="javascript">
+    var testing = true;
+</code></pre>
+
+<div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+</div>
+
 <script type="module" src="draft02.js"></script>
+
+
+
 </body>
 </html>

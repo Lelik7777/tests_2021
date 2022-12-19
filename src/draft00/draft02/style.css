@@ -1,0 +1,24 @@
+p{
+    color: gold;
+}
+.paragraph.special{
+    color: blue;
+}
+.paragraph{
+    color: brown;
+}
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #E2E5E9;
+    flex-direction: row;
+    height: 90vh;
+    margin-bottom: 50px;
+}
+.item{
+    width:30px;
+    height: 50px;
+    background-color: red;
+
+}

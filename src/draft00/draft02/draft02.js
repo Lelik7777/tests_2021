@@ -39,3 +39,8 @@ const arrUsers = [bob, tom, ann, nick];
 console.log([...'😂']);
 /////////////////////////////////////////////////////////////////
 
+console.log('It\'s cool');
+
+//const showRS = (year, quarter) => year + quarter;
+
+console.log('RSSchool ' + showRS('2021', 'Q3'))
