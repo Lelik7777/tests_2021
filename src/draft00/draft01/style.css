@@ -1,42 +1,57 @@
-body{
-    margin: 0 auto;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-}
-.site{
-    width: 100%;
-    height: 100%;
+.site {
     display: flex;
     flex-direction: column;
 }
-header{
-    background-color: #E2E5E9;
-    height: 5%;
-    width: 100%;
-    border: 1px solid black;
-}
-main{
-    background-color: #0D69F2;
-    width: 100%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-}
-section{
-    height: 50%;
-    width:40% ;
-    background-color: green;
-    border: 1px solid black;
 
+header,
+footer {
+    background-color: #0D69F2;
 }
-nav{
-    height: 100%;
-    width: 20%;
-    background-color: orange;
-}
-footer{
-    background-color: #E2E5E9;
-    height: 5%;
+
+.container {
+    display: flex;
+    flex-direction: row;
     width: 100%;
+    height: 100vh;
+}
+
+main .sec1 {
+    background-color: black;
+    flex: 5;
+    order: 3;
+    color: white;
+    height: 50%;
+    align-self: flex-end;
+}
+
+main .sec2 {
+    background-color: orange;
+    flex: 2;
+    order: 2;
+    height: 50%;
+    align-self: center;
+}
+
+.sec3 {
+    background-color: #E2E5E9;
+    flex: 3;
+    order: 1;
+}
+.container2{
+    display: flex;
+    height: 20vh;
+}
+.section{
+    background-color: green;
+    border: 1px solid red;
+    height: 100%;
+}
+.one{
+    flex-grow: 3;
+}
+.two{
+    flex-basis: 10%;
+}
+.three{
+    flex-grow: 2;
 }
