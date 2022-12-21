@@ -209,3 +209,16 @@
 // //alert( curriedSum(1, 2, 3) );
 // alert( curriedSum(1)(2,3) );
 // alert( curriedSum(1)(2)(3) );// 6, всё ещё можно вызывать нормально
+Promise.reject(new Error('unhandled error')).then(res=>console.log(res));
+
+window.addEventListener('unhandledrejection',function (e) {
+    e.preventDefault();
+    console.log(e.promise);
+    console.log(e.reason);
+});
+function User(name) {
+    this.name=name;
+    return 56;
+}
+const man=new User('pete');
+console.log(man.name)

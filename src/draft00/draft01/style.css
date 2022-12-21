@@ -47,11 +47,15 @@ main .sec2 {
     height: 100%;
 }
 .one{
-    flex-grow: 3;
+    flex-grow: 1;
 }
 .two{
     flex-basis: 10%;
 }
 .three{
-    flex-grow: 2;
+    flex-grow: 3;
+}
+.box{
+    height: 20px;
+    background-color: silver;
 }
