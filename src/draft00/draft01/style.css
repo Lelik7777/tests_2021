@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 .site {
     display: flex;
     flex-direction: column;
@@ -37,25 +41,39 @@ main .sec2 {
     flex: 3;
     order: 1;
 }
-.container2{
+
+.container2 {
     display: flex;
     height: 20vh;
 }
-.section{
+
+.section {
     background-color: green;
     border: 1px solid red;
     height: 100%;
 }
-.one{
+
+.one {
     flex-grow: 1;
 }
-.two{
+
+.two {
     flex-basis: 10%;
 }
-.three{
+
+.three {
     flex-grow: 3;
 }
-.box{
+
+.box {
     height: 20px;
     background-color: silver;
+}
+
+.pos-absolute {
+    background-color: brown;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    z-index: 1;
 }
