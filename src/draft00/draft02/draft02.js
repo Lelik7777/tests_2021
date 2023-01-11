@@ -39,8 +39,36 @@ const arrUsers = [bob, tom, ann, nick];
 console.log([...'😂']);
 /////////////////////////////////////////////////////////////////
 
-console.log('It\'s cool');
+const lemonPie = {
+    radius: 5,
+    cook: (function () {
+        const type = 'lemon';
+        return function () {
+            console.log('#cook', type, this.radius);
+        }
+    })(),
+}
+lemonPie.cook();
 
-//const showRS = (year, quarter) => year + quarter;
+function getRadius() {
+    let rad = 1;
 
-console.log('RSSchool ' + showRS('2021', 'Q3'))
+    getRadius = function () {
+        return rad *= 2;
+    }
+
+    return getRadius();
+}
+
+console.log(getRadius());
+console.log(getRadius());
+
+function PieFactory() {
+    const instance=this;
+    PieFactory=function () {
+        return instance;
+    }
+}
+const factory1=new PieFactory();
+const factory2=new PieFactory();
+console.log(factory1===factory2);//true
