@@ -64,11 +64,30 @@ console.log(getRadius());
 console.log(getRadius());
 
 function PieFactory() {
-    const instance=this;
-    PieFactory=function () {
+    const instance = this;
+    PieFactory = function () {
         return instance;
     }
 }
-const factory1=new PieFactory();
-const factory2=new PieFactory();
-console.log(factory1===factory2);//true
+
+const factory1 = new PieFactory();
+const factory2 = new PieFactory();
+console.log(factory1 === factory2);//true
+
+function toReadable(number) {
+    const arrOnes = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+        "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+    const arrTens = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+    const getOnes = num => num % 10;
+    const getTens = num => Math.floor(num / 10);
+    const getHundreds = num => Math.floor(num / 100);
+    const tens = number % 100;
+    if (number < 20) return arrOnes[number];
+    if (number < 100) return `${arrTens[getTens(number)]} ${getOnes(number) === 0 ? '' : arrOnes[getOnes(number)]}`.trim();
+    return `${arrOnes[getHundreds()]} hundred ${arrTens[getTens(tens)]}`
+
+}
+
+//toReadable(89);
+console.log(toReadable(2));

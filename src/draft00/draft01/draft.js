@@ -221,4 +221,11 @@ function User(name) {
     return 56;
 }
 const man=new User('pete');
-console.log(man.name)
+console.log(man.name);
+
+console.log('string'&&3);
+console.log('str'||3);
+const getPercents= (parentWidth,elWidth) => {
+  return +((100*elWidth)/parentWidth).toFixed(2);
+}
+console.log(getPercents(1440,109))
