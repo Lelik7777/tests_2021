@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6403470314.js" crossorigin="anonymous"></script>
+    <style>
+        .img-scale {
+            display: inline-block; /* Строчно-блочный элемент */
+            overflow: hidden; /* Скрываем всё за контуром */
+        }
+        .img-scale img {
+            transition: 1s; /* Время эффекта */
+            display: block; /* Убираем небольшой отступ снизу */
+        }
+        .img-scale img:hover {
+            transform: scale(1.2); /* Увеличиваем масштаб */
+        }
+        .main >*{
+            background-color: red;
+        }
+    </style>
+
+    <title>Как вставить картинку в HTML</title>
+</head>
+<body>
+<div class="img-scale">
+    <img src="./img/houseplant%201.png" alt="Картинка">
+</div>
+<div class="main">
+    <div class="block">one</div>
+    <div class="block">two</div>
+    <div class="block">three</div>
+    <div class="block">four</div>
+</div>
+<i class="fa-brands fa-facebook"></i>
+<i class="fa-solid fa-user"></i>
+</body>
+</html>

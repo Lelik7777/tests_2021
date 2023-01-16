@@ -90,4 +90,48 @@ function toReadable(number) {
 }
 
 //toReadable(89);
-console.log(toReadable(2));
+//console.log(toReadable(2));
+function toBinary(n) {
+    return +n.toString(2);
+}
+
+console.log(toBinary(5));
+
+function mergeArrays(arr1, arr2) {
+    if (arr1.length === 0 && arr2.length === 0) return [];
+    return [...new Set([...arr1, ...arr2].sort((a, b) => a - b))];
+}
+
+console.log(mergeArrays([1, 4, 5], []));
+
+function add(num1, num2) {
+    const str1 = String(num1);
+    const str2 = String(num2);
+    const maxLength = str1.length > str2.length ? str1.length : str2.length;
+    for (let i = 0; i < maxLength; i++) {
+
+    }
+}
+
+//write your code here
+var questions = [{
+    question: "What's the currency of the USA?",
+    choices: ["US dollar", "Ruble", "Horses", "Gold"],
+    corAnswer: 0,
+
+}, {
+    question: "Where was the American Declaration of Independence signed?",
+    choices: ["Philadelphia", "At the bottom", "Frankie's pub", "China"],
+    corAnswer: 0,
+
+}];
+questions.map(obj => ({userAnswer: null}));
+console.log(questions)
+let obj = {};
+const arr = [["white", "goodness"], ["blue", "tranquility"]];
+const arr2 = [];
+for (let [key, value] of arr) {
+    arr2.push({[key]: value})
+}
+console.log(arr2)
+console.log(arr.map(([key, value]) => ({[key]: value})));
