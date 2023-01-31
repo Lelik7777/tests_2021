@@ -69,8 +69,16 @@
     <div class="item">9</div>
     <div class="item">10</div>
 </div>
+//расположение элемента по центру
+<div style="background-color: blue;width:200px;height: 200px;position: relative; display: flex;justify-content: center;align-items: center">
+    <div style="background-color: red;width: 10px;height: 10px; position:absolute; top:50%;left:50%;transform: translate(-50%,-50%)"></div>
+    <div style="background-color: black;width: 10px;height: 10px;z-index: 10;"></div>
+</div>
 
-
+<div style="display: flex;flex-direction: column;border: 1px solid black;height: 400px;">
+    <img src="../draft01/img/houseplant%201.png" alt="house" width="100">
+    <div style="flex-grow: 1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, alias architecto cupiditate dolores ea enim eos eveniet fuga laboriosam laudantium, nobis pariatur placeat quisquam repellendus, sequi sint ullam vero. Officiis?</div>
+</div>
 <script type="module" src="draft02.js"></script>
 
 

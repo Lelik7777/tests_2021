@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style>
+        .container{
+            font-size: 0;
+        }
+        .container p{
+            display: inline-block;
+            width: 50%;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        //такое объявление перезатрет глобальный event
+       // const event='hello';
+        function sayHello(e) {
+            console.log(e);//undefined
+            console.log(event)
+            console.log('hello');
+            event.target.removeAttribute('onclick');
+        }
+    </script>
+</head>
+<body>
+<a href="https://www.google.com">google</a>
+<div class="container" >
+    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias animi cupiditate delectus dolorum error fugiat hic iure libero, non provident quo repudiandae saepe sed tempore ut velit voluptas voluptatem.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias animi cupiditate delectus dolorum error fugiat hic iure libero, non provident quo repudiandae saepe sed tempore ut velit voluptas voluptatem.</p>
+</div>
+<button onclick="sayHello()">say hello</button>
+<button>click me too</button>
+<div id="parent">
+    <input value="1">
+    <input value="2">
+</div>
+<div class="buttons">
+    <input id="button1" type="submit" >
+    <input id="button2" type="submit">
+    <input id="button3" type="submit">
+</div>
+<div class="block__text">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum omnis quia suscipit! Architecto cum cumque doloremque hic illo in ipsa ipsum iusto laborum non perferendis quibusdam, repellendus sint vel, veritatis!</p>
+    <button class="btn">click me</button>
+</div>
+<div class="block block__numbers" id="block-num">
+    <p class="num">45</p>
+    <p class="num">50</p>
+    <p></p>
+    <p>hello world</p>
+    <button>sum</button>
+    <button>new button</button>
+</div>
+<script src="dom.js"></script>
+</body>
+</html>

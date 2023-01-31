@@ -135,3 +135,122 @@ for (let [key, value] of arr) {
 }
 console.log(arr2)
 console.log(arr.map(([key, value]) => ({[key]: value})));
+
+const obj1 = {a: 10, b: 20, c: 30};
+console.log(Object.entries(obj1));
+
+
+
+//example with arrow functions
+function thisFn() {
+    console.log(`this:`, this);
+
+    function oldFn() {
+        return this;
+    }
+
+    const arrFn = () => this;
+    const obj = {
+        a: 5,
+        oldFn,
+        arrFn,
+    }
+    // console.log('call oldFn', obj.oldFn());
+    // console.log('call arrFn', obj.arrFn());
+
+    console.log(obj.oldFn.call({hello: 'hello world'}));
+    console.log(obj.arrFn.call({hello: 'hello world'}));
+
+    console.log(oldFn.call({b: 4}));
+    console.log(arrFn.call({b: 4}));
+
+    console.log(obj.oldFn.bind({status: 'binded'}).call({a: 5}));
+
+}
+
+//thisFn.call({context: 'from bind or call'});
+
+const nicknameGenerator = name => name.length < 3 ? 'error' : name.slice(0, 3 + 'aeiou'.includes(name[2]));
+console.log(nicknameGenerator("Jaennie"));
+
+const sortMyString = s => [...s].filter((_, i) => i % 2 === 0 || i === 0)
+    .concat([' '])
+    .concat([...s].filter((_, i) => i % 2 !== 0)).join('');
+console.log(sortMyString("CodeWars"))
+
+function isPowerOfTwo(n) {
+    return Number.isInteger(Math.log2(n));
+}
+
+console.log([3, 4, 5, 6, 2].sort((a, b) => a - b));
+const arrObj = [
+    {'4': 'dog'}, {'2': 'took'}, {'3': 'his'},
+    {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
+];
+
+function spread(func, args) {
+
+    return func(...args);
+}
+
+console.log(spread(function (x, y) {
+    return x + y
+}, [1, 2]))
+
+const arrVowels = 'aeiou';
+console.log("aeiou, abc".split('').map(el => arrVowels.includes(el) ? '1' : '0').join(''));
+
+function vowelOne(s) {
+    return s.toLocaleLowerCase().split('').map(el => arrVowels.includes(el) ? '1' : '0').join('');
+}
+
+console.log(vowelOne("vowelOne"));//01010001
+const killer = (obj, arr) => {
+    let value = false;
+    for (const objKey in obj) {
+        //if (obj[objKey].includes(arr[0]) && obj[objKey].includes(arr[1])) return objKey;
+        for (const el of arr) {
+            if (obj[objKey].includes(el)) value = true;
+            else value = false;
+        }
+        if (value) return objKey;
+    }
+}
+console.log(killer({
+    'James': ['Jacob', 'Bill', 'Lucas'],
+    'Johnny': ['David', 'Kyle', 'Lucas'],
+    'Peter': ['Lucy', 'Kyle']
+}, ['Lucas', 'Bill']));
+
+console.log(Object.keys({
+    'James': ['Jacob', 'Bill', 'Lucas'],
+    'Johnny': ['David', 'Kyle', 'Lucas'],
+    'Peter': ['Lucy', 'Kyle']
+}))
+
+const data = [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0];
+
+const arrSegments = [];
+const length = data.length / 8;
+for (let i = 0; i < length; i++) {
+    arrSegments.push(data.splice(0, 8));
+}
+console.log(arrSegments.reverse().flatMap(x => x))
+console.log(['3,4,5,6,7'].map(Number));
+const list = [
+    {'4': 'dog'}, {'2': 'took'}, {'3': 'his'},
+    {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
+];
+console.log(list.sort((a, b) => Object.keys(a) - Object.keys(b)).map(x => Object.values(x)[0]).join(' '));
+
+function addNew(num1, num2) {
+
+}
+
+const objA = { a: 10, b: 20, c: 30 }
+const objB = { a: 3, c: 6, d: 3 }
+
+console.log(Object.entries(objB));
+//decodeArray.push(element.replace(/00/gi, "").replace(/10/gi, ".").replace(/11/gi, "-"));
+console.log('0000001111'.replace(/00/gi,'').replace(/10/gi,'.').replace(/11/gi,'-'));
+
