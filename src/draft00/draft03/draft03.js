@@ -92,4 +92,4 @@ const combine = (...objs) => objs.reduce((objCombo, obj) => {
 
 console.log(combine(objA, objB));
 
-
+const factorial = n => n > 1 ? factorial(n - 1) * n : 1;

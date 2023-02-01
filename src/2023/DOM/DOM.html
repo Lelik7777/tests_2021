@@ -12,6 +12,17 @@
             width: 50%;
             font-size: 16px;
         }
+        li{
+            cursor: pointer;
+            user-select: none;
+        }
+        li:hover{
+            background-color: #E2E5E9;
+            display: inline-block;
+        }
+        li._removed{
+            text-decoration: line-through;
+        }
     </style>
     <script>
         //такое объявление перезатрет глобальный event
@@ -23,6 +34,8 @@
             event.target.removeAttribute('onclick');
         }
     </script>
+    <script src="data.js"></script>
+    <script defer src="dom.js"></script>
 </head>
 <body>
 <a href="https://www.google.com">google</a>
@@ -53,6 +66,6 @@
     <button>sum</button>
     <button>new button</button>
 </div>
-<script src="dom.js"></script>
+
 </body>
 </html>
