@@ -93,3 +93,40 @@ const combine = (...objs) => objs.reduce((objCombo, obj) => {
 console.log(combine(objA, objB));
 
 const factorial = n => n > 1 ? factorial(n - 1) * n : 1;
+
+const strCount1 = obj => {
+    let count = 0;
+    for (const key in obj) {
+        if (typeof obj[key] === 'string') count++;
+        if (typeof obj[key] === "object") {
+            count += strCount(obj[key]);
+        }
+    }
+    return count;
+}
+const strCount = obj => Object.values(obj).reduce((acc, cur) => {
+    if (typeof cur === 'string') acc += 1;
+    if (typeof cur === 'object' && cur !== null) strCount(cur);
+    return acc;
+}, 0)
+const strCount2 = obj =>
+    typeof obj !== `string` ? Object.values(obj || {}).reduce((pre, val) => pre + strCount(val), 0) : 1;
+console.log(strCount({
+    first: "1",
+    second: "2",
+    third: false,
+    fourth: ["anytime", 2, 3, 4],
+    fifth: null,
+    sixth: undefined,
+}))
+console.log(strCount(['sadf', 3, 3]))
+console.log(Object.values({}).reduce((acc, cur) => acc + cur, 0));
+//{} на случай null or undefined
+const count = obj => typeof obj !== 'string' ? Object.values(obj ?? {}).reduce((acc, cur) => acc + count(cur), 0) : 1;
+console.log(count({
+    first: "1",
+    second: "2",
+    third: false,
+    fourth: ["anytime", 2, 3, 4],
+    fifth: null
+}));
