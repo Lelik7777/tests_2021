@@ -20,7 +20,7 @@ function pause() {
 $play.addEventListener('click', play);
 $pause.addEventListener('click', pause);
 
-let [a, b, c, d, e] = [3, 5, 'hello', null, {name: 'bob', age: 44}];
+let [a, b, c, d, e] = [3, 5, 'hello', null, { name: 'bob', age: 44 }];
 console.log(a, b, c, d, e);
 
 console.log(typeof 1 / 0);
@@ -139,7 +139,7 @@ multiplyNum(menu);
 console.log(menu);
 const menuCopy = Object.assign({}, menu);
 console.log(menuCopy);
-console.log({...menu})
+console.log({ ...menu })
 
 function fun() {
     console.log(this);
@@ -234,7 +234,7 @@ console.log(calendarEvent[id]);
 console.log(Boolean(calendarEvent));
 console.log(Boolean({}));
 console.log(String({}));
-calendarEvent[{name: 'bob'}] = 123;
+calendarEvent[{ name: 'bob' }] = 123;
 console.log(calendarEvent);
 console.log(Number({}))
 console.log(+{})

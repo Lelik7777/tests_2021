@@ -478,33 +478,31 @@ function transform(arr) {
             arr.splice(i, 1, arr[i + 1]);
         }
     })
-    arr.forEach((el,i) => {
+    arr.forEach((el, i) => {
         if (el === '--double-prev') {
-            if(arr[i-2]==='--discard-next'){
+            if (arr[i - 2] === '--discard-next') {
                 console.log(arr)
-                arr.splice(i-2,3);
+                arr.splice(i - 2, 3);
                 console.log(arr)
-            } else{
+            } else {
                 arr.splice(i, 1, arr[i - 1]);
             }
 
 
         }
     })
-    arr.forEach((el,i) => {
+    arr.forEach((el, i) => {
         if (el === '--discard-next') {
 
-            if(arr[i+2]==='--discard-prev'){
+            if (arr[i + 2] === '--discard-prev') {
                 arr.splice(i, 3);
 
-            }
-
-            else {
+            } else {
                 arr.splice(i, 2);
             }
         }
     });
-    arr.forEach((el,i) => {
+    arr.forEach((el, i) => {
         if (el === '--discard-prev') {
             arr.splice(i - 1, 2);
         }
@@ -519,7 +517,7 @@ transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5]);
 // array.splice(array.indexOf('--discard-next'),2)
 // console.log(array)
 
-console.log([3,4,5].at(-1))
+console.log([3, 4, 5].at(-1))
 
 
 class BinarySearchTree {
@@ -611,20 +609,20 @@ class BinarySearchTree {
                     currNode.right = removeNode(currNode.right, min, data);
                 }
             }
-            return  currNode;
+            return currNode;
         }
     }
 
     min() {
         //throw new NotImplementedError('Not implemented');
         // remove line with error and write your code here
-        if(!this.node) return this.node;
-        let currNode=this.node;
-        while (true){
-            if(currNode.left){
-                currNode=currNode.left;
-            }else {
-                return  currNode.data;
+        if (!this.node) return this.node;
+        let currNode = this.node;
+        while (true) {
+            if (currNode.left) {
+                currNode = currNode.left;
+            } else {
+                return currNode.data;
             }
 
         }
@@ -633,16 +631,60 @@ class BinarySearchTree {
     max() {
         //throw new NotImplementedError('Not implemented');
         // remove line with error and write your code here
-        if(!this.node) return this.node;
-        let currNode=this.node;
-        while (true){
-            if(currNode.right) {
-                currNode=currNode.right
-            }else {
+        if (!this.node) return this.node;
+        let currNode = this.node;
+        while (true) {
+            if (currNode.right) {
+                currNode = currNode.right
+            } else {
                 return currNode.data;
             }
         }
     }
 }
 
-console.log(4<<2)
+/**
+ * @description get object and return bolean
+ * @param{object} pet data about pet
+ * @throws{TypeError} if invalid data
+ * @return{boolean} if go well
+ */
+function validatePet(pet) {
+    Object.keys(pet).forEach((key) => {
+        if ((typeof (pet[key]) === 'string' && pet[key] === '') && Array.isArray(pet[key] === false)) {
+            throw TypeError(`Pet error. Field ${key} is invalid.`);
+        }
+
+    });
+
+    return true;
+}
+
+console.log(validatePet({
+    "name": "Jennifer",
+    "img": "./assets/pets-jennifer.webp",
+    "type": "Dog",
+    "breed": "Labrador",
+    "description": "Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.",
+    "age": "2 months",
+    "inoculations": ["none"],
+    "diseases": ["none"],
+    "parasites": ["none"]
+}));
+const arraySome = [4, 5, 6, 7, 5];
+const copyArr = [...arraySome];
+console.log(arraySome === copyArr);
+window.addEventListener('resize', function (e) {
+    const width = document.documentElement.clientWidth;
+    console.log(width)
+    if (width === 1280) {
+        console.log('width = 1280');
+    }
+    if (width === 768) {
+        console.log('width = 768');
+    }
+});
+console.log(window.innerWidth)
+
+console.log(document.documentElement.scrollWidth);
+console.log(document.documentElement.clientWidth)
