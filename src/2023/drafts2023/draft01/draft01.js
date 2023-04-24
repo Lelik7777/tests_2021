@@ -97,6 +97,7 @@ console.log(user['nameFriend']);
 console.log(user['isAdmin']);
 console.log('true' in user);
 console.log('///////////////');
+
 for (const keyKey in user) {
     console.log(`${keyKey}: ${user[keyKey]}`)
 }
@@ -363,3 +364,4 @@ function foo11() {
 }
 
 foo11.call(null);
+

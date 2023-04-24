@@ -82,4 +82,6 @@ document.querySelector('.block-inputs input[name="input-second"]').addEventListe
     if(this.value.length===2){
         document.querySelector('.block-inputs input[name="input-second"]').blur();
     }
-})
+});
+console.log('hello');
+console.log('hello two');
